@@ -1,8 +1,5 @@
 package com.example.android_ck.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class HoaDon {
     private Integer idhoadon;
     private String tentaikhoan;
