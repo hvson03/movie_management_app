@@ -1,8 +1,5 @@
 package com.example.android_ck.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class TheLoai {
     private Integer matheloai;
     private String tentheloai;

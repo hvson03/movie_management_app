@@ -1,7 +1,5 @@
 package com.example.android_ck.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 public class TaiKhoan {
     private String tentaikhoan;
     private String matkhau;
