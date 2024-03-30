@@ -1,23 +1,9 @@
 package com.example.android_ck.model;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class ChiTietHoaDon {
-    @SerializedName("idcthoadon")
-    @Expose
     private Integer idcthoadon;
-    @SerializedName("mahoadon")
-    @Expose
     private Integer mahoadon;
-    @SerializedName("maphim")
-    @Expose
     private Integer maphim;
-    @SerializedName("soluong")
-    @Expose
     private Integer soluong;
-    @SerializedName("thanhtien")
-    @Expose
     private Integer thanhtien;
 
     // Getter và Setter cho idcthoadon

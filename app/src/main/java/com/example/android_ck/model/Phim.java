@@ -4,29 +4,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Phim {
-    @SerializedName("maphim")
-    @Expose
     private Integer maphim;
-    @SerializedName("tenphim")
-    @Expose
     private String tenphim;
-    @SerializedName("anhphim")
-    @Expose
     private String anhphim;
-    @SerializedName("ngaycongchieu")
-    @Expose
     private String ngaycongchieu;
-    @SerializedName("mota")
-    @Expose
     private String mota;
-    @SerializedName("thoiluong")
-    @Expose
     private String thoiluong;
-    @SerializedName("gia")
-    @Expose
     private Integer gia;
-    @SerializedName("matheloai")
-    @Expose
     private Integer matheloai;
 
     // Getter và Setter cho maphim
