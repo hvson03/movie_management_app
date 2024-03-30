@@ -8,10 +8,5 @@
     <corners android:radius="10dp"/>
     <stroke android:color="#FFFFFF"
         android:width="2dp"/>
-
-    <selector xmlns:android="http://schemas.android.com/apk/res/android">
-        <item android:state_pressed="true" android:drawable="#4A4444" />
-        <item android:drawable="@color/white" />
-    </selector>
 </shape>
 
