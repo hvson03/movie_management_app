@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.android_ck.model.ThongTinCaNhan;
+
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DBName = "app.db";
     public DBHelper(@Nullable Context context) {
@@ -22,6 +24,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 "quyen TEXT," +
                 "ngaytao TEXT)";
         db.execSQL(taikhoan);
+
+        // Tạo bảng thông tin cá nhân
+        String thongtincanhan = "CREATE TABLE thongtincanhan(" +
+                "hoten TEXT," +
+                "gioitinh TEXT," +
+                "ngaysinh TEXT," +
+                "email TEXT," +
+                "sdt TEXT," +
+                "tentaikhoan TEXT," +
+                "FOREIGN KEY(tentaikhoan) REFERENCES taikhoan(tentaikhoan))";
+        db.execSQL(thongtincanhan);
+
+
         // Tạo bảng Thể loại
         String theloai = "CREATE TABLE theloai(" +
                 "matheloai INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -96,8 +111,53 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS danhsachyeuthich");
         db.execSQL("DROP TABLE IF EXISTS hoadon");
         db.execSQL("DROP TABLE IF EXISTS chitiethoadon");
+        db.execSQL("DROP TABLE IF EXISTS thongtincanhan");
 
         // Tạo lại các bảng mới
         onCreate(db);
     }
+
+    public boolean themTaikhoan(String tentaikhoan, String matkhau, String ngaytao){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String quyen = "khachhang";
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tentaikhoan", tentaikhoan);
+        contentValues.put("matkhau",matkhau);
+        contentValues.put("quyen",quyen);
+        contentValues.put("ngaytao",ngaytao);
+        long result = myDB.insert("taikhoan",null,contentValues);
+        if(result==-1)return false;
+        else return true;
+    }
+
+    public boolean ktraTen(String tentaikhoan){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("select * from taikhoan where tentaikhoan = ?", new String[]{tentaikhoan});
+        if(cursor.getCount()>0) return true;
+        else return false;
+    }
+
+    public boolean ktraDangnhap(String tentaikhoan,String matkhau){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("select * from taikhoan where tentaikhoan = ? and matkhau = ?", new String[]{tentaikhoan,matkhau});
+        if(cursor.getCount()>0) return true;
+        else return false;
+    }
+
+    public boolean themThongTinCaNhan(String hoten, String gioitinh, String ngaysinh, String email, String sdt, String tentakhoan) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("hoten", hoten);
+        values.put("gioitinh", gioitinh);
+        values.put("ngaysinh", ngaysinh);
+        values.put("email", email);
+        values.put("sdt", sdt);
+        values.put("tentaikhoan", tentakhoan);
+
+        long result = db.insert("thongtincanhan", null, values);
+        if(result==-1)return false;
+        else return true;
+    }
+
 }

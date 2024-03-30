@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient_2"
+    android:paddingHorizontal="40dp"
+    android:paddingVertical="20dp"
     tools:context=".khachhang.khachhang_thongtincanhan">
 
     <LinearLayout
@@ -14,22 +16,43 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_boqua"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="Bỏ qua"
+            android:textColor="#FFEB3B"
+            android:layout_gravity="right"
+            android:textSize="15sp"
+            android:gravity="center"
+            />
+
+        <TextView
             android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginVertical="25dp"
             android:text="Cập nhật thông tin cá nhân" />
 
         <TextView
             android:id="@+id/textView16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20dp"
             android:text="Họ và tên" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/edit_hoten"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:textColorHint="#C1BFBF"
             android:hint="Nhập họ và tên"
             android:inputType="text" />
 
@@ -37,30 +60,38 @@
             android:id="@+id/textView17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20dp"
             android:text="Giới tính" />
 
         <RadioGroup
+            android:id="@+id/rb_gr"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/lu_gr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp">
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/rb_nam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="RadioButton" />
+                    android:text="Nam"
+                    android:textColor="@color/white" />
 
                 <RadioButton
-                    android:id="@+id/radioButton4"
+                    android:id="@+id/rb_nu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="RadioButton" />
+                    android:text="Nữ"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </RadioGroup>
@@ -69,13 +100,18 @@
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20dp"
             android:text="Ngày sinh" />
 
         <EditText
-            android:id="@+id/editTextDate2"
+            android:id="@+id/edit_ngaysinh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:padding="10dp"
+            android:textColorHint="#C1BFBF"
+            android:layout_marginBottom="20dp"
             android:hint="Nhập ngày sinh"
             android:inputType="date" />
 
@@ -83,13 +119,18 @@
             android:id="@+id/textView22"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20dp"
             android:text="Email" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress2"
+            android:id="@+id/edit_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:textColorHint="#C1BFBF"
             android:hint="Nhập email"
             android:inputType="textEmailAddress" />
 
@@ -97,15 +138,30 @@
             android:id="@+id/textView24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20dp"
             android:text="Số điện thoại" />
 
         <EditText
-            android:id="@+id/editTextPhone"
+            android:id="@+id/edit_sdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:textColorHint="#C1BFBF"
             android:hint="Nhập số điện thoại"
             android:inputType="phone" />
+
+        <Button
+            android:id="@+id/btn_thongtincanhan"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="10dp"
+            android:background="@color/white"
+            android:textSize="20dp"
+            android:text="Hoàn thành" />
     </LinearLayout>
 
 </RelativeLayout>
