@@ -4,11 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class TheLoai {
-    @SerializedName("matheloai")
-    @Expose
     private Integer matheloai;
-    @SerializedName("tentheloai")
-    @Expose
     private String tentheloai;
 
     // Getter và Setter cho matheloai

@@ -4,14 +4,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class DanhSachYeuThich {
-    @SerializedName("iddansach")
-    @Expose
     private Integer iddansach;
-    @SerializedName("tentaikhoan")
-    @Expose
     private String tentaikhoan;
-    @SerializedName("maphim")
-    @Expose
     private Integer maphim;
 
     // Getter và Setter cho iddansach
