@@ -160,4 +160,29 @@ public class DBHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    public boolean ktraQuenmk(String email, String tentaikhoan) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("SELECT * FROM thongtincanhan WHERE email = ? AND tentaikhoan = ?", new String[]{email, tentaikhoan});
+        if (cursor.getCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean suatMatKhau(String tentaikhoan, String matkhauMoi) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("matkhau", matkhauMoi);
+
+        int rowsUpdated = myDB.update("taikhoan", contentValues, "tentaikhoan = ?", new String[]{tentaikhoan});
+
+        if (rowsUpdated > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }

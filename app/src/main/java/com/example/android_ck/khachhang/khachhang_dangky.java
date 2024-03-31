@@ -76,6 +76,7 @@ public class khachhang_dangky extends AppCompatActivity {
                 } else if (!tk.matches(regex_tentk)) {
                     edit_tk.setError("Tên tài khoản không chứa khoảng cách và ký tự đặc biệt");
                     edit_tk.requestFocus();
+                    edit_tk.setText("");
                     return;
                 }
 
@@ -86,6 +87,7 @@ public class khachhang_dangky extends AppCompatActivity {
                 } else if (!mk.matches(regex_matkhau)) {
                     edit_mk.setError("Mật khẩu tối thiểu 4 ký tự và không chứa khoảng cách");
                     edit_mk.requestFocus();
+                    edit_mk.setText("");
                     return;
                 }
 
@@ -96,6 +98,7 @@ public class khachhang_dangky extends AppCompatActivity {
                 } else if (!xacnhanmk.equals(mk)) {
                     edit_xacnhanmk.setError("Mật khẩu xác nhận không khớp");
                     edit_xacnhanmk.requestFocus();
+                    edit_xacnhanmk.setText("");
                     return;
                 }
 

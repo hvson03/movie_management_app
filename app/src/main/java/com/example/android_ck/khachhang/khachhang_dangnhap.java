@@ -16,11 +16,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
+import com.example.android_ck.quanly.MainActivity_quanly;
 
 public class khachhang_dangnhap extends AppCompatActivity {
     EditText edit_tentk, edit_matkhau;
     Button btn_dangnhap;
-    TextView tv_dangky;
+    TextView tv_dangky, tv_quenmk;
 
     DBHelper dbHelper;
     @Override
@@ -37,6 +38,7 @@ public class khachhang_dangnhap extends AppCompatActivity {
         edit_tentk = findViewById(R.id.edit_tentk);
         btn_dangnhap = findViewById(R.id.btn_dangnhap);
         tv_dangky = findViewById(R.id.tv_dangky);
+        tv_quenmk = findViewById(R.id.tv_quenmk);
 
         dbHelper = new DBHelper(this);
 
@@ -52,9 +54,15 @@ public class khachhang_dangnhap extends AppCompatActivity {
                 } else {
                     boolean ktraDangnhap = dbHelper.ktraDangnhap(tentk, matkhau);
                     if(ktraDangnhap) {
-                        Intent myintent = new Intent(khachhang_dangnhap.this, MainActivity_khachhang.class);
-                        startActivity(myintent);
-                        Toast.makeText(khachhang_dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        if (tentk.equals("admin")) {
+                            Intent intent = new Intent(khachhang_dangnhap.this, MainActivity_quanly.class);
+                            startActivity(intent);
+                            Toast.makeText(khachhang_dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent myintent = new Intent(khachhang_dangnhap.this, MainActivity_khachhang.class);
+                            startActivity(myintent);
+                            Toast.makeText(khachhang_dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(khachhang_dangnhap.this, "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
                     }
@@ -66,6 +74,14 @@ public class khachhang_dangnhap extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent myintent = new Intent(khachhang_dangnhap.this, khachhang_dangky.class);
+                startActivity(myintent);
+            }
+        });
+
+        tv_quenmk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(khachhang_dangnhap.this, khachHang_quenmatkhau.class);
                 startActivity(myintent);
             }
         });

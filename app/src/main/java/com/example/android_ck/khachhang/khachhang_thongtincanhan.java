@@ -26,7 +26,11 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
 
     DBHelper dbHelper;
 
-    String regex_hoten = "^[a-zA-Z\\s]+$";
+    String regex_hoten = "^[a-zA-Zà-Ỹ ]+$";
+    String regex_email = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+    String regex_sdt = "^(0|\\+84)(\\d{1,2})(\\d{3})(\\d{4})$";
+    String regex_ngaysinh = "^(0[1-9]|[12][0-9]|3[01])([-./])(0[1-9]|1[012])([-./])(19|20)\\d\\d$";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,12 +76,46 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
                 }
 
                 if (hoten.isEmpty()) {
-                    edit_hoten.setError("Vui lòng nhập tên nhân viên");
+                    edit_hoten.setError("Vui lòng nhập họ và tên");
                     edit_hoten.requestFocus();
                     return;
                 } else if (!hoten.matches(regex_hoten)) {
-                    edit_hoten.setError("Tên yêu cầu chỉ nhập chữ cái");
+                    edit_hoten.setError("Họ và tên yêu cầu chỉ nhập chữ cái");
                     edit_hoten.requestFocus();
+                    edit_hoten.setText("");
+                    return;
+                }
+
+                if (ngaysinh.isEmpty()) {
+                    edit_ngaysinh.setError("Vui lòng nhập ngày sinh");
+                    edit_ngaysinh.requestFocus();
+                    return;
+                } else if (!ngaysinh.matches(regex_ngaysinh)) {
+                    edit_ngaysinh.setError("Yêu cầu định dạng ngày sinh DD-MM-YYYY");
+                    edit_ngaysinh.requestFocus();
+                    edit_ngaysinh.setText("");
+                    return;
+                }
+
+                if (email.isEmpty()) {
+                    edit_email.setError("Vui lòng nhập email");
+                    edit_email.requestFocus();
+                    return;
+                } else if (!email.matches(regex_email)) {
+                    edit_email.setError("Yêu cầu định dạng email email@gmail.com");
+                    edit_email.requestFocus();
+                    edit_email.setText("");
+                    return;
+                }
+
+                if (sdt.isEmpty()) {
+                    edit_sdt.setError("Vui lòng nhập số điện thoại");
+                    edit_sdt.requestFocus();
+                    return;
+                } else if (!sdt.matches(regex_sdt)) {
+                    edit_sdt.setError("Yêu cầu định dạng số điện thoại");
+                    edit_sdt.requestFocus();
+                    edit_sdt.setText("");
                     return;
                 }
 
@@ -95,6 +133,20 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
         tv_boqua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Nhận Intent
+                Intent myintent1 = getIntent();
+                // Lấy Bundle ra khỏi Intent
+                Bundle mybundle = myintent1.getBundleExtra("dangkypackage");
+                String tk = mybundle.getString("tk");
+
+                boolean thongtincanhan = dbHelper.themThongTinCaNhan("null", "null", "null", "null", "null", tk);
+                if (thongtincanhan) {
+                    Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin thành công", Toast.LENGTH_SHORT).show();
+                    Intent myintent = new Intent(khachhang_thongtincanhan.this, MainActivity_khachhang.class);
+                    startActivity(myintent);
+                } else {
+                    Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin không thành công", Toast.LENGTH_SHORT).show();
+                }
                 Intent myintent = new Intent(khachhang_thongtincanhan.this, MainActivity_khachhang.class);
                 startActivity(myintent);
             }
