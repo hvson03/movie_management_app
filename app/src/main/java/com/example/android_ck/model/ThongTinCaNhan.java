@@ -10,7 +10,7 @@ public class ThongTinCaNhan {
     private String tentaikhoan;
 
 
-    public ThongTinCaNhan(int id, String hoten, String gioitinh, String ngaysinh, String email, String sdt, String tentaikhoan) {
+    public ThongTinCaNhan(String hoten, String gioitinh, String ngaysinh) {
         this.id = id;
         this.hoten = hoten;
         this.gioitinh = gioitinh;

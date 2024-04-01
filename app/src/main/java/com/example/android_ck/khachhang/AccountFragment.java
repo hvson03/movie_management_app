@@ -79,6 +79,13 @@ public class AccountFragment extends Fragment{
             }
         });
 
+        btn_qltk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return view;
     }
 

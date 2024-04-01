@@ -44,23 +44,19 @@ public class khachhang_doimatkhau extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
 
-        Intent myintent = getIntent();
-        // Lấy Bundle ra khỏi Intent
-        Bundle mybundle = myintent.getBundleExtra("dangnhappacket");
-        String tk = mybundle.getString("tk");
         btn_luumk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mk, xacnhanmk;
-                mk = edit_dmk_mk.getText().toString().trim();
+                String matkhau, xacnhanmk;
+                matkhau = edit_dmk_mk.getText().toString().trim();
                 xacnhanmk = edit_dmk_xacnhanmk.getText().toString().trim();
 
-                    if (mk.isEmpty()) {
-                        edit_dmk_mk.setError("Vui lòng nhập mật khẩu");
+                    if (matkhau.isEmpty()) {
+                        edit_dmk_mk.setError("Vui lòng nhập mật khẩu mới");
                         edit_dmk_mk.requestFocus();
                         return;
-                    } else if (!mk.matches(regex_matkhau)) {
-                        edit_dmk_mk.setError("Mật khẩu tối thiểu 4 ký tự và không chứa khoảng cách");
+                    } else if(!matkhau.matches(regex_matkhau)) {
+                        edit_dmk_mk.setError("Mật khẩu mới tối thiểu 4 ký tự và không chứa khoảng cách");
                         edit_dmk_mk.requestFocus();
                         edit_dmk_mk.setText("");
                         return;
@@ -70,21 +66,21 @@ public class khachhang_doimatkhau extends AppCompatActivity {
                         edit_dmk_xacnhanmk.setError("Vui lòng xác nhận mật khẩu");
                         edit_dmk_xacnhanmk.requestFocus();
                         return;
-                    } else if (!xacnhanmk.equals(mk)) {
+                    } else if (!xacnhanmk.equals(matkhau)) {
                         edit_dmk_xacnhanmk.setError("Mật khẩu xác nhận không khớp");
                         edit_dmk_xacnhanmk.requestFocus();
                         edit_dmk_xacnhanmk.setText("");
                         return;
                     }
 
-                    boolean ktra = dbHelper.suatMatKhau(tk, mk);
-                    if (ktra) {
-                        Intent myintent = new Intent(khachhang_doimatkhau.this, AccountFragment.class);
-                        startActivity(myintent);
-                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
-                    }
+//                    boolean ktra = dbHelper.suatMatKhau(tk, matkhau);
+//                    if (ktra) {
+//                        Intent myintent = new Intent(khachhang_doimatkhau.this, AccountFragment.class);
+//                        startActivity(myintent);
+//                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
+//                    }
 
 
 
@@ -93,6 +89,11 @@ public class khachhang_doimatkhau extends AppCompatActivity {
             }
         });
 
-
+        img_quaylaittcn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

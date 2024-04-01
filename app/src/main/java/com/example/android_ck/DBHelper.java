@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 
 import com.example.android_ck.model.ThongTinCaNhan;
 
+import java.util.ArrayList;
+
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DBName = "app.db";
     public DBHelper(@Nullable Context context) {
@@ -185,15 +187,33 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor layThongTinCaNhan(String tentaikhoan) {
-        SQLiteDatabase myDB = this.getReadableDatabase();
-        Cursor cursor = myDB.rawQuery(
-                "SELECT * FROM thongtincanhan WHERE tentaikhoan = ?", new String[]{tentaikhoan}
-        );
-        return cursor;
+//    public Cursor layThongTinCaNhan(String tentaikhoan) {
+//        SQLiteDatabase myDB = this.getReadableDatabase();
+//        Cursor cursor = myDB.rawQuery(
+//                "SELECT * FROM thongtincanhan WHERE tentaikhoan = ?", new String[]{tentaikhoan}
+//        );
+//        return cursor;
+//    }
+
+    public ArrayList<ThongTinCaNhan> getThongtincanhan(String tentaikhoan){
+        ArrayList<ThongTinCaNhan> ThongTinCaNhan = new ArrayList<>();
+
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM thongtincanhan WHERE tentaikhoan = ?";
+        Cursor cursor = db.rawQuery(query,new String[]{tentaikhoan});
+
+        if(cursor.getCount() == 0){
+        }else{
+            while (cursor.moveToNext()){
+                String hoten = cursor.getString(1);
+                String email = cursor.getString(4);
+                String sdt = cursor.getString(5);
+
+                ThongTinCaNhan.add(new ThongTinCaNhan(hoten,email,sdt));
+            }
+        }
+        return ThongTinCaNhan;
     }
-
-
 
 
 }

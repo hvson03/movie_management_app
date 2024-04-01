@@ -50,9 +50,16 @@ public class khachhang_dangnhap extends AppCompatActivity {
                 tentk = edit_tentk.getText().toString().trim();
                 matkhau = edit_matkhau.getText().toString().trim();
 
-                if(tentk.isEmpty() || matkhau.isEmpty()) {
-                    Toast.makeText(khachhang_dangnhap.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
-                } else {
+                if(tentk.isEmpty()) {
+                    edit_tentk.setError("Vui lòng nhập tên tài khoản");
+                    edit_tentk.requestFocus();
+                    return;
+                } else if (matkhau.isEmpty()) {
+                    edit_matkhau.setError("Vui lòng nhập mật khẩu");
+                    edit_matkhau.requestFocus();
+                    return;
+                }
+
                     boolean ktraDangnhap = dbHelper.ktraDangnhap(tentk, matkhau);
                     if(ktraDangnhap) {
                         if (tentk.equals("admin")) {
@@ -72,8 +79,10 @@ public class khachhang_dangnhap extends AppCompatActivity {
                         }
                     } else {
                         Toast.makeText(khachhang_dangnhap.this, "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
+                        edit_tentk.setText("");
+                        edit_matkhau.setText("");
                     }
-                }
+
             }
         });
 
