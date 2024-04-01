@@ -6,13 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient_2"
-    android:paddingHorizontal="20dp"
-    android:paddingVertical="20dp"
     tools:context=".khachhang.khachhang_thongtincanhan">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -159,8 +158,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginVertical="10dp"
-            android:background="@color/white"
-            android:backgroundTint="@null"
+            android:backgroundTint="#009688"
+            android:paddingVertical="10dp"
             android:text="Hoàn thành"
             android:textColor="@color/white"
             android:textSize="20dp" />

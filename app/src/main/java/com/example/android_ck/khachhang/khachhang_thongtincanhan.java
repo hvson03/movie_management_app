@@ -51,6 +51,10 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
         btn_thongtincanhan = findViewById(R.id.btn_thongtincanhan);
 
         dbHelper = new DBHelper(this);
+        // Nhận Intent
+        Intent myintent1 = getIntent();
+        // Lấy Bundle ra khỏi Intent
+        Bundle mybundle = myintent1.getBundleExtra("dangkypackage");
 
         btn_thongtincanhan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,10 +67,6 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
                 sdt = edit_sdt.getText().toString().trim();
                 ktra_rb_gr = rb_gr.getCheckedRadioButtonId();
 
-                // Nhận Intent
-                Intent myintent1 = getIntent();
-                // Lấy Bundle ra khỏi Intent
-                Bundle mybundle = myintent1.getBundleExtra("dangkypackage");
                 String tk = mybundle.getString("tk");
 
                 if (ktra_rb_gr == R.id.rb_nam) {
@@ -122,7 +122,7 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
                 boolean thongtincanhan = dbHelper.themThongTinCaNhan(hoten, gioitinh, ngaysinh, email, sdt, tk);
                 if (thongtincanhan) {
                     Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin thành công", Toast.LENGTH_SHORT).show();
-                    Intent myintent = new Intent(khachhang_thongtincanhan.this, MainActivity_khachhang.class);
+                    Intent myintent = new Intent(khachhang_thongtincanhan.this, khachhang_dangnhap.class);
                     startActivity(myintent);
                 } else {
                     Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin không thành công", Toast.LENGTH_SHORT).show();
@@ -133,22 +133,17 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
         tv_boqua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Nhận Intent
-                Intent myintent1 = getIntent();
-                // Lấy Bundle ra khỏi Intent
-                Bundle mybundle = myintent1.getBundleExtra("dangkypackage");
+                assert mybundle != null;
                 String tk = mybundle.getString("tk");
 
                 boolean thongtincanhan = dbHelper.themThongTinCaNhan("null", "null", "null", "null", "null", tk);
                 if (thongtincanhan) {
                     Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin thành công", Toast.LENGTH_SHORT).show();
-                    Intent myintent = new Intent(khachhang_thongtincanhan.this, MainActivity_khachhang.class);
+                    Intent myintent = new Intent(khachhang_thongtincanhan.this, khachhang_dangnhap.class);
                     startActivity(myintent);
                 } else {
                     Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin không thành công", Toast.LENGTH_SHORT).show();
                 }
-                Intent myintent = new Intent(khachhang_thongtincanhan.this, MainActivity_khachhang.class);
-                startActivity(myintent);
             }
         });
 

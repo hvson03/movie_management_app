@@ -72,8 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginVertical="55dp"
-            android:background="@color/white"
-            android:backgroundTint="@null"
+            android:backgroundTint="#009688"
+            android:paddingVertical="10dp"
             android:text="Đăng nhập"
             android:textColor="@color/white"
             android:textSize="20dp" />

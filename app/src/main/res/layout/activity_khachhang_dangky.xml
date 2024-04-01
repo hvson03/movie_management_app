@@ -28,7 +28,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="50dp"
+            android:layout_marginVertical="30dp"
             android:gravity="center"
             android:text="Đăng ký tài khoản"
             android:textColor="@color/white"
@@ -119,9 +119,10 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:backgroundTint="#009688"
+            android:layout_marginTop="20dp"
+            android:paddingVertical="10dp"
             android:text="Đăng ký"
-            android:backgroundTint="@null"
-            android:background="@color/white"
             android:textColor="@color/white"
             android:textSize="20dp" />
 

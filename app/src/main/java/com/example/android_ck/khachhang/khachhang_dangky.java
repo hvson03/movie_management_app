@@ -113,9 +113,11 @@ public class khachhang_dangky extends AppCompatActivity {
                     Toast.makeText(khachhang_dangky.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                     Intent myintent = new Intent(khachhang_dangky.this, khachhang_thongtincanhan.class);
 
+                    int b = 1;
                     // Đóng gói dữ liệu và đưa dữ liệu vào Bundle
                     Bundle mybundle = new Bundle();
                     mybundle.putString("tk", tk);
+                    mybundle.putInt("b", b);
 
                     // Đưa Bundle vào Intent
                     myintent.putExtra("dangkypackage", mybundle);

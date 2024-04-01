@@ -27,6 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Tạo bảng thông tin cá nhân
         String thongtincanhan = "CREATE TABLE thongtincanhan(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "hoten TEXT," +
                 "gioitinh TEXT," +
                 "ngaysinh TEXT," +
@@ -183,6 +184,16 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    public Cursor layThongTinCaNhan(String tentaikhoan) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(
+                "SELECT * FROM thongtincanhan WHERE tentaikhoan = ?", new String[]{tentaikhoan}
+        );
+        return cursor;
+    }
+
+
 
 
 }

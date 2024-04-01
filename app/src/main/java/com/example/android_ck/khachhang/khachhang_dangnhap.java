@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -60,6 +61,12 @@ public class khachhang_dangnhap extends AppCompatActivity {
                             Toast.makeText(khachhang_dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         } else {
                             Intent myintent = new Intent(khachhang_dangnhap.this, MainActivity_khachhang.class);
+                            // Đóng gói dữ liệu và đưa dữ liệu vào Bundle
+                            Bundle mybundle = new Bundle();
+                            mybundle.putString("tk", tentk);
+
+                            // Đưa Bundle vào Intent
+                            myintent.putExtra("dangnhappacket", mybundle);
                             startActivity(myintent);
                             Toast.makeText(khachhang_dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         }
