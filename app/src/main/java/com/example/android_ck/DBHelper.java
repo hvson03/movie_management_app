@@ -32,7 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String phim = "CREATE TABLE phim(" +
                 "maphim INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenphim TEXT," +
-                "anhphim TEXT," +
+                "anhphim BLOB," +
                 "ngaycongchieu TEXT," +
                 "mota TEXT," +
                 "thoiluong TEXT," +
