@@ -87,17 +87,28 @@
             android:textSize="18sp"
             android:text="Mật khẩu mới:" />
 
-        <EditText
-            android:id="@+id/edit_dmk_mk"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:textColor="@color/white"
-            android:paddingHorizontal="10dp"
-            android:textSize="18sp"
+            app:passwordToggleEnabled="true"
             android:textColorHint="#BAB372"
-            android:hint="Nhập mật khẩu mới"
-            android:inputType="textPassword" />
+            app:passwordToggleTint="@color/white"
+            android:layout_height="wrap_content" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_dmk_mk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:textSize="18sp"
+                android:background="#00FFFFFF"
+                android:hint="Nhập mật khẩu mới"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <TextView
             android:id="@+id/textView314"
@@ -108,17 +119,27 @@
             android:textSize="18sp"
             android:text="Xác nhận mật khẩu mới:" />
 
-        <EditText
-            android:id="@+id/edit_dmk_xacnhanmk"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="1"
-            android:hint="Xác nhận mật khẩu mới"
-            android:inputType="textPassword"
-            android:paddingHorizontal="10dp"
-            android:textColor="@color/white"
+            app:passwordToggleEnabled="true"
             android:textColorHint="#BAB372"
-            android:textSize="18sp" />
+            app:passwordToggleTint="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_dmk_xacnhanmk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:ems="1"
+                android:hint="Xác nhận mật khẩu mới"
+                android:inputType="textPassword"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="#BAB372"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
 
         <Button

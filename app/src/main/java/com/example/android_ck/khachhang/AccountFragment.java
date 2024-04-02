@@ -46,20 +46,27 @@ public class AccountFragment extends Fragment{
         Bundle mybundle1 = myintent1.getBundleExtra("dangnhappacket");
 
         String tk = mybundle1.getString("tk");
-//        Cursor cursor = dbHelper.layThongTinCaNhan(tk);
-//            cursor.moveToFirst();
-//            while (cursor.isAfterLast()){
-//                tv_hoten.setText(cursor.getString(1).toString());
-//                tv_email.setText(cursor.getString(4).toString());
-//                tv_sdt.setText(cursor.getString(5).toString());
-//                cursor.moveToNext();
-//            }
-//            cursor.close();
+
+        Cursor cursor = dbHelper.layThongTinCaNhan(tk);
+            cursor.moveToFirst();
+            if (cursor.isAfterLast()==false){
+                tv_hoten.setText(cursor.getString(1).toString());
+                tv_email.setText(cursor.getString(4).toString());
+                tv_sdt.setText(cursor.getString(5).toString());
+                cursor.moveToNext();
+            }
+            cursor.close();
 
         btn_doimk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myintent = new Intent(getActivity(), khachhang_doimatkhau.class);
+                // Đóng gói dữ liệu và đưa dữ liệu vào Bundle
+                Bundle mybundle = new Bundle();
+                mybundle.putString("tk", tk);
+
+                // Đưa Bundle vào Intent
+                myintent.putExtra("dangnhappacket", mybundle);
                 startActivity(myintent);
             }
         });

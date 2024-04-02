@@ -1,6 +1,7 @@
 package com.example.android_ck.khachhang;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,13 +45,28 @@ public class khachhang_doimatkhau extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
 
+        Intent myintent1 = getIntent();
+        // Lấy Bundle ra khỏi Intent
+        Bundle mybundle1 = myintent1.getBundleExtra("dangnhappacket");
+
+        String tk = mybundle1.getString("tk");
+
+
+        Cursor cursor = dbHelper.layThongtintaikhoan(tk);
+        cursor.moveToFirst();
+        if (cursor.isAfterLast()==false){
+            tv_dmk_tk.setText(cursor.getString(0).toString());
+            tv_dmk_mk.setText(cursor.getString(1).toString());
+            cursor.moveToNext();
+        }
+        cursor.close();
+
         btn_luumk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String matkhau, xacnhanmk;
                 matkhau = edit_dmk_mk.getText().toString().trim();
                 xacnhanmk = edit_dmk_xacnhanmk.getText().toString().trim();
-
                     if (matkhau.isEmpty()) {
                         edit_dmk_mk.setError("Vui lòng nhập mật khẩu mới");
                         edit_dmk_mk.requestFocus();
@@ -73,19 +89,15 @@ public class khachhang_doimatkhau extends AppCompatActivity {
                         return;
                     }
 
-//                    boolean ktra = dbHelper.suatMatKhau(tk, matkhau);
-//                    if (ktra) {
-//                        Intent myintent = new Intent(khachhang_doimatkhau.this, AccountFragment.class);
-//                        startActivity(myintent);
-//                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
-//                    }
 
-
-
-
-
+                    boolean ktra = dbHelper.suatMatKhau(tk, matkhau);
+                    if (ktra) {
+                        Intent myintent = new Intent(khachhang_doimatkhau.this, AccountFragment.class);
+                        startActivity(myintent);
+                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
+                    }
             }
         });
 

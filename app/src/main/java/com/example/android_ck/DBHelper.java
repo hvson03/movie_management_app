@@ -187,13 +187,21 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-//    public Cursor layThongTinCaNhan(String tentaikhoan) {
-//        SQLiteDatabase myDB = this.getReadableDatabase();
-//        Cursor cursor = myDB.rawQuery(
-//                "SELECT * FROM thongtincanhan WHERE tentaikhoan = ?", new String[]{tentaikhoan}
-//        );
-//        return cursor;
-//    }
+    public Cursor layThongTinCaNhan(String tentaikhoan) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(
+                "SELECT * FROM thongtincanhan WHERE tentaikhoan = ?", new String[]{tentaikhoan}
+        );
+        return cursor;
+    }
+
+    public Cursor layThongtintaikhoan(String tentaikhoan) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(
+                "SELECT * FROM taikhoan WHERE tentaikhoan = ?", new String[]{tentaikhoan}
+        );
+        return cursor;
+    }
 
     public ArrayList<ThongTinCaNhan> getThongtincanhan(String tentaikhoan){
         ArrayList<ThongTinCaNhan> ThongTinCaNhan = new ArrayList<>();
