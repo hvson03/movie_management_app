@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +24,7 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
     RadioGroup rb_gr;
     TextView tv_boqua;
     Button btn_thongtincanhan;
-
+    RadioButton rb_nam, rb_nu;
     DBHelper dbHelper;
 
     String regex_hoten = "^[a-zA-Zà-Ỹ ]+$";
@@ -43,12 +44,14 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
         });
 
         edit_hoten = findViewById(R.id.edit_hoten);
-        edit_ngaysinh = findViewById(R.id.edit_ngaysinh);
-        edit_email = findViewById(R.id.edit_email);
-        edit_sdt = findViewById(R.id.edit_sdt);
-        rb_gr = findViewById(R.id.rb_gr);
-        tv_boqua = findViewById(R.id.tv_boqua);
-        btn_thongtincanhan = findViewById(R.id.btn_thongtincanhan);
+//        edit_ngaysinh = findViewById(R.id.edit_ngaysinh);
+//        edit_email = findViewById(R.id.edit_email);
+//        edit_sdt = findViewById(R.id.edit_sdt);
+//        rb_gr = findViewById(R.id.rb_gr);
+//        rb_nam = findViewById(R.id.rb_nam);
+//        rb_nu = findViewById(R.id.rb_nu);
+//        tv_boqua = findViewById(R.id.tv_boqua);
+//        btn_thongtincanhan = findViewById(R.id.btn_thongtincanhan);
 
         dbHelper = new DBHelper(this);
         // Nhận Intent
@@ -59,21 +62,21 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
         btn_thongtincanhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String hoten, ngaysinh, gioitinh = "", email, sdt;
-                int ktra_rb_gr;
+                String hoten, ngaysinh, gioitinh="", email, sdt;
+                int ktraRb_bt;
                 hoten = edit_hoten.getText().toString().trim();
                 ngaysinh = edit_ngaysinh.getText().toString().trim();
                 email = edit_email.getText().toString().trim();
                 sdt = edit_sdt.getText().toString().trim();
-                ktra_rb_gr = rb_gr.getCheckedRadioButtonId();
+                ktraRb_bt = rb_gr.getCheckedRadioButtonId();
 
                 String tk = mybundle.getString("tk");
 
-                if (ktra_rb_gr == R.id.rb_nam) {
-                    gioitinh = "nam";
-                } else if (ktra_rb_gr == R.id.rb_nu) {
-                    gioitinh = "nu";
-                }
+//                if (ktraRb_bt == R.id.rb_nam) {
+//                    gioitinh = "nam";
+//                } else if (ktraRb_bt == R.id.rb_nu) {
+//                    gioitinh = "nu";
+//                }
 
                 if (hoten.isEmpty()) {
                     edit_hoten.setError("Vui lòng nhập họ và tên");

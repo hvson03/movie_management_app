@@ -92,8 +92,9 @@ public class khachhang_doimatkhau extends AppCompatActivity {
 
                     boolean ktra = dbHelper.suatMatKhau(tk, matkhau);
                     if (ktra) {
-                        Intent myintent = new Intent(khachhang_doimatkhau.this, AccountFragment.class);
-                        startActivity(myintent);
+//                        Intent myintent = new Intent(khachhang_doimatkhau.this, AccountFragment.class);
+//                        startActivity(myintent);
+                       finish();
                         Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
