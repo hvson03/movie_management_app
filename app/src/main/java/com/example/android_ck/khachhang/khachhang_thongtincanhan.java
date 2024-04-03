@@ -44,14 +44,14 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
         });
 
         edit_hoten = findViewById(R.id.edit_hoten);
-//        edit_ngaysinh = findViewById(R.id.edit_ngaysinh);
-//        edit_email = findViewById(R.id.edit_email);
-//        edit_sdt = findViewById(R.id.edit_sdt);
-//        rb_gr = findViewById(R.id.rb_gr);
-//        rb_nam = findViewById(R.id.rb_nam);
-//        rb_nu = findViewById(R.id.rb_nu);
-//        tv_boqua = findViewById(R.id.tv_boqua);
-//        btn_thongtincanhan = findViewById(R.id.btn_thongtincanhan);
+        edit_ngaysinh = findViewById(R.id.edit_ngaysinh);
+        edit_email = findViewById(R.id.edit_email);
+        edit_sdt = findViewById(R.id.edit_sdt);
+        rb_gr = findViewById(R.id.rb_gr);
+        rb_nam = findViewById(R.id.rb_nam);
+        rb_nu = findViewById(R.id.rb_nu);
+        tv_boqua = findViewById(R.id.tv_boqua);
+        btn_thongtincanhan = findViewById(R.id.btn_thongtincanhan);
 
         dbHelper = new DBHelper(this);
         // Nhận Intent
@@ -72,11 +72,11 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
 
                 String tk = mybundle.getString("tk");
 
-//                if (ktraRb_bt == R.id.rb_nam) {
-//                    gioitinh = "nam";
-//                } else if (ktraRb_bt == R.id.rb_nu) {
-//                    gioitinh = "nu";
-//                }
+                if (ktraRb_bt == R.id.rb_nam) {
+                    gioitinh = "nam";
+                } else if (ktraRb_bt == R.id.rb_nu) {
+                    gioitinh = "nu";
+                }
 
                 if (hoten.isEmpty()) {
                     edit_hoten.setError("Vui lòng nhập họ và tên");
