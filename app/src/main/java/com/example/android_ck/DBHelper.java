@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.android_ck.model.ThongTinCaNhan;
+
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DBName = "app.db";
     public DBHelper(@Nullable Context context) {
@@ -23,6 +25,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 "quyen TEXT," +
                 "ngaytao TEXT)";
         db.execSQL(taikhoan);
+
+        // Tạo bảng thông tin cá nhân
+        String thongtincanhan = "CREATE TABLE thongtincanhan(" +
+                "hoten TEXT," +
+                "gioitinh TEXT," +
+                "ngaysinh TEXT," +
+                "email TEXT," +
+                "sdt TEXT," +
+                "tentaikhoan TEXT," +
+                "FOREIGN KEY(tentaikhoan) REFERENCES taikhoan(tentaikhoan))";
+        db.execSQL(thongtincanhan);
+
+
         // Tạo bảng Thể loại
         String theloai = "CREATE TABLE theloai(" +
                 "matheloai INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -33,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String phim = "CREATE TABLE phim(" +
                 "maphim INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenphim TEXT," +
-                "anhphim TEXT," +
+                "anhphim BLOB," +
                 "ngaycongchieu TEXT," +
                 "mota TEXT," +
                 "thoiluong TEXT," +
@@ -94,42 +109,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS danhsachyeuthich");
         db.execSQL("DROP TABLE IF EXISTS hoadon");
         db.execSQL("DROP TABLE IF EXISTS chitiethoadon");
+        db.execSQL("DROP TABLE IF EXISTS thongtincanhan");
 
         // Tạo lại các bảng mới
         onCreate(db);
-    }
-    public void themDanhSachYeuThich(String tentaikhoan, String maphim){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("tentaikhoan", tentaikhoan);
-        cv.put("maphim", maphim);
-        long result = db.insert("danhsachyeuthich", null, cv);
-        if(result==-1){
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Added successfully!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void xoaDanhSachYeuThich(Integer id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete("danhsachyeuthich", "iddansach=?", new String[]{String.valueOf(id)});
-        if(result == -1){
-            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public Cursor layDuLieuBangDSYT(){
-//         String query = "SELECT * FROM danhsachyeuthich dsyt INNER JOIN phim p WHERE dsyt.maphim=p.maphim";
-        String query = "SELECT * FROM danhsachyeuthich";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = null;
-        if(db!=null){
-            cursor = db.rawQuery(query, null);
-        }
-        return cursor;
     }
 
     public boolean themTaikhoan(String tentaikhoan, String matkhau, String ngaytao){
@@ -171,9 +154,41 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("tentaikhoan", tentakhoan);
 
         long result = db.insert("thongtincanhan", null, values);
-        if(result==-1)
-            return false;
-        else
-            return true;
+        if(result==-1)return false;
+        else return true;
+    }
+
+    public void themDanhSachYeuThich(String tentaikhoan, String maphim){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("tentaikhoan", tentaikhoan);
+        cv.put("maphim", maphim);
+        long result = db.insert("danhsachyeuthich", null, cv);
+        if(result==-1){
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Added successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void xoaDanhSachYeuThich(Integer id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete("danhsachyeuthich", "iddansach=?", new String[]{String.valueOf(id)});
+        if(result == -1){
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public Cursor layDuLieuBangDSYT(){
+//        String query = "SELECT * FROM danhsachyeuthich dsyt INNER JOIN phim p WHERE dsyt.maphim=p.maphim";
+        String query = "SELECT * FROM danhsachyeuthich";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if(db!=null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
     }
 }
