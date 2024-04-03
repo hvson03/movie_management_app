@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Android_CK"
         tools:targetApi="31">
         <activity
+            android:name=".quanly.quanly_xoataikhoankhachhang"
+            android:exported="false" />
+        <activity
+            android:name=".khachhang.khachhang_goiylaylaimk"
+            android:exported="false" />
+        <activity
+            android:name=".khachhang.khachhang_quanlytaikhoan"
+            android:exported="false" />
+        <activity
+            android:name=".khachhang.khachhang_doimatkhau"
+            android:exported="false" />
+        <activity
+            android:name=".khachhang.khachHang_quenmatkhau"
+            android:exported="false" />
+        <activity
             android:name=".khachhang.khachhang_thongtincanhan"
             android:exported="false" />
         <activity

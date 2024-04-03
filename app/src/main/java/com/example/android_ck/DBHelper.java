@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 
 import com.example.android_ck.model.ThongTinCaNhan;
 
+import java.util.ArrayList;
+
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DBName = "app.db";
     public DBHelper(@Nullable Context context) {
@@ -28,6 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Tạo bảng thông tin cá nhân
         String thongtincanhan = "CREATE TABLE thongtincanhan(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "hoten TEXT," +
                 "gioitinh TEXT," +
                 "ngaysinh TEXT," +
@@ -157,6 +160,103 @@ public class DBHelper extends SQLiteOpenHelper {
         if(result==-1)return false;
         else return true;
     }
+
+    public boolean ktraQuenmk(String email, String tentaikhoan) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("SELECT * FROM thongtincanhan WHERE email = ? AND tentaikhoan = ?", new String[]{email, tentaikhoan});
+        if (cursor.getCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean suatMatKhau(String tentaikhoan, String matkhauMoi) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("matkhau", matkhauMoi);
+
+        int rowsUpdated = myDB.update("taikhoan", contentValues, "tentaikhoan = ?", new String[]{tentaikhoan});
+
+        if (rowsUpdated > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean suaThongtincanhan(String hoten, String gioitinh, String ngaysinh, String email, String sdt, String tentaikhoan) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("hoten", hoten);
+        contentValues.put("gioitinh", gioitinh);
+        contentValues.put("ngaysinh", ngaysinh);
+        contentValues.put("email", email);
+        contentValues.put("sdt", sdt);
+
+        int rowUpdated = myDB.update("thongtincanhan", contentValues, "tentaikhoan = ?", new String[]{tentaikhoan});
+
+        if (rowUpdated > 0) {
+            return true;
+        } else  {
+            return false;
+        }
+    }
+
+    public Cursor layTatCaThongTinCaNhan() {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery("SELECT * FROM thongtincanhan", null);
+        return cursor;
+    }
+
+
+    public Cursor layThongTinCaNhan(String tentaikhoan) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(
+                "SELECT * FROM thongtincanhan WHERE tentaikhoan = ?", new String[]{tentaikhoan}
+        );
+        return cursor;
+    }
+
+    public Cursor layThongtintaikhoan(String tentaikhoan) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(
+                "SELECT * FROM taikhoan WHERE tentaikhoan = ?", new String[]{tentaikhoan}
+        );
+        return cursor;
+    }
+
+    public int layTongSoLuongPhimYeuThich(String tentaikhoan) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(
+                "SELECT COUNT(*) FROM danhsachyeuthich WHERE tentaikhoan = ?", new String[]{tentaikhoan}
+        );
+
+        int totalCount = 0;
+        if (cursor.moveToFirst()) {
+            totalCount = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return totalCount;
+    }
+
+    public int layTongThanhTien(String tentaikhoan) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(
+                "SELECT SUM(thanhtien) FROM chitiethoadon INNER JOIN hoadon ON chitiethoadon.mahoadon = hoadon.idhoadon WHERE hoadon.tentaikhoan = ?", new String[]{tentaikhoan}
+        );
+
+        int totalAmount = 0;
+        if (cursor.moveToFirst()) {
+            totalAmount = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return totalAmount;
+    }
+
+
 
     public void themDanhSachYeuThich(String tentaikhoan, String maphim){
         SQLiteDatabase db = this.getWritableDatabase();

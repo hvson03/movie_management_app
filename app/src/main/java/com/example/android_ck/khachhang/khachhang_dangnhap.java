@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -16,11 +17,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
+import com.example.android_ck.quanly.MainActivity_quanly;
 
 public class khachhang_dangnhap extends AppCompatActivity {
     EditText edit_tentk, edit_matkhau;
     Button btn_dangnhap;
-    TextView tv_dangky;
+    TextView tv_dangky, tv_quenmk;
 
     DBHelper dbHelper;
     @Override
@@ -37,6 +39,7 @@ public class khachhang_dangnhap extends AppCompatActivity {
         edit_tentk = findViewById(R.id.edit_tentk);
         btn_dangnhap = findViewById(R.id.btn_dangnhap);
         tv_dangky = findViewById(R.id.tv_dangky);
+        tv_quenmk = findViewById(R.id.tv_quenmk);
 
         dbHelper = new DBHelper(this);
 
@@ -47,18 +50,39 @@ public class khachhang_dangnhap extends AppCompatActivity {
                 tentk = edit_tentk.getText().toString().trim();
                 matkhau = edit_matkhau.getText().toString().trim();
 
-                if(tentk.isEmpty() || matkhau.isEmpty()) {
-                    Toast.makeText(khachhang_dangnhap.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
-                } else {
+                if(tentk.isEmpty()) {
+                    edit_tentk.setError("Vui lòng nhập tên tài khoản");
+                    edit_tentk.requestFocus();
+                    return;
+                } else if (matkhau.isEmpty()) {
+                    edit_matkhau.setError("Vui lòng nhập mật khẩu");
+                    edit_matkhau.requestFocus();
+                    return;
+                }
+
                     boolean ktraDangnhap = dbHelper.ktraDangnhap(tentk, matkhau);
                     if(ktraDangnhap) {
-                        Intent myintent = new Intent(khachhang_dangnhap.this, MainActivity_khachhang.class);
-                        startActivity(myintent);
-                        Toast.makeText(khachhang_dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        if (tentk.equals("admin")) {
+                            Intent intent = new Intent(khachhang_dangnhap.this, MainActivity_quanly.class);
+                            startActivity(intent);
+                            Toast.makeText(khachhang_dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent myintent = new Intent(khachhang_dangnhap.this, MainActivity_khachhang.class);
+                            // Đóng gói dữ liệu và đưa dữ liệu vào Bundle
+                            Bundle mybundle = new Bundle();
+                            mybundle.putString("tk", tentk);
+
+                            // Đưa Bundle vào Intent
+                            myintent.putExtra("dangnhappacket", mybundle);
+                            startActivity(myintent);
+                            Toast.makeText(khachhang_dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(khachhang_dangnhap.this, "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
+                        edit_tentk.setText("");
+                        edit_matkhau.setText("");
                     }
-                }
+
             }
         });
 
@@ -66,6 +90,14 @@ public class khachhang_dangnhap extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent myintent = new Intent(khachhang_dangnhap.this, khachhang_dangky.class);
+                startActivity(myintent);
+            }
+        });
+
+        tv_quenmk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(khachhang_dangnhap.this, khachHang_quenmatkhau.class);
                 startActivity(myintent);
             }
         });
