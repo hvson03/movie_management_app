@@ -3,51 +3,59 @@ package com.example.android_ck.model;
 public class Phim {
     private Integer maphim;
     private String tenphim;
-    private String anhphim;
+    private byte[] anhphim;
     private String ngaycongchieu;
     private String mota;
     private String thoiluong;
     private Integer gia;
     private Integer matheloai;
 
-    // Getter và Setter cho maphim
-    public Integer getMaPhim() {
+    public Phim(Integer maphim, String tenphim, byte[] anhphim, String ngaycongchieu, String mota, String thoiluong, Integer gia, Integer matheloai) {
+        this.maphim = maphim;
+        this.tenphim = tenphim;
+        this.anhphim = anhphim;
+        this.ngaycongchieu = ngaycongchieu;
+        this.mota = mota;
+        this.thoiluong = thoiluong;
+        this.gia = gia;
+        this.matheloai = matheloai;
+    }
+
+    // Getters và setters được giữ nguyên
+
+    public Integer getMaphim() {
         return maphim;
     }
 
-    public void setMaPhim(Integer maphim) {
+    public void setMaphim(Integer maphim) {
         this.maphim = maphim;
     }
 
-    // Getter và Setter cho tenphim
-    public String getTenPhim() {
+    public String getTenphim() {
         return tenphim;
     }
 
-    public void setTenPhim(String tenphim) {
+    public void setTenphim(String tenphim) {
         this.tenphim = tenphim;
     }
 
-    // Getter và Setter cho anhphim
-    public String getAnhPhim() {
+    public byte[] getAnhphim() {
         return anhphim;
     }
 
-    public void setAnhPhim(String anhphim) {
+    public void setAnhphim(byte[] anhphim) {
         this.anhphim = anhphim;
     }
 
-    // Getter và Setter cho ngaycongchieu
-    public String getNgayCongChieu() {
+    public String getNgaycongchieu() {
         return ngaycongchieu;
     }
 
-    public void setNgayCongChieu(String ngaycongchieu) {
+    public void setNgaycongchieu(String ngaycongchieu) {
         this.ngaycongchieu = ngaycongchieu;
     }
 
-    // Getter và Setter cho mota
-    public String getMoTa() {
+    public String getMota() {
         return mota;
     }
 
@@ -55,16 +63,14 @@ public class Phim {
         this.mota = mota;
     }
 
-    // Getter và Setter cho thoiluong
-    public String getThoiLuong() {
+    public String getThoiluong() {
         return thoiluong;
     }
 
-    public void setThoiLuong(String thoiluong) {
+    public void setThoiluong(String thoiluong) {
         this.thoiluong = thoiluong;
     }
 
-    // Getter và Setter cho gia
     public Integer getGia() {
         return gia;
     }
@@ -73,12 +79,11 @@ public class Phim {
         this.gia = gia;
     }
 
-    // Getter và Setter cho matheloai
-    public Integer getMaTheLoai() {
+    public Integer getMatheloai() {
         return matheloai;
     }
 
-    public void setMaTheLoai(Integer matheloai) {
+    public void setMatheloai(Integer matheloai) {
         this.matheloai = matheloai;
     }
 }
