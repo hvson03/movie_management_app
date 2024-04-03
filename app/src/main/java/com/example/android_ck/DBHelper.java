@@ -205,6 +205,13 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Cursor layTatCaThongTinCaNhan() {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery("SELECT * FROM thongtincanhan", null);
+        return cursor;
+    }
+
+
     public Cursor layThongTinCaNhan(String tentaikhoan) {
         SQLiteDatabase myDB = this.getReadableDatabase();
         Cursor cursor = myDB.rawQuery(
