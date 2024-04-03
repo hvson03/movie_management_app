@@ -122,7 +122,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor layDuLieuBangDSYT(){
-//        String query = "SELECT * FROM danhsachyeuthich dsyt INNER JOIN phim p WHERE dsyt.maphim=p.maphim";
+//         String query = "SELECT * FROM danhsachyeuthich dsyt INNER JOIN phim p WHERE dsyt.maphim=p.maphim";
         String query = "SELECT * FROM danhsachyeuthich";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
@@ -130,5 +130,50 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    public boolean themTaikhoan(String tentaikhoan, String matkhau, String ngaytao){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String quyen = "khachhang";
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tentaikhoan", tentaikhoan);
+        contentValues.put("matkhau",matkhau);
+        contentValues.put("quyen",quyen);
+        contentValues.put("ngaytao",ngaytao);
+        long result = myDB.insert("taikhoan",null,contentValues);
+        if(result==-1)return false;
+        else return true;
+    }
+
+    public boolean ktraTen(String tentaikhoan){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("select * from taikhoan where tentaikhoan = ?", new String[]{tentaikhoan});
+        if(cursor.getCount()>0) return true;
+        else return false;
+    }
+
+    public boolean ktraDangnhap(String tentaikhoan,String matkhau){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor cursor = myDB.rawQuery("select * from taikhoan where tentaikhoan = ? and matkhau = ?", new String[]{tentaikhoan,matkhau});
+        if(cursor.getCount()>0) return true;
+        else return false;
+    }
+
+    public boolean themThongTinCaNhan(String hoten, String gioitinh, String ngaysinh, String email, String sdt, String tentakhoan) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("hoten", hoten);
+        values.put("gioitinh", gioitinh);
+        values.put("ngaysinh", ngaysinh);
+        values.put("email", email);
+        values.put("sdt", sdt);
+        values.put("tentaikhoan", tentakhoan);
+
+        long result = db.insert("thongtincanhan", null, values);
+        if(result==-1)
+            return false;
+        else
+            return true;
     }
 }
