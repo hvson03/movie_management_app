@@ -187,6 +187,24 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean suaThongtincanhan(String hoten, String gioitinh, String ngaysinh, String email, String sdt, String tentaikhoan) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("hoten", hoten);
+        contentValues.put("gioitinh", gioitinh);
+        contentValues.put("ngaysinh", ngaysinh);
+        contentValues.put("email", email);
+        contentValues.put("sdt", sdt);
+
+        int rowUpdated = myDB.update("thongtincanhan", contentValues, "tentaikhoan = ?", new String[]{tentaikhoan});
+
+        if (rowUpdated > 0) {
+            return true;
+        } else  {
+            return false;
+        }
+    }
+
     public Cursor layThongTinCaNhan(String tentaikhoan) {
         SQLiteDatabase myDB = this.getReadableDatabase();
         Cursor cursor = myDB.rawQuery(
@@ -203,25 +221,36 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public ArrayList<ThongTinCaNhan> getThongtincanhan(String tentaikhoan){
-        ArrayList<ThongTinCaNhan> ThongTinCaNhan = new ArrayList<>();
+    public int layTongSoLuongPhimYeuThich(String tentaikhoan) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(
+                "SELECT COUNT(*) FROM danhsachyeuthich WHERE tentaikhoan = ?", new String[]{tentaikhoan}
+        );
 
-        SQLiteDatabase db = getReadableDatabase();
-        String query = "SELECT * FROM thongtincanhan WHERE tentaikhoan = ?";
-        Cursor cursor = db.rawQuery(query,new String[]{tentaikhoan});
-
-        if(cursor.getCount() == 0){
-        }else{
-            while (cursor.moveToNext()){
-                String hoten = cursor.getString(1);
-                String email = cursor.getString(4);
-                String sdt = cursor.getString(5);
-
-                ThongTinCaNhan.add(new ThongTinCaNhan(hoten,email,sdt));
-            }
+        int totalCount = 0;
+        if (cursor.moveToFirst()) {
+            totalCount = cursor.getInt(0);
         }
-        return ThongTinCaNhan;
+
+        cursor.close();
+        return totalCount;
     }
+
+    public int layTongThanhTien(String tentaikhoan) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(
+                "SELECT SUM(thanhtien) FROM chitiethoadon INNER JOIN hoadon ON chitiethoadon.mahoadon = hoadon.idhoadon WHERE hoadon.tentaikhoan = ?", new String[]{tentaikhoan}
+        );
+
+        int totalAmount = 0;
+        if (cursor.moveToFirst()) {
+            totalAmount = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return totalAmount;
+    }
+
 
 
 }

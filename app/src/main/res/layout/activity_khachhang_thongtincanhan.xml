@@ -54,6 +54,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Họ và tên"
                             android:textColorHint="#FFFFFF"
+                            app:hintTextColor="@color/white"
                             app:boxCornerRadiusBottomEnd="15dp"
                             app:boxCornerRadiusTopStart="15dp">
 
@@ -121,7 +122,7 @@
                     android:orientation="horizontal">
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/img_ngaysinh"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginRight="20dp"
@@ -132,6 +133,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Ngày sinh"
                             android:textColorHint="#FFFFFF"
+                            app:hintTextColor="@color/white"
                             app:boxCornerRadiusBottomEnd="15dp"
                             app:boxCornerRadiusTopStart="15dp">
 
@@ -177,6 +179,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Email"
                             android:textColorHint="#FFFFFF"
+                            app:hintTextColor="@color/white"
                             app:boxCornerRadiusBottomEnd="15dp"
                             app:boxCornerRadiusTopStart="15dp">
 
@@ -224,6 +227,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Số điện Thoại"
                             android:textColorHint="#FFFFFF"
+                            app:hintTextColor="@color/white"
                             app:boxCornerRadiusBottomEnd="15dp"
                             app:boxCornerRadiusTopStart="15dp">
 

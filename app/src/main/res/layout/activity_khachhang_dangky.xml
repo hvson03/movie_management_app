@@ -53,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Tên tài khoản"
+                app:hintTextColor="@color/white"
                 android:textColorHint="#FFFFFF"
                 app:boxCornerRadiusBottomEnd="15dp"
                 app:boxCornerRadiusTopStart="15dp">
@@ -101,6 +102,7 @@
                 android:hint="Mật khẩu"
                 android:textColorHint="#FFFFFF"
                 app:boxCornerRadiusBottomEnd="15dp"
+                app:hintTextColor="@color/white"
                 app:boxCornerRadiusTopStart="15dp"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="#FFFFFF">
@@ -148,6 +150,7 @@
                 android:hint="Xác nhận mật khẩu"
                 android:textColorHint="#FFFFFF"
                 app:boxCornerRadiusBottomEnd="15dp"
+                app:hintTextColor="@color/white"
                 app:boxCornerRadiusTopStart="15dp"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="#FFFFFF">
@@ -206,6 +209,8 @@
                     android:ems="10"
                     android:inputType="text"
                     android:paddingHorizontal="10dp"
+                    android:focusable="false"
+                    android:clickable="true"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

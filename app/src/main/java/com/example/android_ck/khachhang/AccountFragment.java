@@ -21,7 +21,7 @@ import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
 
 public class AccountFragment extends Fragment{
-    TextView tv_hoten, tv_email, tv_sdt, tv_phimyt, tv_tongtien;
+    TextView tv_hoten, tv_gioitinh, tv_ngaysinh, tv_email, tv_sdt, tv_phimyt, tv_tongtien;
     Button btn_qltk, btn_doimk, btn_dangxuat;
     DBHelper dbHelper;
     @Nullable
@@ -30,6 +30,8 @@ public class AccountFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_khachhang_taikhoan,container,false);
 
         tv_hoten = view.findViewById(R.id.tv_hoten);
+        tv_gioitinh = view.findViewById(R.id.tv_gioitinh);
+        tv_ngaysinh = view.findViewById(R.id.tv_ngaysinh);
         tv_email = view.findViewById(R.id.tv_email);
         tv_sdt = view.findViewById(R.id.tv_sdt);
         tv_phimyt = view.findViewById(R.id.tv_phimyt);
@@ -48,14 +50,28 @@ public class AccountFragment extends Fragment{
         String tk = mybundle1.getString("tk");
 
         Cursor cursor = dbHelper.layThongTinCaNhan(tk);
-            cursor.moveToFirst();
-            if (cursor.isAfterLast()==false){
-                tv_hoten.setText(cursor.getString(1).toString());
-                tv_email.setText(cursor.getString(4).toString());
-                tv_sdt.setText(cursor.getString(5).toString());
-                cursor.moveToNext();
-            }
-            cursor.close();
+        if (cursor != null && cursor.moveToFirst()) {
+            String hoten = cursor.getString(1);
+            String gioitinh = cursor.getString(2);
+            String ngaysinh = cursor.getString(3);
+            String email = cursor.getString(4);
+            String sdt = cursor.getString(5);
+            tv_hoten.setText(hoten);
+            tv_ngaysinh.setText(ngaysinh);
+            tv_email.setText(email);
+            tv_sdt.setText(sdt);
+            tv_gioitinh.setText(gioitinh);
+        }
+        cursor.close();
+
+        // Gọi phương thức layTongSoLuongPhimYeuThich
+        int tongSoLuongPhimYeuThich = dbHelper.layTongSoLuongPhimYeuThich(tk);
+
+        // Gọi phương thức layTongThanhTien
+        int tongThanhTien = dbHelper.layTongThanhTien(tk);
+
+        tv_phimyt.setText(tongSoLuongPhimYeuThich+"");
+        tv_tongtien.setText(tongThanhTien+"");
 
         btn_doimk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +105,13 @@ public class AccountFragment extends Fragment{
         btn_qltk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), khachhang_quanlytaikhoan.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("tk", tk);
 
+                // Đưa Bundle vào Intent
+                intent.putExtra("dangnhappacket", bundle);
+                startActivity(intent);
             }
         });
 

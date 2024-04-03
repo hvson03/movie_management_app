@@ -52,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:boxCornerRadiusTopStart="15dp"
+                app:hintTextColor="@color/white"
                 app:boxCornerRadiusBottomEnd="15dp"
                 android:hint="Tên tài khoản"
                 android:textColorHint="#FFFFFF">
@@ -88,6 +89,7 @@
                 app:boxCornerRadiusTopStart="15dp"
                 app:boxCornerRadiusBottomEnd="15dp"
                 android:hint="mật khẩu"
+                app:hintTextColor="@color/white"
                 android:textColorHint="#FFFFFF"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="#FFFFFF">

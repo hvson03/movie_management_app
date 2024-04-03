@@ -1,5 +1,6 @@
 package com.example.android_ck.khachhang;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,9 +22,9 @@ import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
 
 public class khachhang_doimatkhau extends AppCompatActivity {
-    EditText edit_dmk_mk, edit_dmk_xacnhanmk;
+    EditText edit_dmk_mk, edit_dmk_mkmoi;
     ImageView img_quaylaittcn;
-    TextView tv_dmk_tk, tv_dmk_mk;
+    TextView tv_dmk_tk;
     Button btn_luumk;
     String regex_matkhau = "^[a-zA-Z0-9]{4,}$";
     DBHelper dbHelper;
@@ -37,10 +39,9 @@ public class khachhang_doimatkhau extends AppCompatActivity {
             return insets;
         });
         edit_dmk_mk = findViewById(R.id.edit_dmk_mk);
-        edit_dmk_xacnhanmk = findViewById(R.id.edit_dmk_xacnhanmk);
+        edit_dmk_mkmoi = findViewById(R.id.edit_dmk_mkmoi);
         img_quaylaittcn = findViewById(R.id.img_quaylaittcn);
         tv_dmk_tk = findViewById(R.id.tv_dmk_tk);
-        tv_dmk_mk = findViewById(R.id.tv_dmk_mk);
         btn_luumk = findViewById(R.id.btn_luumk);
 
         dbHelper = new DBHelper(this);
@@ -56,7 +57,7 @@ public class khachhang_doimatkhau extends AppCompatActivity {
         cursor.moveToFirst();
         if (cursor.isAfterLast()==false){
             tv_dmk_tk.setText(cursor.getString(0).toString());
-            tv_dmk_mk.setText(cursor.getString(1).toString());
+//            tv_dmk_mk.setText(cursor.getString(1).toString());
             cursor.moveToNext();
         }
         cursor.close();
@@ -64,41 +65,52 @@ public class khachhang_doimatkhau extends AppCompatActivity {
         btn_luumk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String matkhau, xacnhanmk;
-                matkhau = edit_dmk_mk.getText().toString().trim();
-                xacnhanmk = edit_dmk_xacnhanmk.getText().toString().trim();
-                    if (matkhau.isEmpty()) {
+                String matkhaucu, mkmoi;
+                matkhaucu = edit_dmk_mk.getText().toString().trim();
+                mkmoi = edit_dmk_mkmoi.getText().toString().trim();
+                    if (matkhaucu.isEmpty()) {
                         edit_dmk_mk.setError("Vui lòng nhập mật khẩu mới");
                         edit_dmk_mk.requestFocus();
                         return;
-                    } else if(!matkhau.matches(regex_matkhau)) {
-                        edit_dmk_mk.setError("Mật khẩu mới tối thiểu 4 ký tự và không chứa khoảng cách");
-                        edit_dmk_mk.requestFocus();
-                        edit_dmk_mk.setText("");
-                        return;
-                    }
-
-                    if (xacnhanmk.isEmpty()) {
-                        edit_dmk_xacnhanmk.setError("Vui lòng xác nhận mật khẩu");
-                        edit_dmk_xacnhanmk.requestFocus();
-                        return;
-                    } else if (!xacnhanmk.equals(matkhau)) {
-                        edit_dmk_xacnhanmk.setError("Mật khẩu xác nhận không khớp");
-                        edit_dmk_xacnhanmk.requestFocus();
-                        edit_dmk_xacnhanmk.setText("");
-                        return;
-                    }
-
-
-                    boolean ktra = dbHelper.suatMatKhau(tk, matkhau);
-                    if (ktra) {
-//                        Intent myintent = new Intent(khachhang_doimatkhau.this, AccountFragment.class);
-//                        startActivity(myintent);
-                       finish();
-                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
+                        boolean ktra = dbHelper.ktraDangnhap(tk, matkhaucu);
+
+                        if (ktra == false) {
+                            edit_dmk_mk.setError("Mật khẩu không chính xác");
+                            edit_dmk_mk.requestFocus();
+                            edit_dmk_mk.setText("");
+                            return;
+                        }
                     }
+
+                    if (mkmoi.isEmpty()) {
+                        edit_dmk_mkmoi.setError("Vui lòng nhập mật khẩu mới");
+                        edit_dmk_mkmoi.requestFocus();
+                        return;
+                    } else if (!mkmoi.matches(regex_matkhau)) {
+                        edit_dmk_mkmoi.setError("Mật khẩu mới tối thiểu 4 ký tự và không chứa khoảng cách");
+                        edit_dmk_mkmoi.requestFocus();
+                        edit_dmk_mkmoi.setText("");
+                        return;
+                    }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(khachhang_doimatkhau.this);
+                builder.setMessage("Bạn có chắc chắn muốn đổi mật khẩu?").setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        boolean ktra = dbHelper.suatMatKhau(tk, mkmoi);
+                        if (ktra) {
+                            finish();
+                            Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).setNegativeButton("Không", null).show();
+
+
+
+
             }
         });
 
