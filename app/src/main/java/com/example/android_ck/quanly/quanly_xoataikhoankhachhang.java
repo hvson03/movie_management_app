@@ -1,8 +1,10 @@
 package com.example.android_ck.quanly;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -11,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +29,6 @@ import java.util.List;
 
 public class quanly_xoataikhoankhachhang extends AppCompatActivity {
     ImageView img_xoatk_quaylai;
-    Button btn_xoatk_xoa;
     RecyclerView rcv;
 
     DBHelper dbHelper;
@@ -44,36 +47,31 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         img_xoatk_quaylai = findViewById(R.id.img_xoatk_quaylai);
-        btn_xoatk_xoa = findViewById(R.id.btn_xoatk_xoa);
         rcv = findViewById(R.id.rcv);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rcv.setLayoutManager(linearLayoutManager);
-        userAdapter = new userAdapter(getListusers());
+        userAdapter = new userAdapter(this, dbHelper);
+        LinearLayoutManager line = new LinearLayoutManager(this);
+        rcv.setLayoutManager(line);
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rcv.addItemDecoration(itemDecoration);
+        userAdapter.setData(getListusers());
         rcv.setAdapter(userAdapter);
 
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+
+        img_xoatk_quaylai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
+
     private List<item_user> getListusers() {
         List<item_user> list = new ArrayList<>();
-        Cursor cursor = dbHelper.layTatCaThongTinCaNhan();
-
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                // Lấy thông tin từ Cursor
-                String tenTaiKhoan = cursor.getString(6);
-                String hoTen = cursor.getString(1);
-
-                // Tạo đối tượng item_user và thêm vào danh sách
-                item_user user = new item_user(tenTaiKhoan, hoTen);
-                list.add(user);
-            } while (cursor.moveToNext());
-
-            cursor.close();
-        }
-
+            List<item_user> danhsachtt = dbHelper.layTatCaThongTinCaNhan();
+            list.addAll(danhsachtt);
         return list;
     }
 

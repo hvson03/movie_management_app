@@ -40,10 +40,6 @@
                 android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
 
-
-
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv"
             android:layout_width="match_parent"
@@ -53,30 +49,5 @@
             android:paddingHorizontal="20dp"
             tools:listitem="@layout/item_user"/>
     </LinearLayout>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:paddingVertical="20dp"
-        android:backgroundTint="#D32042A5"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" >
-
-
-    <Button
-        android:id="@+id/btn_xoatk_xoa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="Xóa"
-        android:backgroundTint="#D31239"
-        android:textSize="18sp"
-        android:paddingHorizontal="50dp"
-        android:paddingVertical="8dp"
-        android:layout_gravity="center"/>
-    </androidx.appcompat.widget.Toolbar>
 
 </RelativeLayout>

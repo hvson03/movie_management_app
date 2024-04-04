@@ -49,30 +49,6 @@ public class AccountFragment extends Fragment{
 
         String tk = mybundle1.getString("tk");
 
-        Cursor cursor = dbHelper.layThongTinCaNhan(tk);
-        if (cursor != null && cursor.moveToFirst()) {
-            String hoten = cursor.getString(1);
-            String gioitinh = cursor.getString(2);
-            String ngaysinh = cursor.getString(3);
-            String email = cursor.getString(4);
-            String sdt = cursor.getString(5);
-            tv_hoten.setText(hoten);
-            tv_ngaysinh.setText(ngaysinh);
-            tv_email.setText(email);
-            tv_sdt.setText(sdt);
-            tv_gioitinh.setText(gioitinh);
-        }
-        cursor.close();
-
-        // Gọi phương thức layTongSoLuongPhimYeuThich
-        int tongSoLuongPhimYeuThich = dbHelper.layTongSoLuongPhimYeuThich(tk);
-
-        // Gọi phương thức layTongThanhTien
-        int tongThanhTien = dbHelper.layTongThanhTien(tk);
-
-        tv_phimyt.setText(tongSoLuongPhimYeuThich+"");
-        tv_tongtien.setText(tongThanhTien+"");
-
         btn_doimk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,5 +93,37 @@ public class AccountFragment extends Fragment{
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Nhận Intent và cập nhật dữ liệu
+        Intent myintent1 = getActivity().getIntent();
+        Bundle mybundle1 = myintent1.getBundleExtra("dangnhappacket");
+        String tk = mybundle1.getString("tk");
+
+        Cursor cursor = dbHelper.layThongTinCaNhan(tk);
+        if (cursor != null && cursor.moveToFirst()) {
+            String hoten = cursor.getString(1);
+            String gioitinh = cursor.getString(2);
+            String ngaysinh = cursor.getString(3);
+            String email = cursor.getString(4);
+            String sdt = cursor.getString(5);
+            tv_hoten.setText(hoten);
+            tv_ngaysinh.setText(ngaysinh);
+            tv_email.setText(email);
+            tv_sdt.setText(sdt);
+            tv_gioitinh.setText(gioitinh);
+        }
+        cursor.close();
+
+        int tongSoLuongPhimYeuThich = dbHelper.layTongSoLuongPhimYeuThich(tk);
+        int tongThanhTien = dbHelper.layTongThanhTien(tk);
+
+        tv_phimyt.setText(String.valueOf(tongSoLuongPhimYeuThich));
+        tv_tongtien.setText(String.valueOf(tongThanhTien));
+    }
+
 
 }
