@@ -12,14 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_CK"
         tools:targetApi="31" >
-        <activity
 
-            android:name=".quanly.quanly_doimatkhau"
-            android:exported="false" />
-        <activity
-            android:name=".quanly.quanly_xoataikhoankhachhang"
-            android:name=".activity_khachhang_phim_chitiet"
-            android:exported="false" />
         <activity
             android:name=".khachhang.MovieDetail"
             android:exported="false" />
@@ -31,7 +24,6 @@
             android:exported="false" />
         <activity
             android:name=".quanly.FilmAdd"
-
             android:exported="false" />
         <activity
             android:name=".quanly.GenreEdit"
@@ -44,7 +36,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
 
-       
+       <activity
             android:name=".quanly.quanly_xoataikhoankhachhang"
             android:exported="false" />
 
@@ -67,9 +59,7 @@
         <activity
             android:name=".khachhang.khachhang_dangky"
             android:exported="false" />
-        <activity
-            android:name=".quanly.MainActivity_quanly"
-            android:exported="false" />
+
         <activity
             android:name=".khachhang.khachhang_dangnhap"
             android:exported="true">
