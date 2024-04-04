@@ -4,6 +4,11 @@ public class TheLoai {
     private Integer matheloai;
     private String tentheloai;
 
+    public TheLoai(Integer matheloai, String tentheloai) {
+        this.matheloai = matheloai;
+        this.tentheloai = tentheloai;
+    }
+
     // Getter và Setter cho matheloai
     public Integer getMaTheloai() {
         return matheloai;

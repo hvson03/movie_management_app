@@ -1,23 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient_color_background"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="94dp"
-            android:text="Home"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:gravity="center"
-            />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_color_background"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchview_kh"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/search_edit_background"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:textSize="15sp"
+                app:iconifiedByDefault="false"
+                app:queryHint="Nhập tên phim ..." />
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/khachhang_slide_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="266dp"
+
+                android:layout_margin="15dp" />
+
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/khachhang_slide_circle_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal">
+
+            </me.relex.circleindicator.CircleIndicator>
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:text="Phim mới"
+                android:textColor="#ffc107"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/khachhang_recy_phim"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
