@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Android_CK"
         tools:targetApi="31">
         <activity
+            android:name=".quanly.quanly_doimatkhau"
+            android:exported="false" />
+        <activity
             android:name=".quanly.quanly_xoataikhoankhachhang"
             android:exported="false" />
         <activity

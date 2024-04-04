@@ -1,5 +1,6 @@
 package com.example.android_ck.khachhang;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -184,4 +185,6 @@ public class khachhang_quanlytaikhoan extends AppCompatActivity {
             }
         });
     }
+
+
 }

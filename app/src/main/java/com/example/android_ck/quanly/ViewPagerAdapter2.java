@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.android_ck.khachhang.AccountFragment;
 import com.example.android_ck.khachhang.CartFragment;
-import com.example.android_ck.khachhang.FavoriteFragment;
+//import com.example.android_ck.khachhang.FavoriteFragment;
 import com.example.android_ck.khachhang.HomeFragment;
 
 public class ViewPagerAdapter2 extends FragmentStatePagerAdapter {

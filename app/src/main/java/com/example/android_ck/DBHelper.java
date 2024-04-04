@@ -273,39 +273,65 @@ public class DBHelper extends SQLiteOpenHelper {
         return totalAmount;
     }
 
+    public boolean xoaTaiKhoan(String tentaikhoan) {
+        SQLiteDatabase db = getWritableDatabase();
 
+        try {
+            // Xóa thông tin cá nhân của tài khoản từ bảng 'thongtincanhan'
+            db.delete("thongtincanhan", "tentaikhoan = ?", new String[]{tentaikhoan});
+            // Xóa danh sách yêu thích của tài khoản
+            db.delete("danhsachyeuthich", "tentaikhoan = ?", new String[]{tentaikhoan});
+            // Xóa hóa đơn của tài khoản
+            db.delete("hoadon", "tentaikhoan = ?", new String[]{tentaikhoan});
+            // Xóa tài khoản từ bảng 'taikhoan'
+            int result = db.delete("taikhoan", "tentaikhoan = ?", new String[]{tentaikhoan});
 
-    public void themDanhSachYeuThich(String tentaikhoan, String maphim){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("tentaikhoan", tentaikhoan);
-        cv.put("maphim", maphim);
-        long result = db.insert("danhsachyeuthich", null, cv);
-        if(result==-1){
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Added successfully!", Toast.LENGTH_SHORT).show();
+            // Nếu số dòng bị ảnh hưởng bởi lệnh xóa lớn hơn 0, tức là đã xóa thành công
+            if (result > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } finally {
+            // Đóng cơ sở dữ liệu
+            db.close();
         }
     }
 
-    public void xoaDanhSachYeuThich(Integer id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete("danhsachyeuthich", "iddansach=?", new String[]{String.valueOf(id)});
-        if(result == -1){
-            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
-        }
-    }
 
-    public Cursor layDuLieuBangDSYT(){
-//        String query = "SELECT * FROM danhsachyeuthich dsyt INNER JOIN phim p WHERE dsyt.maphim=p.maphim";
-        String query = "SELECT * FROM danhsachyeuthich";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = null;
-        if(db!=null){
-            cursor = db.rawQuery(query, null);
-        }
-        return cursor;
-    }
+
+
+//    public void themDanhSachYeuThich(String tentaikhoan, String maphim){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues cv = new ContentValues();
+//        cv.put("tentaikhoan", tentaikhoan);
+//        cv.put("maphim", maphim);
+//        long result = db.insert("danhsachyeuthich", null, cv);
+//        if(result==-1){
+//            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+//        }else{
+//            Toast.makeText(context, "Added successfully!", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
+//    public void xoaDanhSachYeuThich(Integer id){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        long result = db.delete("danhsachyeuthich", "iddansach=?", new String[]{String.valueOf(id)});
+//        if(result == -1){
+//            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+//        }else{
+//            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
+//    public Cursor layDuLieuBangDSYT(){
+////        String query = "SELECT * FROM danhsachyeuthich dsyt INNER JOIN phim p WHERE dsyt.maphim=p.maphim";
+//        String query = "SELECT * FROM danhsachyeuthich";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = null;
+//        if(db!=null){
+//            cursor = db.rawQuery(query, null);
+//        }
+//        return cursor;
+//    }
 }

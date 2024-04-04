@@ -1,5 +1,6 @@
 package com.example.android_ck.quanly;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.android_ck.R;
@@ -33,11 +35,25 @@ public class ActionFragment extends Fragment {
             }
         });
 
+        tv_doimkadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), quanly_doimatkhau.class);
+                startActivity(intent);
+            }
+        });
+
         tv_dangxuatadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), khachhang_dangnhap.class);
-                startActivity(intent);
+                androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage("Bạn có chắc chắn muốn đăng xuất?").setPositiveButton("Đăng xuất", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getActivity(), khachhang_dangnhap.class);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton("Hủy", null).show();
             }
         });
         return view;
