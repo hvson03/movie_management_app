@@ -423,10 +423,26 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor layTatCaThongTinCaNhan() {
-        SQLiteDatabase myDB = this.getReadableDatabase();
-        Cursor cursor = myDB.rawQuery("SELECT * FROM thongtincanhan", null);
-        return cursor;
+    public List<item_user> layTatCaThongTinCaNhan() {
+        List<item_user> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT thongtincanhan.hoten, taikhoan.tentaikhoan " +
+                "FROM thongtincanhan " +
+                "INNER JOIN taikhoan ON thongtincanhan.tentaikhoan = taikhoan.tentaikhoan " +
+                "WHERE taikhoan.quyen = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{"khachhang"});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                String hoten = cursor.getString(0);
+                String tk = cursor.getString(1);
+                list.add(new item_user(tk, hoten));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
     }
 
 
@@ -474,6 +490,31 @@ public class DBHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return totalAmount;
+    }
+
+    public boolean xoaTaiKhoan(String tentaikhoan) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            // Xóa thông tin cá nhân của tài khoản từ bảng 'thongtincanhan'
+            db.delete("thongtincanhan", "tentaikhoan = ?", new String[]{tentaikhoan});
+            // Xóa danh sách yêu thích của tài khoản
+            db.delete("danhsachyeuthich", "tentaikhoan = ?", new String[]{tentaikhoan});
+            // Xóa hóa đơn của tài khoản
+            db.delete("hoadon", "tentaikhoan = ?", new String[]{tentaikhoan});
+            // Xóa tài khoản từ bảng 'taikhoan'
+            int result = db.delete("taikhoan", "tentaikhoan = ?", new String[]{tentaikhoan});
+
+            // Nếu số dòng bị ảnh hưởng bởi lệnh xóa lớn hơn 0, tức là đã xóa thành công
+            if (result > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } finally {
+            // Đóng cơ sở dữ liệu
+            db.close();
+        }
     }
 
 
