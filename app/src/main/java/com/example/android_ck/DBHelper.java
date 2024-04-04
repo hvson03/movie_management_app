@@ -9,11 +9,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.android_ck.model.item_user;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.android_ck.model.Phim;
 import com.example.android_ck.model.PhimVaTheLoai;
 import com.example.android_ck.model.TheLoai;
@@ -26,6 +21,7 @@ import com.example.android_ck.model.ThongTinCaNhan;
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DBName = "app.db";
     private Context context;
+
     public DBHelper(@Nullable Context context) {
         super(context, DBName, null, 1);
     }
@@ -102,7 +98,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(chitiethoadon);
 
 
-
         // Kiểm tra xem có tài khoản admin trong cơ sở dữ liệu hay không
         Cursor cursor = db.rawQuery("SELECT * FROM taikhoan WHERE quyen = ?", new String[]{"admin"});
 
@@ -117,6 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop các bảng cũ nếu tồn tại
@@ -133,16 +129,16 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-  
     //Các function liên quan đến thể loại (thêm , sửa, xóa, xem)
-    public boolean addGenre(String tentheloai){
+    public boolean addGenre(String tentheloai) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("tentheloai",tentheloai);
-        long result = myDB.insert("theloai",null,contentValues);
-        if(result == -1)return false;
+        contentValues.put("tentheloai", tentheloai);
+        long result = myDB.insert("theloai", null, contentValues);
+        if (result == -1) return false;
         else return true;
     }
+
     //kiểm tra tên thể loại đã tồn tại chưa
     public boolean checkGenreExists(String tentheloai) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -153,26 +149,25 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public List<TheLoai>getAllGenreItems(){
+    public List<TheLoai> getAllGenreItems() {
         List<TheLoai> genreList = new ArrayList<>();
         SQLiteDatabase myDB = this.getReadableDatabase();
-        Cursor cursor = myDB.rawQuery("SELECT * FROM theloai ORDER BY matheloai DESC",null);
-        if(cursor.moveToFirst()){
-            do{
+        Cursor cursor = myDB.rawQuery("SELECT * FROM theloai ORDER BY matheloai DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
                 int matheloai = cursor.getInt(0);
                 String tentheloai = cursor.getString(1);
 
                 //Tạo đ tương TheLoai từ dữ liê được thêm vào danh sách
-                genreList.add(new TheLoai(matheloai,tentheloai));
-            }while (cursor.moveToNext());
+                genreList.add(new TheLoai(matheloai, tentheloai));
+            } while (cursor.moveToNext());
         }
         cursor.close();
         return genreList;
     }
 
 
-
-    public boolean editGenre(int matheloai, String tentheloai){
+    public boolean editGenre(int matheloai, String tentheloai) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("tentheloai", tentheloai);
@@ -198,6 +193,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 db.execSQL("UPDATE SQLITE_SEQUENCE SET seq=0 WHERE name='theloai'");
             }
             cursor.close();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
    public boolean themTaikhoan(String tentaikhoan, String matkhau, String ngaytao){
         SQLiteDatabase myDB = this.getWritableDatabase();
@@ -423,27 +423,12 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<item_user> layTatCaThongTinCaNhan() {
-        List<item_user> list = new ArrayList<>();
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT thongtincanhan.hoten, taikhoan.tentaikhoan " +
-                "FROM thongtincanhan " +
-                "INNER JOIN taikhoan ON thongtincanhan.tentaikhoan = taikhoan.tentaikhoan " +
-                "WHERE taikhoan.quyen = ?";
-
-        Cursor cursor = db.rawQuery(query, new String[]{"khachhang"});
-
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                String hoten = cursor.getString(0);
-                String tk = cursor.getString(1);
-                list.add(new item_user(tk, hoten));
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
-        return list;
+    public Cursor layTatCaThongTinCaNhan() {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery("SELECT * FROM thongtincanhan", null);
+        return cursor;
     }
+
 
     public Cursor layThongTinCaNhan(String tentaikhoan) {
         SQLiteDatabase myDB = this.getReadableDatabase();
@@ -491,29 +476,5 @@ public class DBHelper extends SQLiteOpenHelper {
         return totalAmount;
     }
 
-    public boolean xoaTaiKhoan(String tentaikhoan) {
-        SQLiteDatabase db = getWritableDatabase();
-
-        try {
-            // Xóa thông tin cá nhân của tài khoản từ bảng 'thongtincanhan'
-            db.delete("thongtincanhan", "tentaikhoan = ?", new String[]{tentaikhoan});
-            // Xóa danh sách yêu thích của tài khoản
-            db.delete("danhsachyeuthich", "tentaikhoan = ?", new String[]{tentaikhoan});
-            // Xóa hóa đơn của tài khoản
-            db.delete("hoadon", "tentaikhoan = ?", new String[]{tentaikhoan});
-            // Xóa tài khoản từ bảng 'taikhoan'
-            int result = db.delete("taikhoan", "tentaikhoan = ?", new String[]{tentaikhoan});
-
-            // Nếu số dòng bị ảnh hưởng bởi lệnh xóa lớn hơn 0, tức là đã xóa thành công
-            if (result > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } finally {
-            // Đóng cơ sở dữ liệu
-            db.close();
-        }
-    }
 
 }
