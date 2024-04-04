@@ -54,7 +54,7 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
         rcv.setLayoutManager(line);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcv.addItemDecoration(itemDecoration);
-//        userAdapter.setData(getListusers());
+        userAdapter.setData(getListusers());
         rcv.setAdapter(userAdapter);
 
 
