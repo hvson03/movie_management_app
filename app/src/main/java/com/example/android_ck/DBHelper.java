@@ -16,6 +16,7 @@ import com.example.android_ck.model.TheLoai;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.android_ck.model.ThongTinCaNhan;
+import com.example.android_ck.model.item_user;
 
 
 public class DBHelper extends SQLiteOpenHelper {
