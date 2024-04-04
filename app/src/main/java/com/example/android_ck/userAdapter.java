@@ -21,25 +21,8 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.userViewHolder
     private List<item_user> mylist;
     private Context context;
 
-    public userAdapter(Context context, Cursor cursor) {
+    public userAdapter(Context context) {
         this.context = context;
-        this.mylist = getListFromCursor(cursor);
-    }
-
-    public userAdapter(List<item_user> listusers) {
-    }
-
-    private List<item_user> getListFromCursor(Cursor cursor) {
-        List<item_user> list = new ArrayList<>();
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                String tenTaiKhoan = cursor.getString(6);
-                String hoTen = cursor.getString(1);
-                list.add(new item_user(tenTaiKhoan, hoTen));
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return list;
     }
 
     public void setData(List<item_user> list) {

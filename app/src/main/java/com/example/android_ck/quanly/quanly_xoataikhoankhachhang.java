@@ -58,21 +58,7 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
 
     private List<item_user> getListusers() {
         List<item_user> list = new ArrayList<>();
-        Cursor cursor = dbHelper.layTatCaThongTinCaNhan();
 
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                // Lấy thông tin từ Cursor
-                String tenTaiKhoan = cursor.getString(6);
-                String hoTen = cursor.getString(1);
-
-                // Tạo đối tượng item_user và thêm vào danh sách
-                item_user user = new item_user(tenTaiKhoan, hoTen);
-                list.add(user);
-            } while (cursor.moveToNext());
-
-            cursor.close();
-        }
 
         return list;
     }
