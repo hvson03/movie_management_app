@@ -38,10 +38,35 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
 
+       
+            android:name=".quanly.quanly_xoataikhoankhachhang"
+            android:exported="false" />
+
+        <activity
+            android:name=".khachhang.khachhang_quanlytaikhoan"
+            android:exported="false" />
+        <activity
+            android:name=".khachhang.khachhang_doimatkhau"
+            android:exported="false" />
+        <activity
+            android:name=".khachhang.khachHang_quenmatkhau"
+            android:exported="false" />
+        <activity
+            android:name=".khachhang.khachhang_thongtincanhan"
+            android:exported="false" />
         <activity
             android:name=".khachhang.MainActivity_khachhang"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:exported="false" 
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".khachhang.khachhang_dangky"
+            android:exported="false" />
+        <activity
+            android:name=".quanly.MainActivity_quanly"
+            android:exported="false" />
+        <activity
+            android:name=".khachhang.khachhang_dangnhap"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

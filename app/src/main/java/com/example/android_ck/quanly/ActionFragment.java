@@ -1,21 +1,45 @@
 package com.example.android_ck.quanly;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.android_ck.R;
+import com.example.android_ck.khachhang.khachhang_dangnhap;
 
 public class ActionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quanly_tacvu,container,false);
+        TextView tv_xoatkkh, tv_doimkadmin, tv_dangxuatadmin;
+
+        tv_xoatkkh = view.findViewById(R.id.tv_xoatkkh);
+        tv_dangxuatadmin = view.findViewById(R.id.tv_dangxuatadmin);
+        tv_doimkadmin = view.findViewById(R.id.tv_doimkadmin);
+
+        tv_xoatkkh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), quanly_xoataikhoankhachhang.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_dangxuatadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), khachhang_dangnhap.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 }
