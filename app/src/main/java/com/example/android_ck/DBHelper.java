@@ -261,37 +261,5 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-    public void themDanhSachYeuThich(String tentaikhoan, String maphim){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("tentaikhoan", tentaikhoan);
-        cv.put("maphim", maphim);
-        long result = db.insert("danhsachyeuthich", null, cv);
-        if(result==-1){
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Added successfully!", Toast.LENGTH_SHORT).show();
-        }
-    }
 
-    public void xoaDanhSachYeuThich(Integer id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete("danhsachyeuthich", "iddansach=?", new String[]{String.valueOf(id)});
-        if(result == -1){
-            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public Cursor layDuLieuBangDSYT(){
-//        String query = "SELECT * FROM danhsachyeuthich dsyt INNER JOIN phim p WHERE dsyt.maphim=p.maphim";
-        String query = "SELECT * FROM danhsachyeuthich";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = null;
-        if(db!=null){
-            cursor = db.rawQuery(query, null);
-        }
-        return cursor;
-    }
 }
