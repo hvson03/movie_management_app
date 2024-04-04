@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +46,6 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.userViewHolder
         }
         holder.tv_tk.setText(itemUser.getTk());
         holder.tv_hoten.setText(itemUser.getHoten());
-
     }
 
     @Override
@@ -58,11 +59,15 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.userViewHolder
     public class userViewHolder extends ViewHolder {
         private TextView tv_tk;
         private TextView tv_hoten;
+        private CheckBox chb_item;
         public userViewHolder(@NonNull View itemView) {
             super((itemView));
             tv_tk = itemView.findViewById(R.id.item_tk);
             tv_hoten = itemView.findViewById(R.id.item_hoten);
         }
+
+        // checkBox
+
 
     }
 }

@@ -23,4 +23,5 @@ public class item_user {
     public void setHoten(String hoten) {
         this.hoten = hoten;
     }
+
 }

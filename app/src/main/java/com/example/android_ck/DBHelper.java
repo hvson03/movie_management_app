@@ -9,8 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.android_ck.model.ThongTinCaNhan;
+import com.example.android_ck.model.item_user;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DBName = "app.db";
@@ -205,7 +207,27 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<item_user> layTatCaThongTinCaNhan() {
+        List<item_user> list = new ArrayList<>();
 
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT thongtincanhan.hoten, taikhoan.tentaikhoan " +
+                "FROM thongtincanhan " +
+                "INNER JOIN taikhoan ON thongtincanhan.tentaikhoan = taikhoan.tentaikhoan " +
+                "WHERE taikhoan.quyen = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{"khachhang"});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                String hoten = cursor.getString(0);
+                String tk = cursor.getString(1);
+                list.add(new item_user(tk, hoten));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
 
     public Cursor layThongTinCaNhan(String tentaikhoan) {
         SQLiteDatabase myDB = this.getReadableDatabase();

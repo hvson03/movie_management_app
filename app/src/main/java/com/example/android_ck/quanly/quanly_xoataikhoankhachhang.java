@@ -3,6 +3,7 @@ package com.example.android_ck.quanly;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -47,19 +48,37 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
         btn_xoatk_xoa = findViewById(R.id.btn_xoatk_xoa);
         rcv = findViewById(R.id.rcv);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rcv.setLayoutManager(linearLayoutManager);
-        userAdapter = new userAdapter(getListusers());
+        userAdapter = new userAdapter(this);
+        LinearLayoutManager line = new LinearLayoutManager(this);
+        rcv.setLayoutManager(line);
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rcv.addItemDecoration(itemDecoration);
+        userAdapter.setData(getListusers());
         rcv.setAdapter(userAdapter);
 
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+
+
+        btn_xoatk_xoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        img_xoatk_quaylai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
+
     private List<item_user> getListusers() {
         List<item_user> list = new ArrayList<>();
-
-
+            List<item_user> danhsachtt = dbHelper.layTatCaThongTinCaNhan();
+            list.addAll(danhsachtt);
         return list;
     }
 
