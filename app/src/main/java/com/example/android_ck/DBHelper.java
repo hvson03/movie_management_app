@@ -59,7 +59,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "matheloai INTEGER," +
                 "FOREIGN KEY(matheloai) REFERENCES theloai(matheloai))";
         db.execSQL(phim);
-        // Tạo bảng Danh sách yêu thích
+
+        //Tạo bảng danh sách yêu thích
         String danhsachyeuthich = "CREATE TABLE danhsachyeuthich(" +
                 "iddansach INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tentaikhoan TEXT," +
@@ -72,8 +73,10 @@ public class DBHelper extends SQLiteOpenHelper {
         String hoadon = "CREATE TABLE hoadon(" +
                 "idhoadon INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tentaikhoan TEXT," +
+                "maphim INTEGER," +
                 "ngaydat TEXT," +
-                "FOREIGN KEY(tentaikhoan) REFERENCES taikhoan(tentaikhoan))";
+                "FOREIGN KEY(tentaikhoan) REFERENCES taikhoan(tentaikhoan)," +
+                "FOREIGN KEY(maphim) REFERENCES phim(maphim))";
         db.execSQL(hoadon);
 
         // Tạo bảng Chi tiết hóa đơn
