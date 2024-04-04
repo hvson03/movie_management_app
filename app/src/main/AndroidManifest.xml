@@ -18,7 +18,6 @@
             android:exported="false" />
         <activity
             android:name=".quanly.quanly_xoataikhoankhachhang"
-            android:name=".activity_khachhang_phim_chitiet"
             android:exported="false" />
         <activity
             android:name=".khachhang.MovieDetail"
@@ -44,10 +43,6 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
 
-       
-            android:name=".quanly.quanly_xoataikhoankhachhang"
-            android:exported="false" />
-
         <activity
             android:name=".khachhang.khachhang_quanlytaikhoan"
             android:exported="false" />
@@ -66,9 +61,6 @@
             android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".khachhang.khachhang_dangky"
-            android:exported="false" />
-        <activity
-            android:name=".quanly.MainActivity_quanly"
             android:exported="false" />
         <activity
             android:name=".khachhang.khachhang_dangnhap"

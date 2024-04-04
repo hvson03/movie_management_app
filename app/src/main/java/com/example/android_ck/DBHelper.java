@@ -198,6 +198,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 db.execSQL("UPDATE SQLITE_SEQUENCE SET seq=0 WHERE name='theloai'");
             }
             cursor.close();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
    public boolean themTaikhoan(String tentaikhoan, String matkhau, String ngaytao){
         SQLiteDatabase myDB = this.getWritableDatabase();
