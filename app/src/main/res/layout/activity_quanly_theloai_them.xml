@@ -42,20 +42,18 @@
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:layout_weight="1"
-        android:background="@drawable/custom_searchview"
+        android:background="@drawable/custom_ql_chitietphim_edt"
         android:ems="10"
         android:gravity="center"
         android:layout_marginTop="5dp"
         android:hint="Nhập tên thể loại"
         android:inputType="text" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_ql_themtheloai_them"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="114dp"
+        android:layout_height="49dp"
         android:layout_gravity="center"
-        android:layout_weight="1"
-        android:backgroundTint="#357A38"
-        android:text="Thêm" />
+        android:background="@drawable/them" />
 
 </LinearLayout>
