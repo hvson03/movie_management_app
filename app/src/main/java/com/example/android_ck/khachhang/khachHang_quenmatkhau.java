@@ -20,8 +20,7 @@ import com.example.android_ck.R;
 
 public class khachHang_quenmatkhau extends AppCompatActivity {
     EditText edit_email_quenmk, edit_tk_quenmk, edit_mk_quenmk;
-    Button btn_quenmk;
-    ImageView img_quaylaidnn;
+    ImageView img_quaylaidnn, btn_quenmk;
 
     String regex_tentk = "^[a-zA-Z0-9]+$";
     String regex_matkhau = "^[a-zA-Z0-9]{4,}$";

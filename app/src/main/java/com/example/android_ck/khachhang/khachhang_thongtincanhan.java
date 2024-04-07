@@ -1,6 +1,8 @@
 package com.example.android_ck.khachhang;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,9 +29,8 @@ import java.util.Calendar;
 public class khachhang_thongtincanhan extends AppCompatActivity {
     EditText edit_hoten, edit_ngaysinh, edit_email, edit_sdt;
     RadioGroup rb_gr;
-    ImageView img_ngaysinh;
+    ImageView btn_thongtincanhan;
     TextView tv_boqua;
-    Button btn_thongtincanhan;
     RadioButton rb_nam, rb_nu;
     DBHelper dbHelper;
 
@@ -51,13 +52,12 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
 
         edit_hoten = findViewById(R.id.edit_hoten);
         edit_ngaysinh = findViewById(R.id.edit_ngaysinh);
-        edit_email = findViewById(R.id.edit_email);
+//        edit_email = findViewById(R.id.edit_email);
         edit_sdt = findViewById(R.id.edit_sdt);
         rb_gr = findViewById(R.id.rb_gr);
         rb_nam = findViewById(R.id.rb_nam);
         rb_nu = findViewById(R.id.rb_nu);
         tv_boqua = findViewById(R.id.tv_boqua);
-        img_ngaysinh = findViewById(R.id.img_ngaysinh);
         btn_thongtincanhan = findViewById(R.id.btn_thongtincanhan);
 
         dbHelper = new DBHelper(this);
@@ -66,7 +66,8 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
         // Lấy Bundle ra khỏi Intent
         Bundle mybundle = myintent1.getBundleExtra("dangkypackage");
 
-        img_ngaysinh.setOnClickListener(new View.OnClickListener() {
+
+        edit_ngaysinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
@@ -86,24 +87,21 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+        int ktraRb_bt;
+        ktraRb_bt = rb_gr.getCheckedRadioButtonId();
+
         btn_thongtincanhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String hoten, ngaysinh, gioitinh="", email, sdt;
-                int ktraRb_bt;
+                String hoten, ngaysinh, email, sdt, tk;
+
                 hoten = edit_hoten.getText().toString().trim();
                 ngaysinh = edit_ngaysinh.getText().toString().trim();
-                email = edit_email.getText().toString().trim();
+//                email = edit_email.getText().toString().trim();
                 sdt = edit_sdt.getText().toString().trim();
-                ktraRb_bt = rb_gr.getCheckedRadioButtonId();
 
-                String tk = mybundle.getString("tk");
-
-                if (ktraRb_bt == R.id.rb_nam) {
-                    gioitinh = "nam";
-                } else if (ktraRb_bt == R.id.rb_nu) {
-                    gioitinh = "nu";
-                }
+                tk = mybundle.getString("tk");
+                email = mybundle.getString("email");
 
                 if (hoten.isEmpty()) {
                     edit_hoten.setError("Vui lòng nhập họ và tên");
@@ -127,16 +125,16 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
                     return;
                 }
 
-                if (email.isEmpty()) {
-                    edit_email.setError("Vui lòng nhập email");
-                    edit_email.requestFocus();
-                    return;
-                } else if (!email.matches(regex_email)) {
-                    edit_email.setError("Yêu cầu định dạng email email@gmail.com");
-                    edit_email.requestFocus();
-                    edit_email.setText("");
-                    return;
-                }
+//                if (email.isEmpty()) {
+//                    edit_email.setError("Vui lòng nhập email");
+//                    edit_email.requestFocus();
+//                    return;
+//                } else if (!email.matches(regex_email)) {
+//                    edit_email.setError("Yêu cầu định dạng email email@gmail.com");
+//                    edit_email.requestFocus();
+//                    edit_email.setText("");
+//                    return;
+//                }
 
                 if (sdt.isEmpty()) {
                     edit_sdt.setError("Vui lòng nhập số điện thoại");
@@ -149,31 +147,47 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
                     return;
                 }
 
-                boolean thongtincanhan = dbHelper.themThongTinCaNhan(hoten, gioitinh, ngaysinh, email, sdt, tk);
-                if (thongtincanhan) {
-                    Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin thành công", Toast.LENGTH_SHORT).show();
-                    Intent myintent = new Intent(khachhang_thongtincanhan.this, khachhang_dangnhap.class);
-                    startActivity(myintent);
-                } else {
-                    Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin không thành công", Toast.LENGTH_SHORT).show();
-                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(khachhang_thongtincanhan.this);
+                builder.setMessage("Bạn có chắc chắn muốn cập nhật thông tin?").setPositiveButton("Cập nhật", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String gioitinh = "";
+                        if (ktraRb_bt == R.id.rb_nam) {
+                            gioitinh = "nam";
+                        } else if (ktraRb_bt == R.id.rb_nu) {
+                            gioitinh = "nu";
+                        }
+                        boolean thongtincanhan = dbHelper.suaThongtincanhan(hoten, gioitinh, ngaysinh, email, sdt, tk);
+                        if (thongtincanhan) {
+                            Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin thành công", Toast.LENGTH_SHORT).show();
+                            Intent myintent = new Intent(khachhang_thongtincanhan.this, khachhang_dangnhap.class);
+                            startActivity(myintent);
+                        } else {
+                            Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin không thành công", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }).setNegativeButton("Hủy", null).show();
+
             }
         });
 
         tv_boqua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                assert mybundle != null;
-                String tk = mybundle.getString("tk");
+//                assert mybundle != null;
+//                String tk = mybundle.getString("tk");
 
-                boolean thongtincanhan = dbHelper.themThongTinCaNhan("Tài khoản chưa có thông tin", "Đang cập nhật...", "Đang cập nhật...", "Đang cập nhật...", "Đang cập nhật...", tk);
-                if (thongtincanhan) {
-                    Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin thành công", Toast.LENGTH_SHORT).show();
-                    Intent myintent = new Intent(khachhang_thongtincanhan.this, khachhang_dangnhap.class);
-                    startActivity(myintent);
-                } else {
-                    Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin không thành công", Toast.LENGTH_SHORT).show();
-                }
+//                boolean thongtincanhan = dbHelper.themThongTinCaNhan("Tài khoản chưa có thông tin", "Đang cập nhật...", "Đang cập nhật...", "Đang cập nhật...", "Đang cập nhật...", tk);
+//                if (thongtincanhan) {
+//                    Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin thành công", Toast.LENGTH_SHORT).show();
+//                    Intent myintent = new Intent(khachhang_thongtincanhan.this, khachhang_dangnhap.class);
+//                    startActivity(myintent);
+//                } else {
+//                    Toast.makeText(khachhang_thongtincanhan.this, "Thêm thông tin không thành công", Toast.LENGTH_SHORT).show();
+//                }
+                Intent myintent = new Intent(khachhang_thongtincanhan.this, khachhang_dangnhap.class);
+              startActivity(myintent);
             }
         });
 

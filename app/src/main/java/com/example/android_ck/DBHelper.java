@@ -426,7 +426,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public List<item_user> layTatCaThongTinCaNhan() {
         List<item_user> list = new ArrayList<>();
-
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT thongtincanhan.hoten, taikhoan.tentaikhoan " +
                 "FROM thongtincanhan " +
@@ -441,8 +440,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 String tk = cursor.getString(1);
                 list.add(new item_user(tk, hoten));
             } while (cursor.moveToNext());
-            cursor.close();
         }
+        cursor.close();
         return list;
     }
 

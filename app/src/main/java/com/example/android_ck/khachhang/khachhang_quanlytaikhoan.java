@@ -2,6 +2,7 @@ package com.example.android_ck.khachhang;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -29,8 +31,8 @@ import java.util.Calendar;
 public class khachhang_quanlytaikhoan extends AppCompatActivity {
     EditText edit_suatk_hoten, edit_suatk_ngaysinh, edit_suatk_email, edit_suatk_sdt;
     RadioGroup rb_suatk_gr;
-    ImageView img_suatk_ngaysinh, img_suatk_quaylai;
-    Button btn_suatk_capnhat;
+    ImageView img_suatk_quaylai, btn_suatk_capnhat;
+//    Button btn_suatk_capnhat;
     RadioButton rb_suatk_nam, rb_suatk_nu;
     DBHelper dbHelper;
     String regex_hoten = "^[a-zA-Zà-Ỹ ]+$";
@@ -52,7 +54,7 @@ public class khachhang_quanlytaikhoan extends AppCompatActivity {
         edit_suatk_email = findViewById(R.id.edit_suatk_email);
         edit_suatk_sdt = findViewById(R.id.edit_suatk_sdt);
         rb_suatk_gr = findViewById(R.id.rb_suatk_gr);
-        img_suatk_ngaysinh = findViewById(R.id.img_suatk_ngaysinh);
+//        img_suatk_ngaysinh = findViewById(R.id.img_suatk_ngaysinh);
         img_suatk_quaylai = findViewById(R.id.img_suatk_quaylai);
         btn_suatk_capnhat = findViewById(R.id.btn_suatk_capnhat);
         rb_suatk_nam = findViewById(R.id.rb_suatk_nam);
@@ -65,28 +67,28 @@ public class khachhang_quanlytaikhoan extends AppCompatActivity {
 
         String tk = bundle.getString("tk");
 
-        Cursor cursor = dbHelper.layThongTinCaNhan(tk);
-        if (cursor != null && cursor.moveToFirst()) {
-            String hoten = cursor.getString(1);
-            String gioitinh = cursor.getString(2);
-            String ngaysinh = cursor.getString(3);
-            String email = cursor.getString(4);
-            String sdt = cursor.getString(5);
+//        Cursor cursor = dbHelper.layThongTinCaNhan(tk);
+//        if (cursor != null && cursor.moveToFirst()) {
+//            String hoten = cursor.getString(1);
+//            String gioitinh = cursor.getString(2);
+//            String ngaysinh = cursor.getString(3);
+//            String email = cursor.getString(4);
+//            String sdt = cursor.getString(5);
+//
+//            edit_suatk_hoten.setHint(hoten);
+//            edit_suatk_ngaysinh.setHint(ngaysinh);
+//            edit_suatk_email.setText(email);
+//            edit_suatk_sdt.setHint(sdt);
+//
+//            if (gioitinh.equals("nam")) {
+//                rb_suatk_nam.setChecked(true);
+//            } else if (gioitinh.equals("nu")) {
+//                rb_suatk_nu.setChecked(true);
+//            }
+//        }
+//        cursor.close();
 
-            edit_suatk_hoten.setText(hoten);
-            edit_suatk_ngaysinh.setText(ngaysinh);
-            edit_suatk_email.setText(email);
-            edit_suatk_sdt.setText(sdt);
-
-            if (gioitinh.equals("nam")) {
-                rb_suatk_nam.setChecked(true);
-            } else if (gioitinh.equals("nu")) {
-                rb_suatk_nu.setChecked(true);
-            }
-        }
-        cursor.close();
-
-        img_suatk_ngaysinh.setOnClickListener(new View.OnClickListener() {
+        edit_suatk_ngaysinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
@@ -110,7 +112,7 @@ public class khachhang_quanlytaikhoan extends AppCompatActivity {
         btn_suatk_capnhat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String hoten, gioitinh= "", ngaysinh, email, sdt;
+                String hoten, ngaysinh, email, sdt;
                 int ktraRB;
                 hoten = edit_suatk_hoten.getText().toString().trim();
                 ngaysinh = edit_suatk_ngaysinh.getText().toString().trim();
@@ -118,11 +120,7 @@ public class khachhang_quanlytaikhoan extends AppCompatActivity {
                 sdt = edit_suatk_sdt.getText().toString().trim();
                 ktraRB = rb_suatk_gr.getCheckedRadioButtonId();
 
-                if (ktraRB == R.id.rb_suatk_nam) {
-                    gioitinh = "nam";
-                } else if (ktraRB == R.id.rb_suatk_nu) {
-                    gioitinh = "nu";
-                }
+
 
                 if (hoten.isEmpty()) {
                     edit_suatk_hoten.setError("Vui lòng nhập họ và tên");
@@ -168,13 +166,27 @@ public class khachhang_quanlytaikhoan extends AppCompatActivity {
                     return;
                 }
 
-                boolean ktraSuattcn = dbHelper.suaThongtincanhan(hoten, gioitinh, ngaysinh, email, sdt, tk);
-                if (ktraSuattcn) {
-                    Toast.makeText(khachhang_quanlytaikhoan.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(khachhang_quanlytaikhoan.this, "Cập nhật không thành công", Toast.LENGTH_SHORT).show();
-                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(khachhang_quanlytaikhoan.this);
+                builder.setMessage("Bạn có chắc chắn muốn cập nhật thông tin?").setPositiveButton("Cập nhật", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String gioitinh="";
+                        if (ktraRB == R.id.rb_suatk_nam) {
+                            gioitinh = "nam";
+                        } else if (ktraRB == R.id.rb_suatk_nu) {
+                            gioitinh = "nu";
+                        }
+
+                        boolean ktraSuattcn = dbHelper.suaThongtincanhan(hoten, gioitinh, ngaysinh, email, sdt, tk);
+                        if (ktraSuattcn) {
+                            Toast.makeText(khachhang_quanlytaikhoan.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Toast.makeText(khachhang_quanlytaikhoan.this, "Cập nhật không thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).setNegativeButton("Hủy", null).show();
+
             }
         });
 
@@ -185,6 +197,7 @@ public class khachhang_quanlytaikhoan extends AppCompatActivity {
             }
         });
     }
+
 
 
 }
