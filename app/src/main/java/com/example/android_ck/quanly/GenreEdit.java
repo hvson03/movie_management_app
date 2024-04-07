@@ -14,9 +14,8 @@ import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
 
 public class GenreEdit extends AppCompatActivity {
-    ImageButton btn_back;
+    ImageButton btn_back,btn_suatheloai_sua;
     EditText edt_suatheloai_tentheloai;
-    Button btn_suatheloai_sua;
     DBHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

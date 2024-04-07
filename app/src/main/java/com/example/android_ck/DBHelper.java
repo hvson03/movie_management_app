@@ -346,6 +346,58 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return movieList;
     }
+    //Hàm lấy tên thể loại duy nhất để đổ lên khachhang_recy_theloai
+    public List<String> getDistinctGenreNames() {
+        List<String> distinctGenreNames = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT DISTINCT theloai.tentheloai " +
+                "FROM theloai " +
+                "INNER JOIN phim ON theloai.matheloai = phim.matheloai";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String genreName = cursor.getString(0);
+                distinctGenreNames.add(genreName);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return distinctGenreNames;
+    }
+
+
+
+    //Lấy phim giữa trên tên thể loại
+
+    public List<PhimVaTheLoai> getMoviesByGenre(String tentheloai) {
+        List<PhimVaTheLoai> movieList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT phim.maphim, phim.tenphim, phim.anhphim, phim.ngaycongchieu, phim.mota, phim.thoiluong, phim.gia, phim.matheloai, theloai.tentheloai " +
+                "FROM phim " +
+                "INNER JOIN theloai ON phim.matheloai = theloai.matheloai " +
+                "WHERE theloai.tentheloai = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{tentheloai});
+        if (cursor.moveToFirst()) {
+            do {
+                int maphim = cursor.getInt(0);
+                String tenphim = cursor.getString(1);
+                byte[] anhphim = cursor.getBlob(2);
+                String ngaycongchieu = cursor.getString(3);
+                String mota = cursor.getString(4);
+                String thoiluong = cursor.getString(5);
+                int gia = cursor.getInt(6);
+                int matheloai = cursor.getInt(7);
+                String genreName = cursor.getString(8);
+
+                PhimVaTheLoai movie = new PhimVaTheLoai(maphim, tenphim, anhphim, ngaycongchieu, mota, thoiluong, gia, matheloai, genreName);
+                movieList.add(movie);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return movieList;
+    }
+
 
 
     //Edit phim
@@ -517,6 +569,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
+
 
 
 }

@@ -38,10 +38,9 @@ public class FilmEdit extends AppCompatActivity {
     private static final int REQUEST_IMAGE_PICK = 2;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    ImageButton btn_suaphim_back;
+    ImageButton btn_suaphim_back,btn_suaphim_chonanh,btn_suaphim_sua;
     Spinner spn_suaphim_chontheloai;
     EditText edt_suaphim_tenphim, edt_suaphim_mota,edt_suaphim_thoiluong,edt_suaphim_ngaykhoichieu,edt_suaphim_giave;
-    Button btn_suaphim_chonanh,btn_suaphim_sua;
     ImageView img_anh;
     DBHelper dbHelper;
     ArrayAdapter<String> adapter;
@@ -169,7 +168,8 @@ public class FilmEdit extends AppCompatActivity {
                 int month = Integer.parseInt(parts[1]) - 1;
                 int day = Integer.parseInt(parts[0]);
                 calendar.set(year, month, day);
-                if (calendar.before(Calendar.getInstance())) {
+                // Kiểm tra nếu ngày khởi chiếu nhỏ hơn ngày hiện tại
+                if (calendar.compareTo(Calendar.getInstance()) < 0) {
                     showToast("Ngày khởi chiếu phải lớn hơn hoặc bằng ngày hiện tại");
                     return;
                 }

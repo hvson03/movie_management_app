@@ -44,10 +44,6 @@
             android:windowSoftInputMode="adjustResize"/>
 
 
-       <activity
-            android:name=".quanly.quanly_xoataikhoankhachhang"
-            android:exported="false" />
-
         <activity
             android:name=".khachhang.khachhang_quanlytaikhoan"
             android:exported="false" />

@@ -15,10 +15,10 @@ import com.example.android_ck.R;
 
 public class MovieDetail extends AppCompatActivity {
 
-    ImageButton imgb_kh_chitietphim_back, imgb_kh_chitietphim_yeuthich;
+    ImageButton imgb_kh_chitietphim_back, imgb_kh_chitietphim_yeuthich, txt_kh_chitietphim_datve;
     ImageView imgv_kh_chitietphim_anh;
     TextView txt_kh_chitietphim_tenphim, txt_kh_chitietphim_thoiluong, txt_kh_chitietphim_khoichieu,
-            txt_kh_chitietphim_theloai,txt_kh_chitietphim_giave, txt_kh_chitietphim_mota, txt_kh_chitietphim_datve;
+            txt_kh_chitietphim_theloai,txt_kh_chitietphim_giave, txt_kh_chitietphim_mota;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,7 +57,7 @@ public class MovieDetail extends AppCompatActivity {
         String mota = intent.getStringExtra("mota");
 
         txt_kh_chitietphim_tenphim.setText(tenphim);
-        txt_kh_chitietphim_theloai.setText("Thể loại: "+tentheloai);
+        txt_kh_chitietphim_theloai.setText(tentheloai);
         txt_kh_chitietphim_mota.setText(mota);
         txt_kh_chitietphim_thoiluong.setText(thoiluong);
         txt_kh_chitietphim_khoichieu.setText(ngaychieu);

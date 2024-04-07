@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/img_khachhang_home_anhphim"
-        android:layout_width="130dp"
-        android:layout_height="172dp"
+        android:layout_width="155dp"
+        android:layout_height="199dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/background_gradient_2" />
 
@@ -23,6 +23,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="Những chú sói"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold" />
