@@ -26,62 +26,13 @@
 
             />
 
-<!--        <TextView-->
-<!--            android:id="@+id/textView21"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginVertical="20dp"-->
-<!--            android:background="#3F51B5"-->
-<!--            android:gravity="center"-->
-<!--            android:paddingVertical="8dp"-->
-<!--            android:text="Báo cáo thống kê"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20sp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tv_xoatkkh"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginVertical="20dp"-->
-<!--            android:background="#3F51B5"-->
-<!--            android:gravity="center"-->
-<!--            android:paddingVertical="8dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20sp"-->
-<!--            android:text="Xóa tài khoản khách hàng" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tv_doimkadmin"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginVertical="20dp"-->
-<!--            android:background="#3F51B5"-->
-<!--            android:gravity="center"-->
-<!--            android:paddingVertical="8dp"-->
-<!--            android:text="Đổi mật khẩu"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20sp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tv_dangxuatadmin"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginVertical="20dp"-->
-<!--            android:background="#DF0E27"-->
-<!--            android:gravity="center"-->
-<!--            android:paddingVertical="8dp"-->
-<!--            android:text="Đăng xuất"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20sp" />-->
-
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#252836">
+            app:cardBackgroundColor="#025273"
+            app:cardCornerRadius="10dp">
 
 
             <LinearLayout
@@ -93,11 +44,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="Báo cáo thống kê" />
+                    android:text="Báo cáo thống kê"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -112,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#252836">
+            app:cardBackgroundColor="#025273">
 
 
             <LinearLayout
@@ -146,7 +97,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#252836">
+            app:cardBackgroundColor="#025273">
 
 
             <LinearLayout
@@ -180,7 +131,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#252836">
+            app:cardBackgroundColor="#025273">
 
 
             <LinearLayout

@@ -8,7 +8,6 @@
     android:background="#1F1D2B"
     tools:context=".khachhang.khachhang_dangnhap">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -94,20 +93,7 @@
                     android:backgroundTint="#252836"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
-
         </LinearLayout>
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_dangnhap"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginVertical="50dp"-->
-<!--            android:backgroundTint="#12CDD9"-->
-<!--            android:paddingVertical="10dp"-->
-<!--            android:text="Đăng nhập"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20dp" />-->
 
         <ImageView
             android:id="@+id/btn_dangnhap"

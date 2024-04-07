@@ -141,61 +141,6 @@
                                     android:textColor="@color/white" />
                         </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
-<!--                <EditText-->
-<!--                    android:id="@+id/edit_ngaysinh"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginBottom="20dp"-->
-<!--                    android:ems="10"-->
-<!--                    android:hint="Nhập ngày sinh"-->
-<!--                    android:inputType="date"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:textColorHint="#C1BFBF" />-->
-
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginBottom="40dp"-->
-<!--                    android:layout_marginHorizontal="20dp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:orientation="horizontal">-->
-
-<!--                        <com.google.android.material.textfield.TextInputLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:textColorHint="#FFFFFF"-->
-<!--                            app:hintTextColor="@color/white"-->
-<!--                            app:boxCornerRadiusTopStart="25dp"-->
-<!--                            app:boxCornerRadiusBottomStart="25dp"-->
-<!--                            app:boxCornerRadiusTopEnd="25dp"-->
-<!--                            app:boxCornerRadiusBottomEnd="25dp">-->
-
-<!--                                <com.google.android.material.textfield.TextInputEditText-->
-<!--                                    android:id="@+id/edit_email"-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="60dp"-->
-<!--                                    android:backgroundTint="#252836"-->
-<!--                                    android:ems="10"-->
-<!--                                    android:hint="Email"-->
-<!--                                    android:inputType="textEmailAddress"-->
-<!--                                    android:drawableRight="@drawable/icon_email"-->
-<!--                                    android:textColor="@color/white" />-->
-<!--                        </com.google.android.material.textfield.TextInputLayout>-->
-<!--                </LinearLayout>-->
-
-<!--                <EditText-->
-<!--                    android:id="@+id/edit_email"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginBottom="20dp"-->
-<!--                    android:ems="10"-->
-<!--                    android:hint="Nhập email"-->
-<!--                    android:inputType="textEmailAddress"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:textColorHint="#C1BFBF" />-->
-
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -229,35 +174,12 @@
                         </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
-<!--                <EditText-->
-<!--                    android:id="@+id/edit_sdt"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginBottom="20dp"-->
-<!--                    android:ems="10"-->
-<!--                    android:hint="Nhập số điện thoại"-->
-<!--                    android:inputType="phone"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:textColorHint="#C1BFBF" />-->
-
                 <ImageView
                     android:id="@+id/btn_thongtincanhan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="30dp"
                     app:srcCompat="@drawable/button_thongtincanhan" />
-
-<!--                <Button-->
-<!--                    android:id="@+id/btn_thongtincanhan"-->
-<!--                    android:layout_width="200dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginVertical="10dp"-->
-<!--                    android:backgroundTint="#B74CAF50"-->
-<!--                    android:paddingVertical="10dp"-->
-<!--                    android:text="Hoàn thành"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="20dp" />-->
 
         </LinearLayout>
 </RelativeLayout>
