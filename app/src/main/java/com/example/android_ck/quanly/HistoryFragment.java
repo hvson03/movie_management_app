@@ -1,21 +1,71 @@
 package com.example.android_ck.quanly;
 
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
+import com.example.android_ck.khachhang.CartFragmentAdapter;
+
+import java.util.ArrayList;
 
 public class HistoryFragment extends Fragment {
+    RecyclerView recyclerView;
+    DBHelper myDB;
+    ArrayList<String> listtenphim, listtenkhachhang, listtheloai;
+    ArrayList<Integer> listgiaphim, listsoluong;
+    ArrayList<Bitmap> listanhphim;
+    HistoryFragmentAdapter historyFragmentAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quanly_lichsu,container,false);
+        myDB = new DBHelper(getContext());
+        recyclerView = view.findViewById(R.id.recyclerViewLichSu);
+
+        listanhphim = new ArrayList<Bitmap>();
+        listtenphim = new ArrayList<String>();
+        listtheloai = new ArrayList<String>();
+        listtenkhachhang = new ArrayList<String>();
+        listgiaphim = new ArrayList<Integer>();
+        listsoluong = new ArrayList<Integer>();
+
+        storeDataInArrays();
+        historyFragmentAdapter = new HistoryFragmentAdapter(getContext(), listtenkhachhang, listanhphim, listtenphim, listtheloai ,listgiaphim, listsoluong);
+        recyclerView.setAdapter(historyFragmentAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
+    }
+    void storeDataInArrays(){
+        Cursor cursor = myDB.layDuLieuBangHoaDon();
+
+        if(cursor.getCount() == 0){
+            Toast.makeText(getContext(), "Khong co du lieu lich su", Toast.LENGTH_SHORT).show();
+        } else{
+            while (cursor.moveToNext()){
+                byte[] imageData = cursor.getBlob(8);
+                if (imageData != null) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+                    listanhphim.add(bitmap);
+                }
+                listtenphim.add(cursor.getString(7));
+                listtheloai.add(cursor.getString(15));
+                listtenkhachhang.add(cursor.getString(1));
+                listgiaphim.add(cursor.getInt(12));
+                listsoluong.add(cursor.getInt(4));
+            }
+        }
     }
 }
