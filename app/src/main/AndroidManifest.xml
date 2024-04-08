@@ -63,7 +63,9 @@
         <activity
             android:name=".khachhang.khachhang_dangky"
             android:exported="false" />
-
+        <activity
+            android:name=".quanly.ActionReport"
+            android:exported="false" />
         <activity
             android:name=".khachhang.khachhang_dangnhap"
             android:exported="true">
