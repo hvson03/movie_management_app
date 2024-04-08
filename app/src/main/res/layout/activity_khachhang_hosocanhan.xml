@@ -196,7 +196,7 @@
                         android:id="@+id/tv_tongtien_ttct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="3dp"
                         android:text="1000"
                         android:textColor="@color/white"
                         android:textSize="18dp"
@@ -210,7 +210,7 @@
                         android:textColor="@color/white"
                         android:textSize="18dp"
                         android:textStyle="italic"
-                        android:text="VND" />
+                        android:text="VNĐ" />
                 </LinearLayout>
 
             <LinearLayout
