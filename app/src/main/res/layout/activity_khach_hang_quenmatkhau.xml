@@ -53,7 +53,7 @@
                     android:id="@+id/edit_tk_quenmk"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:backgroundTint="#252836"
+                    android:backgroundTint="#464B61"
                     android:drawableRight="@drawable/icon_user"
                     android:ems="10"
                     android:hint="Tên tài khoản"
@@ -87,7 +87,7 @@
                     android:id="@+id/edit_email_quenmk"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:backgroundTint="#252836"
+                    android:backgroundTint="#464B61"
                     android:ems="10"
                     android:gravity="center_vertical"
                     android:inputType="textEmailAddress"
@@ -124,7 +124,7 @@
                     android:layout_height="60dp"
                     android:ems="10"
                     android:inputType="textPassword"
-                    android:backgroundTint="#252836"
+                    android:backgroundTint="#464B61"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 

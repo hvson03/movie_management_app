@@ -81,7 +81,7 @@
                     android:ems="10"
                     android:hint="Mật khẩu cũ"
                     android:inputType="textPassword"
-                    android:backgroundTint="#252836"
+                    android:backgroundTint="#464B61"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +112,7 @@
                     android:ems="10"
                     android:hint="Mật khẩu mới"
                     android:inputType="textPassword"
-                    android:backgroundTint="#252836"
+                    android:backgroundTint="#464B61"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 

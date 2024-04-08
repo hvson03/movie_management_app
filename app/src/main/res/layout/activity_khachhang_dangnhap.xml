@@ -54,7 +54,7 @@
                     android:id="@+id/edit_tentk"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:backgroundTint="#252836"
+                    android:backgroundTint="#464B61"
                     android:ems="10"
                     android:hint="Tên tài khoản"
                     android:drawableRight="@drawable/icon_user"
@@ -90,7 +90,7 @@
                     android:ems="10"
                     android:hint="Mật khẩu"
                     android:inputType="textPassword"
-                    android:backgroundTint="#252836"
+                    android:backgroundTint="#464B61"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

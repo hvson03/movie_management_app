@@ -5,12 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#696974"
+    android:background="#F6E8ED"
     tools:context=".quanly.quanly_xoataikhoankhachhang">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@drawable/custom_searchview"
-            android:backgroundTint="#4A4B56"
+            android:backgroundTint="#7D7F88"
             android:focusable="true"
             android:focusableInTouchMode="true"
             app:iconifiedByDefault="false"

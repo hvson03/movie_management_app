@@ -23,7 +23,7 @@
                     android:layout_gravity="right"
                     android:text="Bỏ qua"
                     android:textColor="#FFEB3B"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView15"
@@ -58,7 +58,7 @@
                                     android:id="@+id/edit_hoten"
                                     android:layout_width="match_parent"
                                     android:layout_height="60dp"
-                                    android:backgroundTint="#252836"
+                                    android:backgroundTint="#464B61"
                                     android:ems="10"
                                     android:hint="Họ và tên"
                                     android:drawableRight="@drawable/icon_name"
@@ -133,7 +133,7 @@
                                     android:id="@+id/edit_ngaysinh"
                                     android:layout_width="match_parent"
                                     android:layout_height="60dp"
-                                    android:backgroundTint="#252836"
+                                    android:backgroundTint="#464B61"
                                     android:ems="10"
                                     android:hint="Ngày sinh"
                                     android:inputType="date"
@@ -164,7 +164,7 @@
                                     android:id="@+id/edit_sdt"
                                     android:layout_width="match_parent"
                                     android:layout_height="60dp"
-                                    android:backgroundTint="#252836"
+                                    android:backgroundTint="#464B61"
                                     android:ems="10"
                                     android:drawableRight="@drawable/icon_phone"
                                     android:hint="Số điện Thoại"

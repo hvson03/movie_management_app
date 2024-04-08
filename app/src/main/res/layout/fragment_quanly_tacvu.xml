@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -30,9 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
+            app:cardElevation="8dp"
             android:layout_marginBottom="10dp"
-            app:cardBackgroundColor="#025273"
-            app:cardCornerRadius="10dp">
+            app:cardBackgroundColor="#F3EEEE"
+            app:cardCornerRadius="8dp">
 
 
             <LinearLayout
@@ -47,8 +48,9 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:text="Báo cáo thống kê"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textColor="#025273"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -62,8 +64,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#025273">
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#F3EEEE">
 
 
             <LinearLayout
@@ -76,8 +79,9 @@
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textColor="#025273"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:text="Xóa tài khoản khách hàng" />
@@ -96,8 +100,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#025273">
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#F3EEEE">
 
 
             <LinearLayout
@@ -110,8 +115,9 @@
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textColor="#025273"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:text="Đổi mật khẩu" />
@@ -130,9 +136,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#025273">
-
+            app:cardBackgroundColor="#F3EEEE"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardMaxElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,11 +151,12 @@
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="Đăng xuất" />
+                    android:text="Đăng xuất"
+                    android:textColor="#025273"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/imageView9"
