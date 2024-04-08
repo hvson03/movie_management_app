@@ -6,12 +6,15 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_cinema"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_cinema"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_CK"
         tools:targetApi="31">
+        <activity
+            android:name=".khachhang.khachhang_dangnhap"
+            android:exported="false" />
         <activity
             android:name=".khachhang.khachhang_hosocanhan"
             android:exported="false" />
@@ -43,11 +46,6 @@
             android:name=".quanly.MainActivity_quanly"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-      
-        <activity
-            android:name=".quanly.quanly_xoataikhoankhachhang"
-            android:exported="false" />
-            android:windowSoftInputMode="adjustResize"/>
 
         <activity
             android:name=".khachhang.khachhang_quanlytaikhoan"
@@ -68,13 +66,11 @@
         <activity
             android:name=".khachhang.khachhang_dangky"
             android:exported="false" />
-
         <activity
             android:name=".quanly.ActionReport"
             android:exported="false" />
-
         <activity
-            android:name=".khachhang.khachhang_dangnhap"
+            android:name=".IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
