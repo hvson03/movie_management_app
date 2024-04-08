@@ -16,9 +16,8 @@ import com.example.android_ck.R;
 
 public class GenreAdd extends AppCompatActivity {
 
-    ImageButton btn_back;
+    ImageButton btn_back,btn_themtheloai_them;
     EditText edt_themtheloai_tentheloai;
-    Button btn_themtheloai_them;
     DBHelper dbHelper;
 
     @Override

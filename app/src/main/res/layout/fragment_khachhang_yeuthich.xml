@@ -2,22 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background">
+    android:background="@color/white"
+    android:id="@+id/layout_khachhang_yeuthich">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Danh sách yêu thích"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:padding="12dp"
+        android:background="@color/main_background"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewYeuThich"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_color_background"
-        android:orientation="vertical">
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="11dp" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="94dp"
-            android:text="Yêu thích"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:gravity="center"
-            />
-    </LinearLayout>
 </RelativeLayout>

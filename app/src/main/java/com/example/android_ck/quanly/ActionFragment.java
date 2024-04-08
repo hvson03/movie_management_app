@@ -22,11 +22,14 @@ public class ActionFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quanly_tacvu,container,false);
-        CardView tv_xoatkkh, tv_doimkadmin, tv_dangxuatadmin;
+
+        CardView tv_xoatkkh, tv_doimkadmin, tv_dangxuatadmin, tv_baocao;
 
         tv_xoatkkh = view.findViewById(R.id.tv_xoatkkh);
         tv_dangxuatadmin = view.findViewById(R.id.tv_dangxuatadmin);
         tv_doimkadmin = view.findViewById(R.id.tv_doimkadmin);
+
+        tv_baocao = view.findViewById(R.id.tv_quanly_tacvu_baocao);
 
         tv_xoatkkh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +58,14 @@ public class ActionFragment extends Fragment {
                         startActivity(intent);
                     }
                 }).setNegativeButton("Hủy", null).show();
+            }
+        });
+
+        tv_baocao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ActionReport.class);
+                startActivity(intent);
             }
         });
         return view;

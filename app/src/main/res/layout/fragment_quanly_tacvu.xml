@@ -14,17 +14,51 @@
 
         <TextView
             android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="100dp"
+            android:text="TÁC VỤ"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+       
+           <androidx.cardview.widget.CardView
+            android:id="@+id/tv_quanly_tacvu_baocao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#13172E"
-            android:gravity="center"
-            android:layout_marginBottom="80dp"
-            android:padding="10dp"
-            android:text="Tác vụ"
-            android:textColor="@color/white"
-            android:textSize="24sp"
+            android:layout_marginHorizontal="20dp"
+            app:cardElevation="8dp"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="#F3EEEE"
+            app:cardCornerRadius="8dp">
 
-            />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="Báo cáo thống kê"
+                    android:textColor="#025273"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/left_arrow" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

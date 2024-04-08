@@ -41,10 +41,9 @@ public class FilmAdd extends AppCompatActivity {
     private static final int REQUEST_IMAGE_PICK = 2;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    ImageButton btn_themphim_back;
+    ImageButton btn_themphim_back,btn_themphim_chonanh,btn_themphim_them;
     Spinner spn_themphim_chontheloai;
     EditText edt_themphim_tenphim, edt_themphim_mota,edt_themphim_thoiluong,edt_themphim_ngaykhoichieu,edt_themphim_giave;
-    Button btn_themphim_chonanh,btn_themphim_them;
     ImageView img_anh;
     DBHelper dbHelper;
     FilmAdapter filmAdapter;
@@ -137,14 +136,14 @@ public class FilmAdd extends AppCompatActivity {
                     return;
                 }
 
-                // Kiểm tra ngày khởi chiếu phải lớn hơn hoặc bằng ngày hiện tại
                 Calendar calendar = Calendar.getInstance();
                 String[] parts = ngaykhoichieu.split("/");
                 int year = Integer.parseInt(parts[2]);
                 int month = Integer.parseInt(parts[1]) - 1;
                 int day = Integer.parseInt(parts[0]);
                 calendar.set(year, month, day);
-                if (calendar.before(Calendar.getInstance())) {
+                // Kiểm tra nếu ngày khởi chiếu nhỏ hơn ngày hiện tại
+                if (calendar.compareTo(Calendar.getInstance()) < 0) {
                     showToast("Ngày khởi chiếu phải lớn hơn hoặc bằng ngày hiện tại");
                     return;
                 }
