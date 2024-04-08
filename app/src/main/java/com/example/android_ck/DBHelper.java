@@ -525,7 +525,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public int layTongThanhTien(String tentaikhoan) {
         SQLiteDatabase myDB = this.getReadableDatabase();
         Cursor cursor = myDB.rawQuery(
-                "SELECT SUM(thanhtien) FROM chitiethoadon INNER JOIN hoadon ON chitiethoadon.mahoadon = hoadon.idhoadon WHERE hoadon.tentaikhoan = ?", new String[]{tentaikhoan}
+                "SELECT SUM(thanhtien) FROM hoadon WHERE tentaikhoan = ?", new String[]{tentaikhoan}
         );
 
         int totalAmount = 0;

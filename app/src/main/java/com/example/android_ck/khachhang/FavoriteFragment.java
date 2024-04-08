@@ -58,7 +58,7 @@ public class FavoriteFragment extends Fragment {
     void storeDataInArrays(String tentaikhoan){
         Cursor cursor = myDB.layDuLieuBangDSYT(tentaikhoan);
         if(cursor.getCount() == 0){
-            Toast.makeText(getContext(), "Khong co du lieu yeu thich", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "Khong co du lieu yeu thich", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
                 byte[] imageData = cursor.getBlob(5);

@@ -62,7 +62,7 @@ public class ActionReport extends AppCompatActivity {
         Cursor cursor = myDB.layDuLieuBangHoaDon();
 
         if(cursor.getCount() == 0){
-            Toast.makeText(this, "Khong co du bao cao thong ke", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Khong co du bao cao thong ke", Toast.LENGTH_SHORT).show();
         } else{
             while (cursor.moveToNext()){
                 byte[] imageData = cursor.getBlob(8);

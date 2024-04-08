@@ -76,7 +76,7 @@ public class CartFragment extends Fragment {
     void storeDataInArrays(String tentaikhoan){
         Cursor cursor = myDB.layDuLieuBangHoaDon(tentaikhoan);
         if(cursor.getCount() == 0){
-            Toast.makeText(getContext(), "Khong co du lieu dat ve truoc", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "Khong co du lieu dat ve truoc", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
                 byte[] imageData = cursor.getBlob(8);
@@ -87,7 +87,7 @@ public class CartFragment extends Fragment {
                 listmaphim.add(cursor.getInt(6));
                 listtenphim.add(cursor.getString(7));
                 listgiaphim.add(cursor.getInt(12));
-                listsoluong.add(cursor.getInt(4));
+                listsoluong.add(cursor.getInt(3));
             }
         }
     }
