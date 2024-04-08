@@ -12,27 +12,40 @@
         android:id="@+id/img_suatk_quaylai"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         app:srcCompat="@drawable/back" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/img_suatk_quaylai"
+        android:text="Thay đổi thông tin cá nhân"
+        android:textColor="#12CDD9"
+        android:textSize="23dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_suatk_quaylai"
-        android:padding="20dp"
+        android:layout_marginTop="35dp"
+        android:paddingHorizontal="20dp"
         android:orientation="vertical">
 
+
+
         <TextView
-            android:id="@+id/textView19"
-            android:layout_width="match_parent"
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#12CDD9"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="35dp"
-            android:text="Thay đổi thông tin tài khoản" />
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
+            android:text="Họ và tên" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +60,6 @@
                 android:layout_height="match_parent"
                 android:textColorHint="#FFFFFF"
                 app:hintTextColor="@color/white"
-                android:hint="Họ và tên"
                 app:boxCornerRadiusTopStart="25dp"
                 app:boxCornerRadiusBottomStart="25dp"
                 app:boxCornerRadiusTopEnd="25dp"
@@ -59,8 +71,8 @@
                     android:layout_height="60dp"
                     android:backgroundTint="#464B61"
                     android:ems="10"
-                    android:hint="................"
                     android:textColorHint="#92929D"
+                    android:paddingVertical="10dp"
                     android:drawableRight="@drawable/icon_name"
                     android:inputType="text"
                     android:textColor="@color/white" />
@@ -111,6 +123,15 @@
         </LinearLayout>
 
 
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginBottom="2dp"
+            android:text="Ngày sinh" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -123,7 +144,6 @@
                 android:layout_height="match_parent"
                 android:textColorHint="#FFFFFF"
                 app:hintTextColor="@color/white"
-                android:hint="Ngày sinh"
                 app:boxCornerRadiusTopStart="25dp"
                 app:boxCornerRadiusBottomStart="25dp"
                 app:boxCornerRadiusTopEnd="25dp"
@@ -135,13 +155,22 @@
                     android:layout_height="60dp"
                     android:backgroundTint="#464B61"
                     android:ems="10"
-                    android:hint="................."
+                    android:paddingVertical="10dp"
                     android:textColorHint="#92929D"
                     android:inputType="date"
                     android:drawableRight="@drawable/icon_date"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginBottom="2dp"
+            android:text="Email" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -155,7 +184,6 @@
                 android:layout_height="match_parent"
                 android:textColorHint="#FFFFFF"
                 app:hintTextColor="@color/white"
-                android:hint="Email"
                 app:boxCornerRadiusTopStart="25dp"
                 app:boxCornerRadiusBottomStart="25dp"
                 app:boxCornerRadiusTopEnd="25dp"
@@ -167,7 +195,7 @@
                     android:layout_height="60dp"
                     android:backgroundTint="#464B61"
                     android:ems="10"
-                    android:hint=".........."
+                    android:paddingVertical="10dp"
                     android:textColorHint="#92929D"
                     android:inputType="textEmailAddress"
                     android:drawableRight="@drawable/icon_email"
@@ -175,11 +203,19 @@
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginBottom="2dp"
+            android:text="Số điện thoại" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="35dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -189,7 +225,6 @@
                 android:textColorHint="#FFFFFF"
                 app:hintTextColor="@color/white"
                 app:boxCornerRadiusTopStart="25dp"
-                android:hint="Số điện Thoại"
                 app:boxCornerRadiusBottomStart="25dp"
                 app:boxCornerRadiusTopEnd="25dp"
                 app:boxCornerRadiusBottomEnd="25dp">
@@ -200,8 +235,8 @@
                     android:layout_height="60dp"
                     android:backgroundTint="#464B61"
                     android:ems="10"
+                    android:paddingVertical="10dp"
                     android:drawableRight="@drawable/icon_phone"
-                    android:hint="......................."
                     android:textColorHint="#92929D"
                     android:inputType="phone"
                     android:textColor="@color/white" />

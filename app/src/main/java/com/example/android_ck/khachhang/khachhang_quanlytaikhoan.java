@@ -67,26 +67,26 @@ public class khachhang_quanlytaikhoan extends AppCompatActivity {
 
         String tk = bundle.getString("tk");
 
-//        Cursor cursor = dbHelper.layThongTinCaNhan(tk);
-//        if (cursor != null && cursor.moveToFirst()) {
-//            String hoten = cursor.getString(1);
-//            String gioitinh = cursor.getString(2);
-//            String ngaysinh = cursor.getString(3);
-//            String email = cursor.getString(4);
-//            String sdt = cursor.getString(5);
-//
-//            edit_suatk_hoten.setHint(hoten);
-//            edit_suatk_ngaysinh.setHint(ngaysinh);
-//            edit_suatk_email.setText(email);
-//            edit_suatk_sdt.setHint(sdt);
-//
-//            if (gioitinh.equals("nam")) {
-//                rb_suatk_nam.setChecked(true);
-//            } else if (gioitinh.equals("nu")) {
-//                rb_suatk_nu.setChecked(true);
-//            }
-//        }
-//        cursor.close();
+        Cursor cursor = dbHelper.layThongTinCaNhan(tk);
+        if (cursor != null && cursor.moveToFirst()) {
+            String hoten = cursor.getString(1);
+            String gioitinh = cursor.getString(2);
+            String ngaysinh = cursor.getString(3);
+            String email = cursor.getString(4);
+            String sdt = cursor.getString(5);
+
+            edit_suatk_hoten.setHint(hoten);
+            edit_suatk_ngaysinh.setHint(ngaysinh);
+            edit_suatk_email.setText(email);
+            edit_suatk_sdt.setHint(sdt);
+
+            if (gioitinh.equals("nam")) {
+                rb_suatk_nam.setChecked(true);
+            } else if (gioitinh.equals("nu")) {
+                rb_suatk_nu.setChecked(true);
+            }
+        }
+        cursor.close();
 
         edit_suatk_ngaysinh.setOnClickListener(new View.OnClickListener() {
             @Override
