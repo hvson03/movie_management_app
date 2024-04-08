@@ -7,7 +7,7 @@
     android:paddingTop="12dp"
     android:paddingBottom="12dp"
     android:layout_marginBottom="12dp"
-    android:background="#B200BCD4">
+    android:background="#252836">
 
     <TextView
         android:id="@+id/txt_khachhang_datve_tenphim"
@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="Ten phim"
-        android:textColor="#E91E63"
-        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/img_khachhang_datve_anhphim"
         app:layout_constraintTop_toTopOf="@+id/img_khachhang_datve_anhphim" />
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="Giá: 1000đ"
         android:textColor="#2196F3"
-        android:textSize="18dp"
+        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/txt_khachhang_datve_tenphim"
         app:layout_constraintTop_toBottomOf="@+id/txt_khachhang_datve_tenphim" />
 
@@ -62,7 +62,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="10dp"
         android:text="Số lượng: "
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:textColor="#8BC34A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/txt_khachhang_datve_soluong" />
