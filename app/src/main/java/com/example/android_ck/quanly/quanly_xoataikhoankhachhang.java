@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import androidx.appcompat.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,9 +31,10 @@ import java.util.List;
 public class quanly_xoataikhoankhachhang extends AppCompatActivity {
     ImageView img_xoatk_quaylai;
     RecyclerView rcv;
-
+    SearchView sv_xoatk;
     DBHelper dbHelper;
     userAdapter userAdapter;
+    List<item_user> mylist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,16 +49,28 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         img_xoatk_quaylai = findViewById(R.id.img_xoatk_quaylai);
+        sv_xoatk = findViewById(R.id.sv_xoatk);
         rcv = findViewById(R.id.rcv);
 
-        userAdapter = new userAdapter(this, dbHelper);
-        LinearLayoutManager line = new LinearLayoutManager(this);
-        rcv.setLayoutManager(line);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        rcv.addItemDecoration(itemDecoration);
-        userAdapter.setData(getListusers());
-        rcv.setAdapter(userAdapter);
+        mylist = dbHelper.layTatCaThongTinCaNhan();
+        userAdapter = new userAdapter(this, dbHelper, mylist);
 
+        rcv.setAdapter(userAdapter);
+        rcv.setLayoutManager(new LinearLayoutManager(this));
+        userAdapter.updateData(mylist);
+
+        sv_xoatk.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                userAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         img_xoatk_quaylai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +81,6 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
 
     }
 
-
     private List<item_user> getListusers() {
         List<item_user> list = new ArrayList<>();
             List<item_user> danhsachtt = dbHelper.layTatCaThongTinCaNhan();
@@ -75,6 +88,11 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
         return list;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-
+        List<item_user> itemUsers = dbHelper.layTatCaThongTinCaNhan();
+        userAdapter.updateData(itemUsers);
+    }
 }

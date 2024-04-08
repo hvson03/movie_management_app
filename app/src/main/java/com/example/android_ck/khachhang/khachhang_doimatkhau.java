@@ -20,12 +20,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
+import com.example.android_ck.quanly.quanly_doimatkhau;
 
 public class khachhang_doimatkhau extends AppCompatActivity {
     EditText edit_dmk_mk, edit_dmk_mkmoi;
-    ImageView img_quaylaittcn;
+    ImageView img_quaylaittcn, btn_luumk;
     TextView tv_dmk_tk;
-    Button btn_luumk;
+//    Button btn_luumk;
     String regex_matkhau = "^[a-zA-Z0-9]{4,}$";
     DBHelper dbHelper;
     @Override
@@ -95,21 +96,20 @@ public class khachhang_doimatkhau extends AppCompatActivity {
                     }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(khachhang_doimatkhau.this);
-                builder.setMessage("Bạn có chắc chắn muốn đổi mật khẩu?").setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                builder.setMessage("Bạn có chắc chắn muốn đổi mật khẩu? Sau khi đổi mật khẩu, bạn sẽ phải đăng nhập lại!").setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         boolean ktra = dbHelper.suatMatKhau(tk, mkmoi);
                         if (ktra) {
-                            finish();
+                            Intent intent = new Intent(khachhang_doimatkhau.this, khachhang_dangnhap.class);
+                            startActivity(intent);
                             Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(khachhang_doimatkhau.this, "Yêu cầu đăng nhập lại", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(khachhang_doimatkhau.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }).setNegativeButton("Không", null).show();
-
-
-
+                }).setNegativeButton("Hủy", null).show();
 
             }
         });

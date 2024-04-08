@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import com.example.android_ck.quanly.MainActivity_quanly;
 
 public class khachhang_dangnhap extends AppCompatActivity {
     EditText edit_tentk, edit_matkhau;
-    Button btn_dangnhap;
+    ImageView btn_dangnhap;
     TextView tv_dangky, tv_quenmk;
 
     DBHelper dbHelper;

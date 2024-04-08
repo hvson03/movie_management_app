@@ -5,12 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4A4848"
+    android:background="#F6E8ED"
     tools:context=".quanly.quanly_xoataikhoankhachhang">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -20,7 +20,7 @@
             android:paddingVertical="20dp"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            android:backgroundTint="#D32042A5"
+            android:backgroundTint="#13172E"
             android:theme="?attr/actionBarTheme">
 
             <ImageView
@@ -39,6 +39,18 @@
                 android:textSize="25dp"
                 android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sv_xoatk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/custom_searchview"
+            android:backgroundTint="#7D7F88"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:iconifiedByDefault="false"
+            app:queryHint="Tìm kiếm tài khoản..." />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv"

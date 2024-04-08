@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.android_ck.R;
@@ -21,7 +22,8 @@ public class ActionFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quanly_tacvu,container,false);
-        TextView tv_xoatkkh, tv_doimkadmin, tv_dangxuatadmin, tv_baocao;
+
+        CardView tv_xoatkkh, tv_doimkadmin, tv_dangxuatadmin, tv_baocao;
 
         tv_xoatkkh = view.findViewById(R.id.tv_xoatkkh);
         tv_dangxuatadmin = view.findViewById(R.id.tv_dangxuatadmin);

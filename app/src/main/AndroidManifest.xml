@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -11,15 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_CK"
-        tools:targetApi="31" >
-
+        tools:targetApi="31">
+        <activity
+            android:name=".khachhang.khachhang_hosocanhan"
+            android:exported="false" />
         <activity
             android:name=".quanly.quanly_doimatkhau"
             android:exported="false" />
         <activity
             android:name=".quanly.quanly_xoataikhoankhachhang"
             android:exported="false" />
-
         <activity
             android:name=".khachhang.MovieDetail"
             android:exported="false" />
@@ -41,8 +42,12 @@
         <activity
             android:name=".quanly.MainActivity_quanly"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+      
+        <activity
+            android:name=".quanly.quanly_xoataikhoankhachhang"
+            android:exported="false" />
             android:windowSoftInputMode="adjustResize"/>
-
 
         <activity
             android:name=".khachhang.khachhang_quanlytaikhoan"
@@ -58,14 +63,16 @@
             android:exported="false" />
         <activity
             android:name=".khachhang.MainActivity_khachhang"
-            android:exported="false" 
-            android:windowSoftInputMode="adjustResize"/>
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".khachhang.khachhang_dangky"
             android:exported="false" />
+
         <activity
             android:name=".quanly.ActionReport"
             android:exported="false" />
+
         <activity
             android:name=".khachhang.khachhang_dangnhap"
             android:exported="true">

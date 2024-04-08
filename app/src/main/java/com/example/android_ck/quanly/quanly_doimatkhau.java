@@ -1,6 +1,7 @@
 package com.example.android_ck.quanly;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -19,13 +20,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
+import com.example.android_ck.khachhang.khachhang_dangnhap;
 import com.example.android_ck.khachhang.khachhang_doimatkhau;
 
 public class quanly_doimatkhau extends AppCompatActivity {
     EditText edit_dmk_mk_admin, edit_dmk_mkmoi_admin;
-    Button btn_luumk_admin;
+//    Button btn_luumk_admin;
     TextView tv_dmk_tk_admin;
-    ImageView img_quaylaitacvu;
+    ImageView img_quaylaitacvu, btn_luumk_admin;
     String regex_matkhau = "^[a-zA-Z0-9]{4,}$";
     DBHelper dbHelper;
     @Override
@@ -87,18 +89,20 @@ public class quanly_doimatkhau extends AppCompatActivity {
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(quanly_doimatkhau.this);
-                builder.setMessage("Bạn có chắc chắn muốn đổi mật khẩu?").setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                builder.setMessage("Bạn có chắc chắn muốn đổi mật khẩu? Sau khi đổi mật khẩu, bạn sẽ phải đăng nhập lại!").setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         boolean ktra = dbHelper.suatMatKhau("admin", mkmoi);
                         if (ktra) {
-                            finish();
+                            Intent intent = new Intent(quanly_doimatkhau.this, khachhang_dangnhap.class);
+                            startActivity(intent);
                             Toast.makeText(quanly_doimatkhau.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(quanly_doimatkhau.this, "Yêu cầu đăng nhập lại", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(quanly_doimatkhau.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }).setNegativeButton("Không", null).show();
+                }).setNegativeButton("Hủy", null).show();
             }
         });
 
