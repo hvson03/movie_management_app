@@ -87,7 +87,7 @@ public class CartFragment extends Fragment {
                 listmaphim.add(cursor.getInt(6));
                 listtenphim.add(cursor.getString(7));
                 listgiaphim.add(cursor.getInt(12));
-                listsoluong.add(cursor.getInt(3));
+                listsoluong.add(cursor.getInt(4));
             }
         }
     }
