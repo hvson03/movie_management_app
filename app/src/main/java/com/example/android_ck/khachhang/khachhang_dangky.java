@@ -1,5 +1,6 @@
 package com.example.android_ck.khachhang;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -118,26 +120,33 @@ public class khachhang_dangky extends AppCompatActivity {
                     return;
                 }
 
-                boolean dangkythanhcong = dbHelper.themTaikhoan(tk, mk, currentDate);
-                if (dangkythanhcong) {
-                    Intent myintent = new Intent(khachhang_dangky.this, khachhang_thongtincanhan.class);
+                AlertDialog.Builder builder = new AlertDialog.Builder(khachhang_dangky.this);
+                builder.setMessage("Bạn có chắc chắn muốn tạo tài khoản mới?").setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        boolean dangkythanhcong = dbHelper.themTaikhoan(tk, mk, currentDate);
+                        if (dangkythanhcong) {
+                            Intent myintent = new Intent(khachhang_dangky.this, khachhang_thongtincanhan.class);
 
-                    // Đóng gói dữ liệu và đưa dữ liệu vào Bundle
-                    Bundle mybundle = new Bundle();
-                    mybundle.putString("tk", tk);
-                    mybundle.putString("email", email);
+                            // Đóng gói dữ liệu và đưa dữ liệu vào Bundle
+                            Bundle mybundle = new Bundle();
+                            mybundle.putString("tk", tk);
+                            mybundle.putString("email", email);
 
-                    // Đưa Bundle vào Intent
-                    myintent.putExtra("dangkypackage", mybundle);
-                    startActivity(myintent);
+                            // Đưa Bundle vào Intent
+                            myintent.putExtra("dangkypackage", mybundle);
+                            startActivity(myintent);
 
-                    boolean thongtincanhan = dbHelper.themThongTinCaNhan("Tài khoản chưa có thông tin", "Đang cập nhật...", "Đang cập nhật...", email, "Đang cập nhật...", tk);
-                    if (thongtincanhan) {
-                        Toast.makeText(khachhang_dangky.this, "Đăng ký tài khoản thành công", Toast.LENGTH_SHORT).show();
+                            boolean thongtincanhan = dbHelper.themThongTinCaNhan("Tài khoản chưa có thông tin", "Đang cập nhật...", "Đang cập nhật...", email, "Đang cập nhật...", tk);
+                            if (thongtincanhan) {
+                                Toast.makeText(khachhang_dangky.this, "Đăng ký tài khoản thành công", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(khachhang_dangky.this, "Đăng ký tài khoản không thành công", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                } else {
-                    Toast.makeText(khachhang_dangky.this, "Đăng ký tài khoản không thành công", Toast.LENGTH_SHORT).show();
-                }
+                }).setNegativeButton("Hủy", null).show();
+
             }
         });
 

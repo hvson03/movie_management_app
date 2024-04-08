@@ -8,17 +8,20 @@
     android:background="#1F1D2B"
     tools:context=".khachhang.khachhang_doimatkhau">
 
+    <ImageView
+        android:id="@+id/img_quaylaittcn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/back" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_below="@+id/img_quaylaittcn"
         android:padding="20dp">
 
-        <ImageView
-            android:id="@+id/img_quaylaittcn"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            app:srcCompat="@drawable/back" />
 
         <TextView
             android:id="@+id/textView304"
@@ -28,13 +31,14 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_marginVertical="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
             android:text="Thay đổi mật khẩu" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="50dp"
+            android:layout_marginBottom="50dp"
             android:orientation="horizontal">
 
             <TextView
@@ -122,7 +126,7 @@
             android:id="@+id/btn_luumk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             app:srcCompat="@drawable/button_luumk" />
 
     </LinearLayout>

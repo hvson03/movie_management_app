@@ -9,25 +9,27 @@
     android:orientation="vertical"
     tools:context=".khachhang.khachhang_dangky">
 
+    <ImageView
+        android:id="@+id/img_quaylaidn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/back" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_below="@+id/img_quaylaidn"
         android:padding="20dp">
 
-
-        <ImageView
-            android:id="@+id/img_quaylaidn"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_marginVertical="10dp"
-            app:srcCompat="@drawable/back" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="30dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Đăng ký tài khoản"
             android:textColor="#12CDD9"
