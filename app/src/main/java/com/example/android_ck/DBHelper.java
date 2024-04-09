@@ -472,7 +472,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public List<item_user> layTatCaThongTinCaNhan() {
         List<item_user> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT thongtincanhan.hoten, taikhoan.tentaikhoan " +
+        String query = "SELECT thongtincanhan.email, taikhoan.tentaikhoan " +
                 "FROM thongtincanhan " +
                 "INNER JOIN taikhoan ON thongtincanhan.tentaikhoan = taikhoan.tentaikhoan " +
                 "WHERE taikhoan.quyen = ?";
@@ -481,9 +481,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                String hoten = cursor.getString(0);
+                String email = cursor.getString(0);
                 String tk = cursor.getString(1);
-                list.add(new item_user(tk, hoten));
+                list.add(new item_user(tk, email));
             } while (cursor.moveToNext());
         }
         cursor.close();
