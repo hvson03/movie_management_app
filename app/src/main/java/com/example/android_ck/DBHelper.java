@@ -98,6 +98,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "tentaikhoan TEXT," +
                 "maphim INTEGER," +
                 "soluong INTEGER," +
+                "thanhtien INTEGER," +
                 "FOREIGN KEY(tentaikhoan) REFERENCES taikhoan(tentaikhoan)," +
                 "FOREIGN KEY(maphim) REFERENCES phim(maphim))";
         db.execSQL(giohang);
@@ -679,7 +680,19 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put("tentaikhoan", tentaikhoan);
         cv.put("maphim", maphim);
         cv.put("soluong", 1);
+        cv.put("thanhtien", layGiaPhim(maphim)*1);
         return db.insert("giohang", null, cv) > 0;
+    }
+
+    public boolean capNhatGioHang(String tentaikhoan, int maphim, int soluong) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("soluong", soluong);
+        cv.put("thanhtien", layGiaPhim(maphim) * soluong);
+        String whereClause = "tentaikhoan = ? AND maphim = ?";
+        String[] whereArgs = {tentaikhoan, String.valueOf(maphim)};
+        int rowsAffected = db.update("giohang", cv, whereClause, whereArgs);
+        return rowsAffected > 0;
     }
 
     public boolean kiemTraSPGioHang(String tentaikhoan, int maphim){

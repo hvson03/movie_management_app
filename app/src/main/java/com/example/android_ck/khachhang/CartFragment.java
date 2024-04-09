@@ -33,12 +33,11 @@ public class CartFragment extends Fragment {
     RecyclerView recyclerView;
     DBHelper myDB;
     ArrayList<String> listtenphim;
-    ArrayList<Integer> listmaphim, listgiaphim, listsoluong;
+    ArrayList<Integer> listmaphim, listgiaphim, listsoluong, listthanhtien;
     ArrayList<Bitmap> listanhphim;
     CartFragmentAdapter cartFragmentAdapter;
     String tentaikhoan;
     Button btn_datmua;
-    TextView txt_tongtien;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,15 +49,14 @@ public class CartFragment extends Fragment {
         listtenphim = new ArrayList<String>();
         listgiaphim = new ArrayList<Integer>();
         listsoluong = new ArrayList<Integer>();
+        listthanhtien = new ArrayList<Integer>();
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("myPrefs", MODE_PRIVATE);
         tentaikhoan = sharedPreferences.getString("tentaikhoan", "");
 
-//        txt_tongtien = view.findViewById(R.id.txt_khachhang_datve_tongtien);
-//        txt_tongtien.setText(String.valueOf("Tổng tiền: " + myDB.getTongTienGioHang(tentaikhoan)) + " VNĐ");
-
         recyclerView = view.findViewById(R.id.recyclerViewDatVe);
         btn_datmua = view.findViewById(R.id.btn_khachhang_datve_datmua);
+        btn_datmua.setText("Thanh toán: " + String.valueOf(myDB.getTongTienGioHang(tentaikhoan))  + " VNĐ");
         btn_datmua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +79,7 @@ public class CartFragment extends Fragment {
                         listtenphim.clear();
                         listgiaphim.clear();
                         listsoluong.clear();
+                        listthanhtien.clear();
                         storeDataInArrays(tentaikhoan);
                         cartFragmentAdapter.notifyDataSetChanged();
                     }
@@ -97,7 +96,7 @@ public class CartFragment extends Fragment {
         });
 
         storeDataInArrays(tentaikhoan);
-        cartFragmentAdapter = new CartFragmentAdapter(getContext(), tentaikhoan, listanhphim, listmaphim, listtenphim, listgiaphim, listsoluong);
+        cartFragmentAdapter = new CartFragmentAdapter(getContext(), tentaikhoan, listanhphim, listmaphim, listtenphim, listgiaphim, listsoluong, listthanhtien);
         recyclerView.setAdapter(cartFragmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
@@ -109,15 +108,16 @@ public class CartFragment extends Fragment {
 //            Toast.makeText(getContext(), "Khong co du lieu dat ve truoc", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
-                byte[] imageData = cursor.getBlob(6);
+                byte[] imageData = cursor.getBlob(7);
                 if (imageData != null) {
                     Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
                     listanhphim.add(bitmap);
                 }
-                listmaphim.add(cursor.getInt(4));
-                listtenphim.add(cursor.getString(5));
-                listgiaphim.add(cursor.getInt(10));
+                listmaphim.add(cursor.getInt(5));
+                listtenphim.add(cursor.getString(6));
+                listgiaphim.add(cursor.getInt(11));
                 listsoluong.add(cursor.getInt(3));
+                listthanhtien.add(cursor.getInt(4));
             }
         }
     }

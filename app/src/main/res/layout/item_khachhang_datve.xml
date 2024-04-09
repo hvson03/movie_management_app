@@ -103,7 +103,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView30"
+                    android:id="@+id/txt_khachhang_datve_thanhtien"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Thành tiền : 1000 VNĐ"
