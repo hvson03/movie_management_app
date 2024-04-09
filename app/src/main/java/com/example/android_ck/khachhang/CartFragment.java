@@ -104,28 +104,29 @@ public class CartFragment extends Fragment {
         cartFragmentAdapter = new CartFragmentAdapter(getContext(), tentaikhoan, listanhphim, listmaphim, listtenphim, listgiaphim, listsoluong, listthanhtien);
         recyclerView.setAdapter(cartFragmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(adapterDataChangedReceiver,new IntentFilter("adapter_data_cart_changed"));
-
         return view;
     }
 
-    private BroadcastReceiver adapterDataChangedReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver updateCheckoutButtonTextReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            updateData();
+            // Cập nhật văn bản của nút thanh toán ở đây
+            btn_datmua.setText("Thanh toán: " + String.valueOf(myDB.getTongTienGioHang(tentaikhoan))  + " VNĐ");
         }
     };
 
-    private void updateData() {
-        listanhphim.clear();
-        listmaphim.clear();
-        listtenphim.clear();
-        listgiaphim.clear();
-        listsoluong.clear();
-        listthanhtien.clear();
-        storeDataInArrays(tentaikhoan);
-        cartFragmentAdapter.notifyDataSetChanged();
+    @Override
+    public void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(updateCheckoutButtonTextReceiver, new IntentFilter("update_checkout_button_text"));
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(updateCheckoutButtonTextReceiver);
+    }
+
     void storeDataInArrays(String tentaikhoan){
         Cursor cursor = myDB.layDuLieuBangGioHang(tentaikhoan);
         if(cursor.getCount() == 0){

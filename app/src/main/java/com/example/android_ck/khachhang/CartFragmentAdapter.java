@@ -87,8 +87,7 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
                     int maphim = listmaphim.get(position);
                     myDB.capNhatGioHang(tentaikhoan, maphim, currentQuantity);
                     holder.txt_thanhtien.setText("Thành tiền: " + String.valueOf(currentQuantity*myDB.layGiaPhim(maphim)) + " VNĐ");
-
-                    Intent intent = new Intent("adapter_data_cart_changed");
+                    Intent intent = new Intent("update_checkout_button_text");
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                 } else {
                     Toast.makeText(context, "Số lượng không được nhỏ hơn 1", Toast.LENGTH_SHORT).show();
@@ -107,6 +106,8 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
                     int maphim = listmaphim.get(position);
                     myDB.capNhatGioHang(tentaikhoan, maphim, currentQuantity);
                     holder.txt_thanhtien.setText("Thành tiền: " + String.valueOf(currentQuantity*myDB.layGiaPhim(maphim)) + " VNĐ");
+                    Intent intent = new Intent("update_checkout_button_text");
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                 } else {
                     Toast.makeText(context, "Số lượng không được lớn hơn 100", Toast.LENGTH_SHORT).show();
                 }
