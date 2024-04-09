@@ -21,17 +21,16 @@ import java.util.ArrayList;
 public class ActionReportAdapter  extends RecyclerView.Adapter<ActionReportAdapter.MyViewHolder> {
     Context context;
     ArrayList<Bitmap> listanhphim;
-    ArrayList<String> listtenphim, listtaikhoan;
-    ArrayList<Integer> listmaphim, listgiaphim, listsoluong, listthanhtien;
-    ActionReportAdapter(Context context,ArrayList<String> listtaikhoan, ArrayList<Bitmap> listanhphim, ArrayList<Integer> listmaphim, ArrayList<String> listtenphim, ArrayList<Integer> listgiaphim, ArrayList<Integer> listsoluong, ArrayList<Integer> listthanhtien){
+    ArrayList<String> listtenphim;
+    ArrayList<Integer> listgiaphim, listsoluongmua, listtongthu;
+    ActionReportAdapter(Context context, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<Integer> listsoluongmua,
+                        ArrayList<Integer> listgiaphim, ArrayList<Integer> listtongthu){
         this.context = context;
-        this.listtaikhoan = listtaikhoan;
         this.listanhphim = listanhphim;
-        this.listmaphim = listmaphim;
         this.listtenphim = listtenphim;
+        this.listsoluongmua = listsoluongmua;
         this.listgiaphim = listgiaphim;
-        this.listsoluong = listsoluong;
-        this.listthanhtien = listthanhtien;
+        this.listtongthu = listtongthu;
     }
     @NonNull
     @Override
@@ -43,11 +42,10 @@ public class ActionReportAdapter  extends RecyclerView.Adapter<ActionReportAdapt
 
     @Override
     public void onBindViewHolder(@NonNull ActionReportAdapter.MyViewHolder holder, int position) {
-        holder.txt_tenphim.setText("Phim: " + String.valueOf(listtenphim.get(position)));
-        holder.txt_tenkhachhang.setText("Khách hàng: " + String.valueOf(listtaikhoan.get(position)));
-        holder.txt_gia.setText("Tổng: " + String.valueOf(listgiaphim.get(position)) + "đ ");
-        holder.txt_soluong.setText(" " + String.valueOf(listsoluong.get(position)) + " ");
-        holder.txt_thanhtien.setText(" " + String.valueOf(listthanhtien.get(position)) + "đ");
+        holder.txt_tenphim.setText(String.valueOf(listtenphim.get(position)));
+        holder.txt_soluongmua.setText("Số lượng mua: " + String.valueOf(listsoluongmua.get(position)));
+        holder.txt_gia.setText("Giá: " + String.valueOf(listgiaphim.get(position)) + " VNĐ ");
+        holder.txt_dathuduoc.setText("Thu được: " + String.valueOf(listtongthu.get(position)) + " VNĐ");
         holder.img_anhphim.setImageBitmap(listanhphim.get(position));
     }
 
@@ -57,16 +55,15 @@ public class ActionReportAdapter  extends RecyclerView.Adapter<ActionReportAdapt
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_tenphim, txt_tenkhachhang, txt_gia, txt_soluong, txt_thanhtien;
+        TextView txt_tenphim, txt_soluongmua, txt_gia, txt_dathuduoc;
         ImageView img_anhphim;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            txt_tenphim = itemView.findViewById(R.id.txt_quanly_baocao_tenphim);
-            txt_tenkhachhang = itemView.findViewById(R.id.txt_quanly_baocao_tenkhachhang);
-            txt_gia = itemView.findViewById(R.id.txt_quanly_baocao_giaphim);
-            txt_soluong = itemView.findViewById(R.id.txt_quanly_baocao_soluong);
-            txt_thanhtien = itemView.findViewById(R.id.txt_quanly_baocao_thanhtien);
             img_anhphim = itemView.findViewById(R.id.img_quanly_baocao_anhphim);
+            txt_tenphim = itemView.findViewById(R.id.txt_quanly_baocao_tenphim);
+            txt_soluongmua = itemView.findViewById(R.id.txt_quanly_baocao_soluongmua);
+            txt_gia = itemView.findViewById(R.id.txt_quanly_baocao_giaphim);
+            txt_dathuduoc = itemView.findViewById(R.id.txt_quanly_baocao_thusp);
         }
     }
 }

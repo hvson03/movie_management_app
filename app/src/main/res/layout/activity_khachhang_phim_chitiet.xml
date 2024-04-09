@@ -31,8 +31,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="180dp"
         android:background="#00000000"
-        android:src="@drawable/ic_round_favourite_24"
-        app:tint="#F44336" />
+        android:src="@drawable/ic_round_notfavourite_24"/>
   </LinearLayout>
 
   <ScrollView
@@ -191,10 +190,10 @@
 
         <ImageButton
             android:id="@+id/txt_kh_chitietphim_datve"
-            android:layout_width="100dp"
+            android:layout_width="230dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="35dp"
             android:layout_weight="1"
             android:background="@drawable/datve" />

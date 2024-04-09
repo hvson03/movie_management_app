@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class HistoryFragment extends Fragment {
     RecyclerView recyclerView;
     DBHelper myDB;
-    ArrayList<String> listtenphim, listtenkhachhang, listtheloai;
+    ArrayList<String> listtenphim, listtenkhachhang, listtheloai, listhoten, listemail, listsdt;
     ArrayList<Integer> listgiaphim, listsoluong;
     ArrayList<Bitmap> listanhphim;
     HistoryFragmentAdapter historyFragmentAdapter;
@@ -37,13 +37,17 @@ public class HistoryFragment extends Fragment {
 
         listanhphim = new ArrayList<Bitmap>();
         listtenphim = new ArrayList<String>();
+        listhoten = new ArrayList<String>();
+        listemail = new ArrayList<String>();
+        listsdt = new ArrayList<String>();
         listtheloai = new ArrayList<String>();
         listtenkhachhang = new ArrayList<String>();
         listgiaphim = new ArrayList<Integer>();
         listsoluong = new ArrayList<Integer>();
 
         storeDataInArrays();
-        historyFragmentAdapter = new HistoryFragmentAdapter(getContext(), listtenkhachhang, listanhphim, listtenphim, listtheloai ,listgiaphim, listsoluong);
+        historyFragmentAdapter = new HistoryFragmentAdapter(getContext(), listtenkhachhang, listanhphim, listtenphim, listtheloai ,listgiaphim,
+                listsoluong, listhoten, listemail, listsdt);
         recyclerView.setAdapter(historyFragmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
@@ -61,10 +65,13 @@ public class HistoryFragment extends Fragment {
                     listanhphim.add(bitmap);
                 }
                 listtenphim.add(cursor.getString(7));
+                listhoten.add(cursor.getString(17));
+                listemail.add(cursor.getString(20));
+                listsdt.add(cursor.getString(21));
                 listtheloai.add(cursor.getString(15));
                 listtenkhachhang.add(cursor.getString(1));
                 listgiaphim.add(cursor.getInt(12));
-                listsoluong.add(cursor.getInt(4));
+                listsoluong.add(cursor.getInt(3));
             }
         }
     }

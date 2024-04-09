@@ -21,8 +21,8 @@ import java.util.ArrayList;
 public class ActionReport extends AppCompatActivity {
     RecyclerView recyclerView;
     DBHelper myDB;
-    ArrayList<String> listtenphim, listtenkhachhang;
-    ArrayList<Integer> listmaphim, listgiaphim, listsoluong, listthanhtien;
+    ArrayList<String> listtenphim;
+    ArrayList<Integer> listgiaphim, listsoluongmua, listthusp;
     ArrayList<Bitmap> listanhphim;
     ActionReportAdapter actionReportAdapter;
     ImageView img_back;
@@ -43,39 +43,35 @@ public class ActionReport extends AppCompatActivity {
 
         myDB = new DBHelper(this);
         listanhphim = new ArrayList<Bitmap>();
-        listmaphim = new ArrayList<Integer>();
         listtenphim = new ArrayList<String>();
-        listtenkhachhang = new ArrayList<String>();
         listgiaphim = new ArrayList<Integer>();
-        listsoluong = new ArrayList<Integer>();
-        listthanhtien = new ArrayList<Integer>();
+        listsoluongmua = new ArrayList<Integer>();
+        listthusp = new ArrayList<Integer>();
 
-        tv_tongtien.setText("Tổng tiền: " + myDB.getTongTienCacHoaDon() + "đ");
+        tv_tongtien.setText("Tổng tiền: " + myDB.getTongTienCacHoaDon() + " VNĐ");
         storeDataInArrays();
-        actionReportAdapter = new ActionReportAdapter(this, listtenkhachhang, listanhphim, listmaphim, listtenphim, listgiaphim, listsoluong, listthanhtien);
+        actionReportAdapter = new ActionReportAdapter(this, listanhphim, listtenphim, listsoluongmua, listgiaphim, listthusp);
         recyclerView.setAdapter(actionReportAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
     void storeDataInArrays(){
-        Cursor cursor = myDB.layDuLieuBangHoaDon();
+        Cursor cursor = myDB.layPhimVaThongTinDoanhSo();
 
         if(cursor.getCount() == 0){
 //            Toast.makeText(this, "Khong co du bao cao thong ke", Toast.LENGTH_SHORT).show();
         } else{
             while (cursor.moveToNext()){
-                byte[] imageData = cursor.getBlob(8);
+                byte[] imageData = cursor.getBlob(1);
                 if (imageData != null) {
                     Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
                     listanhphim.add(bitmap);
                 }
-                listmaphim.add(cursor.getInt(6));
-                listtenphim.add(cursor.getString(7));
-                listtenkhachhang.add(cursor.getString(1));
-                listgiaphim.add(cursor.getInt(12));
-                listsoluong.add(cursor.getInt(4));
-                listthanhtien.add(cursor.getInt(5));
+                listtenphim.add(cursor.getString(2));
+                listsoluongmua.add(cursor.getInt(3));
+                listgiaphim.add(cursor.getInt(4));
+                listthusp.add(cursor.getInt(5));
             }
         }
     }

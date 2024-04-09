@@ -1,75 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="15dp"
+    android:layout_height="300dp"
     android:layout_marginBottom="16dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:backgroundTint="#1B19191B"
+    android:orientation="vertical"
+    android:padding="15dp">
 
-    <TextView
-        android:id="@+id/txt_quanly_lichsu_tenphim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phim: ten phim 1"
-        android:textColor="#2196F3"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txt_quanly_lichsu_tenkhachhang"
-        app:layout_constraintTop_toBottomOf="@+id/txt_quanly_lichsu_tenkhachhang" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/txt_quanly_lichsu_tenkhachhang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Khach hang: kh1"
-        android:textSize="18dp"
-        android:textColor="#E91E63"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/img_quanly_lichsu_anhphim"
-        app:layout_constraintTop_toTopOf="@+id/img_quanly_lichsu_anhphim" />
+        <ImageView
+            android:id="@+id/img_quanly_lichsu_anhphim"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
 
-    <TextView
-        android:id="@+id/txt_quanly_lichsu_soluong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Số lượng: 2"
-        android:textColor="#8BC34A"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/txt_quanly_lichsu_giaphim"
-        app:layout_constraintTop_toBottomOf="@+id/txt_quanly_lichsu_giaphim" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txt_quanly_lichsu_giaphim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Giá: 1000đ"
-        android:textSize="18dp"
-        android:textColor="#00BCD4"
-        app:layout_constraintStart_toStartOf="@+id/txt_quanly_lichsu_tenphim"
-        app:layout_constraintTop_toBottomOf="@+id/txt_quanly_lichsu_tenphim" />
+            <TextView
+                android:id="@+id/txt_quanly_lichsu_tenphim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phim: ten phim 1"
+                android:layout_marginStart="16dp"
+                android:textColor="#2196F3"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/img_quanly_lichsu_anhphim"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:srcCompat="@tools:sample/avatars" />
+            <TextView
+                android:id="@+id/txt_quanly_lichsu_tenkhachhang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Khach hang: kh1"
+                android:textColor="#B9000000"
+                android:textSize="18dp"/>
+            <TextView
+                android:id="@+id/txt_quanly_lichsu_hotenkh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Ho ten: ho ten khach hang"
+                android:textColor="#B9000000"
+                android:textSize="18dp" />
+            <TextView
+                android:id="@+id/txt_quanly_lichsu_emailkh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Email: kh1"
+                android:textColor="#B9000000"
+                android:textSize="18dp"/>
+            <TextView
+                android:id="@+id/txt_quanly_lichsu_sdtkh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Sdt: 0123456789"
+                android:textColor="#B9000000"
+                android:textSize="18dp"/>
 
-    <TextView
-        android:id="@+id/txt_quanly_lichsu_theloai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(tên thể loại)"
-        android:textColor="#03A9F4"
-        android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/txt_quanly_lichsu_tenphim"
-        app:layout_constraintTop_toTopOf="@+id/txt_quanly_lichsu_tenphim" />
+            <TextView
+                android:id="@+id/txt_quanly_lichsu_theloai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Thể loại: thể loại 1"
+                android:textColor="#B9000000"
+                android:textSize="18dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/txt_quanly_lichsu_soluong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Số lượng: 2"
+                android:textColor="#B9000000"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/txt_quanly_lichsu_giaphim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Giá: 1000đ"
+                android:textColor="#B9000000"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/txt_quanly_lichsu_tongthu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="TỔNG THU: 1000đ"
+                android:textColor="#F44336"
+                android:textSize="22dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

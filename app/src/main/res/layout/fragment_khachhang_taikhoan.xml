@@ -77,6 +77,7 @@
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/edit_profile" />
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -85,9 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="60dp"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#252836">
-
+            app:cardBackgroundColor="#252836"
+            app:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,14 +99,46 @@
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="Thay đổi thông tin cá nhân" />
+                    android:text="Thay đổi thông tin cá nhân"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/left_arrow" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_lsmh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="#252836"
+            app:cardCornerRadius="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="Lịch sử mua hàng"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/left_arrow" />

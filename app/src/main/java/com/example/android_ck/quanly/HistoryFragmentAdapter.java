@@ -18,9 +18,10 @@ import java.util.ArrayList;
 public class HistoryFragmentAdapter extends RecyclerView.Adapter<HistoryFragmentAdapter.MyViewHolder> {
     Context context;
     ArrayList<Bitmap> listanhphim;
-    ArrayList<String> listtenphim, listtaikhoan, listtheloai;
+    ArrayList<String> listtenphim, listtaikhoan, listtheloai, listhoten, listemail, listsdt;
     ArrayList<Integer> listgiaphim, listsoluong;
-    HistoryFragmentAdapter(Context context,ArrayList<String> listtaikhoan, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai, ArrayList<Integer> listgiaphim, ArrayList<Integer> listsoluong){
+    HistoryFragmentAdapter(Context context,ArrayList<String> listtaikhoan, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai,
+                           ArrayList<Integer> listgiaphim, ArrayList<Integer> listsoluong, ArrayList<String> listhoten, ArrayList<String> listemail, ArrayList<String> listsdt){
         this.context = context;
         this.listtaikhoan = listtaikhoan;
         this.listanhphim = listanhphim;
@@ -28,6 +29,9 @@ public class HistoryFragmentAdapter extends RecyclerView.Adapter<HistoryFragment
         this.listtheloai = listtheloai;
         this.listgiaphim = listgiaphim;
         this.listsoluong = listsoluong;
+        this.listhoten = listhoten;
+        this.listemail = listemail;
+        this.listsdt = listsdt;
     }
     @NonNull
     @Override
@@ -40,10 +44,14 @@ public class HistoryFragmentAdapter extends RecyclerView.Adapter<HistoryFragment
     @Override
     public void onBindViewHolder(@NonNull HistoryFragmentAdapter.MyViewHolder holder, int position) {
         holder.txt_tenphim.setText("Phim: " + String.valueOf(listtenphim.get(position)));
-        holder.txt_theloai.setText("(" + String.valueOf(listtheloai.get(position)) + ")");
+        holder.txt_hoten.setText("Họ tên: " + String.valueOf(listhoten.get(position)));
+        holder.txt_email.setText("Email: " + String.valueOf(listemail.get(position)));
+        holder.txt_sdt.setText("Số điện thoại: " + String.valueOf(listsdt.get(position)));
+        holder.txt_theloai.setText("Thể loại: " + String.valueOf(listtheloai.get(position)));
         holder.txt_tenkhachhang.setText("Khách hàng: " + String.valueOf(listtaikhoan.get(position)));
-        holder.txt_gia.setText(String.valueOf("Giá: " + listgiaphim.get(position)) + "đ");
+        holder.txt_gia.setText(String.valueOf("Giá: " + listgiaphim.get(position)) + " VNĐ");
         holder.txt_soluong.setText("Số lượng: " + String.valueOf(listsoluong.get(position)));
+        holder.txt_tongthu.setText("TỔNG THU: " + String.valueOf(listgiaphim.get(position)*listsoluong.get(position)) + " VNĐ");
         holder.img_anhphim.setImageBitmap(listanhphim.get(position));
     }
 
@@ -53,7 +61,7 @@ public class HistoryFragmentAdapter extends RecyclerView.Adapter<HistoryFragment
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_tenphim, txt_tenkhachhang, txt_gia, txt_soluong, txt_theloai;
+        TextView txt_tenphim, txt_tenkhachhang, txt_gia, txt_soluong, txt_theloai, txt_hoten, txt_email, txt_sdt, txt_tongthu;
         ImageView img_anhphim;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +70,10 @@ public class HistoryFragmentAdapter extends RecyclerView.Adapter<HistoryFragment
             txt_tenkhachhang = itemView.findViewById(R.id.txt_quanly_lichsu_tenkhachhang);
             txt_gia = itemView.findViewById(R.id.txt_quanly_lichsu_giaphim);
             txt_soluong = itemView.findViewById(R.id.txt_quanly_lichsu_soluong);
+            txt_hoten = itemView.findViewById(R.id.txt_quanly_lichsu_hotenkh);
+            txt_email = itemView.findViewById(R.id.txt_quanly_lichsu_emailkh);
+            txt_sdt = itemView.findViewById(R.id.txt_quanly_lichsu_sdtkh);
+            txt_tongthu = itemView.findViewById(R.id.txt_quanly_lichsu_tongthu);
             img_anhphim = itemView.findViewById(R.id.img_quanly_lichsu_anhphim);
         }
     }

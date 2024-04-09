@@ -33,16 +33,19 @@ public class FavouriteFragmentAdapter extends RecyclerView.Adapter<FavouriteFrag
         this.listtheloai = listtheloai;
         this.listthoiluong = listthoiluong;
     }
+    public void updateData(){
+
+    }
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavouriteFragmentAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_khachhang_yeuthich, parent, false);
-        return new MyViewHolder(view);
+        return new FavouriteFragmentAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FavouriteFragmentAdapter.MyViewHolder holder, int position) {
         holder.txt_tenphim.setText(String.valueOf(listtenphim.get(position)));
         holder.txt_theloai.setText("Thể loại: "+String.valueOf(listtheloai.get(position)));
         holder.txt_thoiluong.setText("Thời gian: "+String.valueOf(listthoiluong.get(position)));

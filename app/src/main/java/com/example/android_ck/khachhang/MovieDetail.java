@@ -2,6 +2,7 @@ package com.example.android_ck.khachhang;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +19,7 @@ import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
 
 public class MovieDetail extends AppCompatActivity {
-
+    FavouriteFragmentAdapter favouriteFragmentAdapter;
     ImageButton imgb_kh_chitietphim_back, imgb_kh_chitietphim_yeuthich, txt_kh_chitietphim_datve;
     ImageView imgv_kh_chitietphim_anh;
     TextView txt_kh_chitietphim_tenphim, txt_kh_chitietphim_thoiluong, txt_kh_chitietphim_khoichieu,
@@ -71,13 +72,23 @@ public class MovieDetail extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
         String tentaikhoan = sharedPreferences.getString("tentaikhoan", "");
 
+        DBHelper myDB = new DBHelper(MovieDetail.this);
+
+        if(myDB.kiemTraYeuThichNguoiDung(tentaikhoan,maphim)){
+            imgb_kh_chitietphim_yeuthich.setImageResource(R.drawable.ic_round_favourite_24);
+        }else{
+            imgb_kh_chitietphim_yeuthich.setImageResource(R.drawable.ic_round_notfavourite_24);
+        }
         imgb_kh_chitietphim_yeuthich.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHelper myDB = new DBHelper(MovieDetail.this);
                 if (!myDB.kiemTraDSYTTonTai(tentaikhoan, maphim)) {
-                    if(myDB.themDanhSachYeuThich(tentaikhoan, maphim))
+                    if(myDB.themDanhSachYeuThich(tentaikhoan, maphim)){
                         Toast.makeText(MovieDetail.this, "Đã thêm vào danh sách yêu thích", Toast.LENGTH_SHORT).show();
+                        imgb_kh_chitietphim_yeuthich.setImageResource(R.drawable.ic_round_favourite_24);
+                        Intent intent = new Intent("adapter_data_changed");
+                        LocalBroadcastManager.getInstance(MovieDetail.this).sendBroadcast(intent);
+                    }
                     else
                         Toast.makeText(MovieDetail.this, "Thêm không thành công", Toast.LENGTH_SHORT).show();
                 } else {
@@ -90,13 +101,13 @@ public class MovieDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DBHelper myDB = new DBHelper(MovieDetail.this);
-                if (!myDB.kiemTraHoaDonTonTai(tentaikhoan, maphim)) {
-                    if(myDB.themHoaDonMoi(tentaikhoan, maphim))
-                        Toast.makeText(MovieDetail.this, "Đã thêm vào hóa đơn", Toast.LENGTH_SHORT).show();
+                if (!myDB.kiemTraSPGioHang(tentaikhoan, maphim)) {
+                    if(myDB.themVaoGioHang(tentaikhoan, maphim))
+                        Toast.makeText(MovieDetail.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
                     else
                         Toast.makeText(MovieDetail.this, "Thêm không thành công", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MovieDetail.this, "Đã có trong hóa đơn", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MovieDetail.this, "Đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
                 }
             }
         });
