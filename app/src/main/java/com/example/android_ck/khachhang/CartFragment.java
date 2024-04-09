@@ -3,7 +3,11 @@ package com.example.android_ck.khachhang;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -21,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -99,9 +104,28 @@ public class CartFragment extends Fragment {
         cartFragmentAdapter = new CartFragmentAdapter(getContext(), tentaikhoan, listanhphim, listmaphim, listtenphim, listgiaphim, listsoluong, listthanhtien);
         recyclerView.setAdapter(cartFragmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(adapterDataChangedReceiver,new IntentFilter("adapter_data_cart_changed"));
+
         return view;
     }
 
+    private BroadcastReceiver adapterDataChangedReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateData();
+        }
+    };
+
+    private void updateData() {
+        listanhphim.clear();
+        listmaphim.clear();
+        listtenphim.clear();
+        listgiaphim.clear();
+        listsoluong.clear();
+        listthanhtien.clear();
+        storeDataInArrays(tentaikhoan);
+        cartFragmentAdapter.notifyDataSetChanged();
+    }
     void storeDataInArrays(String tentaikhoan){
         Cursor cursor = myDB.layDuLieuBangGioHang(tentaikhoan);
         if(cursor.getCount() == 0){

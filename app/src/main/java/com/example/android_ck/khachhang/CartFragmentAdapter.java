@@ -1,6 +1,7 @@
 package com.example.android_ck.khachhang;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.DBHelper;
@@ -82,7 +84,12 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
                     currentQuantity--;
                     holder.txt_soluong.setText(String.valueOf(currentQuantity));
                     soluong.set(position, currentQuantity);
-                    myDB.capNhatGioHang(tentaikhoan, listmaphim.get(position), currentQuantity);
+                    int maphim = listmaphim.get(position);
+                    myDB.capNhatGioHang(tentaikhoan, maphim, currentQuantity);
+                    holder.txt_thanhtien.setText("Thành tiền: " + String.valueOf(currentQuantity*myDB.layGiaPhim(maphim)) + " VNĐ");
+
+                    Intent intent = new Intent("adapter_data_cart_changed");
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                 } else {
                     Toast.makeText(context, "Số lượng không được nhỏ hơn 1", Toast.LENGTH_SHORT).show();
                 }
@@ -97,7 +104,9 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
                     currentQuantity++;
                     holder.txt_soluong.setText(String.valueOf(currentQuantity));
                     soluong.set(position, currentQuantity);
-                    myDB.capNhatGioHang(tentaikhoan, listmaphim.get(position), currentQuantity);
+                    int maphim = listmaphim.get(position);
+                    myDB.capNhatGioHang(tentaikhoan, maphim, currentQuantity);
+                    holder.txt_thanhtien.setText("Thành tiền: " + String.valueOf(currentQuantity*myDB.layGiaPhim(maphim)) + " VNĐ");
                 } else {
                     Toast.makeText(context, "Số lượng không được lớn hơn 100", Toast.LENGTH_SHORT).show();
                 }
