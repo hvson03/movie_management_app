@@ -3,7 +3,11 @@ package com.example.android_ck.khachhang;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -21,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -100,6 +105,26 @@ public class CartFragment extends Fragment {
         recyclerView.setAdapter(cartFragmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
+    }
+
+    private BroadcastReceiver updateCheckoutButtonTextReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Cập nhật văn bản của nút thanh toán ở đây
+            btn_datmua.setText("Thanh toán: " + String.valueOf(myDB.getTongTienGioHang(tentaikhoan))  + " VNĐ");
+        }
+    };
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(updateCheckoutButtonTextReceiver, new IntentFilter("update_checkout_button_text"));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(updateCheckoutButtonTextReceiver);
     }
 
     void storeDataInArrays(String tentaikhoan){
