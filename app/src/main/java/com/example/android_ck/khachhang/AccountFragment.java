@@ -23,7 +23,7 @@ public class AccountFragment extends Fragment{
 //    tv_gioitinh, tv_ngaysinh, tv_sdt, tv_phimyt, tv_tongtien
 //    Button btn_qltk, btn_doimk, btn_dangxuat;
 
-    CardView btn_doimk, btn_qltk, btn_dangxuat, hosocanhan;
+    CardView btn_doimk, btn_qltk, btn_dangxuat, hosocanhan, btn_lsmh;
     DBHelper dbHelper;
     @Nullable
     @Override
@@ -41,6 +41,7 @@ public class AccountFragment extends Fragment{
         btn_dangxuat = view.findViewById(R.id.btn_dangxuat);
         btn_doimk = view.findViewById(R.id.btn_doimk);
         btn_qltk = view.findViewById(R.id.btn_qltk);
+        btn_lsmh = view.findViewById(R.id.btn_lsmh);
 
         dbHelper = new DBHelper(getActivity());
 
@@ -101,6 +102,14 @@ public class AccountFragment extends Fragment{
 
                 // Đưa Bundle vào Intent
                 intent.putExtra("dangnhappacket", bundle);
+                startActivity(intent);
+            }
+        });
+
+        btn_lsmh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), khachhang_lichsumuahang.class);
                 startActivity(intent);
             }
         });

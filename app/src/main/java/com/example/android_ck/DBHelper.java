@@ -92,6 +92,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(maphim) REFERENCES phim(maphim))";
         db.execSQL(hoadon);
 
+        // Tạo bảng giỏ hàng
+        String giohang = "CREATE TABLE giohang(" +
+                "idgiohang INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tentaikhoan TEXT," +
+                "maphim INTEGER," +
+                "soluong INTEGER," +
+                "FOREIGN KEY(tentaikhoan) REFERENCES taikhoan(tentaikhoan)," +
+                "FOREIGN KEY(maphim) REFERENCES phim(maphim))";
+        db.execSQL(giohang);
+
         // Kiểm tra xem có tài khoản admin trong cơ sở dữ liệu hay không
         Cursor cursor = db.rawQuery("SELECT * FROM taikhoan WHERE quyen = ?", new String[]{"admin"});
 
@@ -115,7 +125,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS phim");
         db.execSQL("DROP TABLE IF EXISTS danhsachyeuthich");
         db.execSQL("DROP TABLE IF EXISTS hoadon");
-        db.execSQL("DROP TABLE IF EXISTS chitiethoadon");
+        db.execSQL("DROP TABLE IF EXISTS giohang");
         db.execSQL("DROP TABLE IF EXISTS thongtincanhan");
 
         // Tạo lại các bảng mới
@@ -593,15 +603,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public boolean themHoaDonMoi(String tentaikhoan, int maphim){
+    public boolean themHoaDonMoi(String tentaikhoan, int maphim, int soluong){
         String ngaydat = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("tentaikhoan", tentaikhoan);
         cv.put("maphim", maphim);
         cv.put("ngaydat", ngaydat);
-        cv.put("soluong", 1);
-        cv.put("thanhtien", layGiaPhim(maphim)*1);
+        cv.put("soluong", soluong);
+        cv.put("thanhtien", layGiaPhim(maphim)*soluong);
         return db.insert("hoadon", null, cv) > 0;
     }
 
@@ -617,38 +627,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return gia;
     }
 
-    public boolean kiemTraHoaDonTonTai(String tentaikhoan, int maphim){
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM hoadon WHERE tentaikhoan = '" + tentaikhoan + "' AND maphim = " + maphim;
-        Cursor cursor = db.rawQuery(query, null);
-        int count = cursor.getCount();
-        cursor.close();
-        return count > 0;
-    }
 
-    public boolean capNhatHoaDon(String tentaikhoan, int maphim, int soluong){
-        String ngaydat = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        int thanhtien = layGiaPhim(maphim) * soluong;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("soluong", soluong);
-        cv.put("thanhtien", thanhtien);
-        cv.put("ngaydat", ngaydat);
-
-        String whereClause = "tentaikhoan = ? AND maphim = ?";
-        String[] whereArgs = {tentaikhoan, String.valueOf(maphim)};
-
-        return db.update("hoadon", cv, whereClause, whereArgs) > 0;
-    }
-
-    public boolean xoaKhoiHoaDon(String tentaikhoan, int maphim) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("hoadon", "tentaikhoan = ? AND maphim = ?",
-                new String[]{tentaikhoan, String.valueOf(maphim)}) > 0;
-    }
     public Cursor layDuLieuBangHoaDon(){
-        String query = "SELECT * FROM hoadon hd INNER JOIN phim p ON hd.maphim = p.maphim INNER JOIN theloai tl ON p.matheloai=tl.matheloai";
+        String query = "SELECT * FROM hoadon hd INNER JOIN phim p ON hd.maphim = p.maphim INNER JOIN theloai tl ON p.matheloai=tl.matheloai  " +
+                "INNER JOIN thongtincanhan ttcn ON hd.tentaikhoan=ttcn.tentaikhoan ORDER BY hd.idhoadon DESC";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if(db!=null){
@@ -657,7 +639,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
     public Cursor layDuLieuBangHoaDon(String tentk){
-        String query = "SELECT * FROM hoadon hd INNER JOIN phim p ON hd.maphim = p.maphim WHERE hd.tentaikhoan = '" + tentk + "'";
+        String query = "SELECT * FROM hoadon hd INNER JOIN phim p ON hd.maphim = p.maphim INNER JOIN theloai tl ON p.matheloai=tl.matheloai " +
+                "WHERE hd.tentaikhoan = '" + tentk + "'  ORDER BY hd.idhoadon DESC";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if(db!=null){
@@ -665,6 +648,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
     public int getTongTienCacHoaDon() {
         SQLiteDatabase db = this.getReadableDatabase();
         int tongtien = 0;
@@ -677,5 +661,88 @@ public class DBHelper extends SQLiteOpenHelper {
         return tongtien;
     }
 
+    public int getTongTienCacHoaDon(String tentaikhoan) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int tongtien = 0;
+        String sqlQuery = "SELECT sum(thanhtien) FROM hoadon WHERE tentaikhoan = '" + tentaikhoan + "'";
+        Cursor cursor = db.rawQuery(sqlQuery, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            tongtien = cursor.getInt(0);
+            cursor.close();
+        }
+        return tongtien;
+    }
+
+    public boolean themVaoGioHang(String tentaikhoan, int maphim){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("tentaikhoan", tentaikhoan);
+        cv.put("maphim", maphim);
+        cv.put("soluong", 1);
+        return db.insert("giohang", null, cv) > 0;
+    }
+
+    public boolean kiemTraSPGioHang(String tentaikhoan, int maphim){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM giohang WHERE tentaikhoan = '" + tentaikhoan + "' AND maphim = " + maphim;
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count > 0;
+    }
+
+    public Cursor layDuLieuBangGioHang(String tentk){
+        String query = "SELECT * FROM giohang gh INNER JOIN phim p ON gh.maphim = p.maphim WHERE gh.tentaikhoan = '" + tentk + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if(db!=null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    public boolean xoaKhoiGioHang(String tentaikhoan, int maphim) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("giohang", "tentaikhoan = ? AND maphim = ?",
+                new String[]{tentaikhoan, String.valueOf(maphim)}) > 0;
+    }
+
+    public void xoaGioHang(String tentaikhoan) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("giohang", "tentaikhoan = ?", new String[]{tentaikhoan});
+    }
+
+    public boolean kiemTraYeuThichNguoiDung(String tentaikhoan, int maphim){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM danhsachyeuthich WHERE tentaikhoan = '" + tentaikhoan + "' AND maphim = " + maphim;
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count > 0;
+    }
+
+    public int getTongTienGioHang(String tentaikhoan) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int tongtien = 0;
+        String sqlQuery = "SELECT sum(gh.soluong*p.gia) FROM giohang gh INNER JOIN phim p ON gh.maphim = p.maphim WHERE gh.tentaikhoan = '" + tentaikhoan + "'";
+        Cursor cursor = db.rawQuery(sqlQuery, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            tongtien = cursor.getInt(0);
+            cursor.close();
+        }
+        return tongtien;
+    }
+
+
+    public Cursor layPhimVaThongTinDoanhSo(){
+        String query = "SELECT p.maphim, p.anhphim,p.tenphim, sum(soluong) as TongSoLuong, p.gia, sum(thanhtien) as ThanhTien FROM hoadon hd " +
+                "INNER JOIN phim p ON hd.maphim = p.maphim GROUP BY p.maphim;";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if(db!=null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
 
 }

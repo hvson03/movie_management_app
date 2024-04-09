@@ -58,16 +58,43 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
                 DBHelper myDB = new DBHelper(context);
                 int maphim = listmaphim.get(position);
 
-                boolean result = myDB.xoaKhoiHoaDon(tentaikhoan, maphim);
+                boolean result = myDB.xoaKhoiGioHang(tentaikhoan, maphim);
                 if (result) {
-                    Toast.makeText(context, "Đã xóa khỏi hóa đơn", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Đã xóa khỏi giỏ hàng", Toast.LENGTH_SHORT).show();
                     listmaphim.remove(position);
                     listtenphim.remove(position);
                     listgiaphim.remove(position);
                     listanhphim.remove(position);
                     notifyItemRemoved(position);
                 } else {
-                    Toast.makeText(context, "Xóa khỏi hóa đơn thất bại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Xóa khỏi giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        holder.txt_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentQuantity = Integer.parseInt(holder.txt_soluong.getText().toString());
+                if (currentQuantity > 1) {
+                    currentQuantity--;
+                    holder.txt_soluong.setText(String.valueOf(currentQuantity));
+                    soluong.set(position, currentQuantity);
+                } else {
+                    Toast.makeText(context, "Số lượng không được nhỏ hơn 1", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        holder.txt_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentQuantity = Integer.parseInt(holder.txt_soluong.getText().toString());
+                if (currentQuantity < 100) {
+                    currentQuantity++;
+                    holder.txt_soluong.setText(String.valueOf(currentQuantity));
+                    soluong.set(position, currentQuantity);
+                } else {
+                    Toast.makeText(context, "Số lượng không được lớn hơn 100", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -95,7 +122,7 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_tenphim, txt_giave;
+        TextView txt_tenphim, txt_giave, txt_minus, txt_plus;
         ImageView img_anhphim, img_bochon;
         EditText txt_soluong;
         public MyViewHolder(@NonNull View itemView) {
@@ -105,6 +132,8 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
             txt_tenphim = itemView.findViewById(R.id.txt_khachhang_datve_tenphim);
             txt_giave = itemView.findViewById(R.id.txt_khachhang_datve_giave);
             txt_soluong = itemView.findViewById(R.id.txt_khachhang_datve_soluong);
+            txt_minus = itemView.findViewById(R.id.txt_khachhang_datve_minus);
+            txt_plus = itemView.findViewById(R.id.txt_khachhang_datve_plus);
         }
     }
 
