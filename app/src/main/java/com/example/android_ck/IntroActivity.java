@@ -29,9 +29,9 @@ public class IntroActivity extends AppCompatActivity {
         textView32.setAlpha(0f);
 
         // Sử dụng animate để thay đổi alpha từ 0 (không hiển thị) thành 1 (hiển thị đầy đủ)
-        btn_batdau.animate().alpha(1f).setDuration(3000).setStartDelay(1500);
-        textView4.animate().alpha(1f).setDuration(3000).setStartDelay(1000);
-        textView32.animate().alpha(1f).setDuration(3000).setStartDelay(1000);
+        btn_batdau.animate().alpha(1f).setDuration(1500).setStartDelay(700);
+        textView4.animate().alpha(1f).setDuration(1500).setStartDelay(200);
+        textView32.animate().alpha(1f).setDuration(1500).setStartDelay(200);
 
         btn_batdau.setOnClickListener(new View.OnClickListener() {
             @Override

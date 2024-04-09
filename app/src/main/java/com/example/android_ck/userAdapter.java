@@ -48,13 +48,13 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.userViewHolder
 
     public class userViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_tk;
-        private TextView tv_hoten;
+        private TextView tv_email;
         private ImageView img_delete;
 
         public userViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_tk = itemView.findViewById(R.id.item_tk);
-            tv_hoten = itemView.findViewById(R.id.item_hoten);
+            tv_email = itemView.findViewById(R.id.item_email);
             img_delete = itemView.findViewById(R.id.img_delete);
 
             img_delete.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +102,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.userViewHolder
             return;
         }
         holder.tv_tk.setText(itemUser.getTk());
-        holder.tv_hoten.setText(itemUser.getHoten());
+        holder.tv_email.setText(itemUser.getEmail());
     }
 
     @Override
@@ -167,120 +167,4 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.userViewHolder
         String temp = Normalizer.normalize(input, Normalizer.Form.NFD);
         return temp.replaceAll(regex, "");
     }
-//    private List<item_user> mylist;
-//    private Context context;
-//    DBHelper dbHelper;
-//
-//    public userAdapter(Context context, DBHelper dbHelper) {
-//        this.context = context;
-//        this.dbHelper = dbHelper;
-//    }
-//
-//    public void removeItem(int position) {
-//        mylist.remove(position);
-//        notifyItemRemoved(position);
-//        notifyItemRangeChanged(position, mylist.size());
-//    }
-//
-//    public void setData(List<item_user> list) {
-//        this.mylist = list;
-//        notifyDataSetChanged();
-//    }
-//    @NonNull
-//    @Override
-//    public userViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
-//        return new userViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(@NonNull userAdapter.userViewHolder holder, int position) {
-//        item_user itemUser = mylist.get(position);
-//        if (itemUser == null) {
-//            return;
-//        }
-//        holder.tv_tk.setText(itemUser.getTk());
-//        holder.tv_hoten.setText(itemUser.getHoten());
-//        holder.img_delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//                builder.setMessage("Bạn có chắc chắn muốn xóa?").setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        Boolean ktra = dbHelper.xoaTaiKhoan(itemUser.getTk());
-//
-//                        if (ktra) {
-//                            removeItem(position);
-//                            Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    }
-//
-//                }).setNegativeButton("Hủy", null).show();
-//
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        if (mylist != null) {
-//            return mylist.size();
-//        }
-//        return 0;
-//    }
-//
-//    public class userViewHolder extends ViewHolder {
-//        private TextView tv_tk;
-//        private TextView tv_hoten;
-//        private ImageView img_delete;
-//
-//        public userViewHolder(@NonNull View itemView) {
-//            super((itemView));
-//            tv_tk = itemView.findViewById(R.id.item_tk);
-//            tv_hoten = itemView.findViewById(R.id.item_hoten);
-//            img_delete = itemView.findViewById(R.id.img_delete);
-//        }
-//    }
-//
-//    @Override
-//    public  Filter getFilter() {
-//        return new Filter() {
-//            @Override
-//            protected FilterResults performFiltering(CharSequence constraint) {
-//                List<item_user> filteredList = new ArrayList<>();
-//                if (constraint == null || constraint.length() == 0) {
-//                    filteredList.addAll(mylist);
-//                } else {
-//                    String filterPattern = constraint.toString().toLowerCase().trim();
-//                    for (item_user itemUser : mylist) {
-//                        if (removeAccents(itemUser.getTk().toLowerCase()).contains(removeAccents(filterPattern))) {
-//                            filteredList.add(itemUser);
-//                        }
-//                    }
-//                }
-//                FilterResults results = new FilterResults();
-//                results.values = filteredList;
-//                return results;
-//            }
-//
-//            @Override
-//            protected void publishResults(CharSequence constraint, FilterResults results) {
-//                mylist.clear();
-//                mylist.addAll((List<item_user>) results.values);
-//                notifyDataSetChanged();
-//            }
-//        };
-//    }
-//
-//    public static String removeAccents(String input) {
-//        String regex = "\\p{InCombiningDiacriticalMarks}+";
-//        String temp = Normalizer.normalize(input, Normalizer.Form.NFD);
-//        return temp.replaceAll(regex, "");
-//    }
-
-
 }

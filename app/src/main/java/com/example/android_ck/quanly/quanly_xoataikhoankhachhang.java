@@ -81,13 +81,6 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
 
     }
 
-    private List<item_user> getListusers() {
-        List<item_user> list = new ArrayList<>();
-            List<item_user> danhsachtt = dbHelper.layTatCaThongTinCaNhan();
-            list.addAll(danhsachtt);
-        return list;
-    }
-
     @Override
     protected void onResume() {
         super.onResume();

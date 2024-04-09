@@ -1,11 +1,11 @@
 package com.example.android_ck.model;
 
 public class item_user {
-    String tk, hoten;
+    String tk, email;
 
-    public item_user(String tk, String hoten) {
+    public item_user(String tk, String email) {
         this.tk = tk;
-        this.hoten = hoten;
+        this.email = email;
     }
 
     public String getTk() {
@@ -16,12 +16,12 @@ public class item_user {
         this.tk = tk;
     }
 
-    public String getHoten() {
-        return hoten;
+    public String getEmail() {
+        return email;
     }
 
-    public void setHoten(String hoten) {
-        this.hoten = hoten;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }
