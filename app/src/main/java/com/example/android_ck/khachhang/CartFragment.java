@@ -54,8 +54,8 @@ public class CartFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("myPrefs", MODE_PRIVATE);
         tentaikhoan = sharedPreferences.getString("tentaikhoan", "");
 
-        txt_tongtien = view.findViewById(R.id.txt_khachhang_datve_tongtien);
-        txt_tongtien.setText(String.valueOf("Tổng tiền: " + myDB.getTongTienGioHang(tentaikhoan)) + " VNĐ");
+//        txt_tongtien = view.findViewById(R.id.txt_khachhang_datve_tongtien);
+//        txt_tongtien.setText(String.valueOf("Tổng tiền: " + myDB.getTongTienGioHang(tentaikhoan)) + " VNĐ");
 
         recyclerView = view.findViewById(R.id.recyclerViewDatVe);
         btn_datmua = view.findViewById(R.id.btn_khachhang_datve_datmua);
