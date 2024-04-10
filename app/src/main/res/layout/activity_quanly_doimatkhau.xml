@@ -5,16 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1F1D2B"
+    android:background="#F6E8ED"
     tools:context=".quanly.quanly_doimatkhau">
+
 
     <ImageView
         android:id="@+id/img_quaylaitacvu"
         android:layout_width="80dp"
         android:layout_height="30dp"
         android:layout_marginTop="30dp"
+        android:tint="@color/black"
         app:srcCompat="@drawable/back" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
             android:id="@+id/textView304"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#12CDD9"
+            android:textColor="#025273"
             android:textSize="25sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -45,7 +46,7 @@
                 android:id="@+id/textView214"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textColor="#12CDD9"
+                android:textColor="#025273"
                 android:textSize="22sp"
                 android:text="Tên tài khoản:" />
 
@@ -53,7 +54,7 @@
                 android:id="@+id/tv_dmk_tk_admin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="22sp"
                 android:text="Tên tài khoản" />
         </LinearLayout>
