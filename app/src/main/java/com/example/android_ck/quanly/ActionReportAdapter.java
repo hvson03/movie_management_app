@@ -43,9 +43,9 @@ public class ActionReportAdapter  extends RecyclerView.Adapter<ActionReportAdapt
     @Override
     public void onBindViewHolder(@NonNull ActionReportAdapter.MyViewHolder holder, int position) {
         holder.txt_tenphim.setText(String.valueOf(listtenphim.get(position)));
-        holder.txt_soluongmua.setText("Số lượng mua: " + String.valueOf(listsoluongmua.get(position)));
-        holder.txt_gia.setText("Giá: " + String.valueOf(listgiaphim.get(position)) + " VNĐ ");
-        holder.txt_dathuduoc.setText("Thu được: " + String.valueOf(listtongthu.get(position)) + " VNĐ");
+        holder.txt_soluongmua.setText( String.valueOf(listsoluongmua.get(position)));
+
+        holder.txt_dathuduoc.setText(String.valueOf(listtongthu.get(position)) + " VNĐ");
         holder.img_anhphim.setImageBitmap(listanhphim.get(position));
     }
 
@@ -55,14 +55,14 @@ public class ActionReportAdapter  extends RecyclerView.Adapter<ActionReportAdapt
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_tenphim, txt_soluongmua, txt_gia, txt_dathuduoc;
+        TextView txt_tenphim, txt_soluongmua, txt_dathuduoc;
         ImageView img_anhphim;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             img_anhphim = itemView.findViewById(R.id.img_quanly_baocao_anhphim);
             txt_tenphim = itemView.findViewById(R.id.txt_quanly_baocao_tenphim);
             txt_soluongmua = itemView.findViewById(R.id.txt_quanly_baocao_soluongmua);
-            txt_gia = itemView.findViewById(R.id.txt_quanly_baocao_giaphim);
+
             txt_dathuduoc = itemView.findViewById(R.id.txt_quanly_baocao_thusp);
         }
     }

@@ -3,107 +3,130 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:layout_marginBottom="16dp"
-    android:background="@color/white"
-    android:backgroundTint="#1B19191B"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="15dp">
+    >
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/img_quanly_lichsu_anhphim"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
+        app:cardCornerRadius="12dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="wrap_content" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txt_quanly_lichsu_tenphim"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phim: ten phim 1"
-                android:layout_marginStart="16dp"
-                android:textColor="#2196F3"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/img_quanly_lichsu_anhphim"
+                android:layout_width="78dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop" />
 
-            <TextView
-                android:id="@+id/txt_quanly_lichsu_tenkhachhang"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Khach hang: kh1"
-                android:textColor="#B9000000"
-                android:textSize="18dp"/>
-            <TextView
-                android:id="@+id/txt_quanly_lichsu_hotenkh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Ho ten: ho ten khach hang"
-                android:textColor="#B9000000"
-                android:textSize="18dp" />
-            <TextView
-                android:id="@+id/txt_quanly_lichsu_emailkh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Email: kh1"
-                android:textColor="#B9000000"
-                android:textSize="18dp"/>
-            <TextView
-                android:id="@+id/txt_quanly_lichsu_sdtkh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Sdt: 0123456789"
-                android:textColor="#B9000000"
-                android:textSize="18dp"/>
+                android:padding="10dp"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_quanly_lichsu_theloai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Thể loại: thể loại 1"
-                android:textColor="#B9000000"
-                android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_tenphim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ten phim 1"
+                    android:textColor="#2196F3"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txt_quanly_lichsu_soluong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Số lượng: 2"
-                android:textColor="#B9000000"
-                android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_tenkhachhang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tài khoản: kh1"
+                    android:textColor="#B9000000"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/txt_quanly_lichsu_giaphim"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Giá: 1000đ"
-                android:textColor="#B9000000"
-                android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_hotenkh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ho ten: ho ten khach hang"
+                    android:textColor="#B9000000"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/txt_quanly_lichsu_tongthu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="TỔNG THU: 1000đ"
-                android:textColor="#F44336"
-                android:textSize="22dp" />
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_emailkh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email: kh1"
+                    android:textColor="#B9000000"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_sdtkh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sdt: 0123456789"
+                    android:textColor="#B9000000"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_theloai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thể loại: thể loại 1"
+                    android:textColor="#B9000000"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_soluong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số lượng: 2"
+                    android:textColor="#B9000000"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_giaphim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giá: 1000đ"
+                    android:textColor="#B9000000"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_ngaydat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày đặt: 10/4/2024"
+                    android:textColor="#B9000000"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txt_quanly_lichsu_tongthu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thành tiền: 1000đ"
+                    android:textColor="#F44336"
+                    android:textSize="15dp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
