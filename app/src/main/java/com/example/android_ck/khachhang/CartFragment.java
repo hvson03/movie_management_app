@@ -93,6 +93,12 @@ public class CartFragment extends Fragment {
                         listthanhtien.clear();
                         storeDataInArrays(tentaikhoan);
                         cartFragmentAdapter.notifyDataSetChanged();
+                        if (myDB.getTongTienGioHang(tentaikhoan) == 0){
+                            btn_datmua.setEnabled(false);
+                            btn_datmua.setText("Thanh toán: 0 VNĐ");
+                        }
+                        else
+                            btn_datmua.setEnabled(true);
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
