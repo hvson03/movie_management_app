@@ -58,7 +58,7 @@ public class khachhang_lichsumuahang extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
         tentaikhoan = sharedPreferences.getString("tentaikhoan", "");
 
-        tv_tongtien.setText("Tổng tiền: " + myDB.getTongTienCacHoaDon(tentaikhoan) + " VNĐ");
+        tv_tongtien.setText("Tổng tiền: " + String.valueOf(myDB.getTongTienCacHoaDon(tentaikhoan))  + " VNĐ");
         storeDataInArrays(tentaikhoan);
         historyAdapter = new HistoryAdapter(this, listanhphim, listtenphim, listtheloai, listngaymua, listsoluong);
         recyclerView.setAdapter(historyAdapter);
