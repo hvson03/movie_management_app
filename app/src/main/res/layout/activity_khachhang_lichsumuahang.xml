@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1F1D2B"
-    tools:context=".khachhang.khachhang_doimatkhau">
+    android:background="#1F1D2B">
 
     <ImageView
         android:id="@+id/img_khachang_lichsu_back"
@@ -16,45 +15,43 @@
         app:srcCompat="@drawable/back" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@+id/img_khachang_lichsu_back"
+        android:orientation="vertical"
         android:padding="20dp">
 
         <TextView
             android:id="@+id/textView304"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Lịch sử mua hàng"
             android:textColor="#12CDD9"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="50dp"
-            android:text="Lịch sử mua hàng" />
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewLichSuKhachHang"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="550dp">
         </androidx.recyclerview.widget.RecyclerView>
 
-        <TextView
-            android:id="@+id/txt_khachhang_lichsu_tongtien"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="#00BCD4"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Tổng tiền: 0đ"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewBaoCao" />
-
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_khachhang_lichsu_tongtien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/linearLayout"
+        android:layout_marginTop="609dp"
+        android:background="#00BCD4"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Tổng tiền: 0đ"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </RelativeLayout>

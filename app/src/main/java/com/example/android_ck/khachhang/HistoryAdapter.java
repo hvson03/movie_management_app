@@ -18,14 +18,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     Context context;
     ArrayList<Bitmap> listanhphim;
     ArrayList<String> listtenphim, listtheloai, listngaymua;
-    ArrayList<Integer> listsoluong;
-    HistoryAdapter(Context context, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai, ArrayList<String> listngaymua, ArrayList<Integer> listsoluong){
+    ArrayList<Integer> listsoluong, listthanhtien;
+    HistoryAdapter(Context context, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai, ArrayList<String> listngaymua, ArrayList<Integer> listsoluong, ArrayList<Integer> listthanhtien){
         this.context = context;
         this.listanhphim = listanhphim;
         this.listtenphim = listtenphim;
         this.listtheloai = listtheloai;
         this.listngaymua = listngaymua;
         this.listsoluong = listsoluong;
+        this.listthanhtien = listthanhtien;
     }
     @NonNull
     @Override
@@ -41,6 +42,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
         holder.txt_theloai.setText("Thể loại: " + String.valueOf(listtheloai.get(position)));
         holder.txt_ngaymua.setText("Ngày mua: " + String.valueOf(listngaymua.get(position)));
         holder.txt_soluong.setText("Số lượng: " + String.valueOf(listsoluong.get(position)));
+        holder.txt_thanhtien.setText("Thành tiền: " + String.valueOf(listthanhtien.get(position)) + " VNĐ");
         holder.img_anhphim.setImageBitmap(listanhphim.get(position));
     }
 
@@ -50,7 +52,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_tenphim, txt_ngaymua, txt_soluong, txt_theloai;
+        TextView txt_tenphim, txt_ngaymua, txt_soluong, txt_theloai, txt_thanhtien;
         ImageView img_anhphim;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +60,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
             txt_theloai = itemView.findViewById(R.id.txt_khachhang_lichsu_theloai);
             txt_ngaymua = itemView.findViewById(R.id.txt_khachhang_lichsu_ngaymua);
             txt_soluong = itemView.findViewById(R.id.txt_khachhang_lichsu_soluong);
+            txt_thanhtien = itemView.findViewById(R.id.txt_khachhang_lichsu_thanhtien);
             img_anhphim = itemView.findViewById(R.id.img_khachhang_lichsu_anhphim);
         }
     }

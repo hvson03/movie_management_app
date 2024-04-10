@@ -28,11 +28,11 @@ public class khachhang_lichsumuahang extends AppCompatActivity {
     RecyclerView recyclerView;
     DBHelper myDB;
     ArrayList<String> listtenphim, listtheloai, listngaymua;
-    ArrayList<Integer> listsoluong;
+    ArrayList<Integer> listsoluong, listthanhtien;
     ArrayList<Bitmap> listanhphim;
     HistoryAdapter historyAdapter;
     ImageView img_back;
-    TextView tv_tongtien;
+    TextView txt_tongtien;
     String tentaikhoan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class khachhang_lichsumuahang extends AppCompatActivity {
         setContentView(R.layout.activity_khachhang_lichsumuahang);
         recyclerView = findViewById(R.id.recyclerViewLichSuKhachHang);
         img_back = findViewById(R.id.img_khachang_lichsu_back);
-        tv_tongtien = findViewById(R.id.txt_khachhang_lichsu_tongtien);
+        txt_tongtien = findViewById(R.id.txt_khachhang_lichsu_tongtien);
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,13 +54,13 @@ public class khachhang_lichsumuahang extends AppCompatActivity {
         listtheloai = new ArrayList<String>();
         listngaymua = new ArrayList<String>();
         listsoluong = new ArrayList<Integer>();
+        listthanhtien = new ArrayList<Integer>();
 
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
         tentaikhoan = sharedPreferences.getString("tentaikhoan", "");
-
-        tv_tongtien.setText("Tổng tiền: " + myDB.getTongTienCacHoaDon(tentaikhoan) + " VNĐ");
+        txt_tongtien.setText("Tổng tiền: " + String.valueOf(myDB.getTongTienCacHoaDon(tentaikhoan))  + " VNĐ");
         storeDataInArrays(tentaikhoan);
-        historyAdapter = new HistoryAdapter(this, listanhphim, listtenphim, listtheloai, listngaymua, listsoluong);
+        historyAdapter = new HistoryAdapter(this, listanhphim, listtenphim, listtheloai, listngaymua, listsoluong, listthanhtien);
         recyclerView.setAdapter(historyAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -82,6 +82,7 @@ public class khachhang_lichsumuahang extends AppCompatActivity {
                 listtheloai.add(cursor.getString(15));
                 listngaymua.add(cursor.getString(5));
                 listsoluong.add(cursor.getInt(3));
+                listthanhtien.add(cursor.getInt(4));
             }
         }
     }
