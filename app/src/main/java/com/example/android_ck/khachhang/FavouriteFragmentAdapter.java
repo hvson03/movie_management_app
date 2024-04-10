@@ -1,6 +1,7 @@
 package com.example.android_ck.khachhang;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;

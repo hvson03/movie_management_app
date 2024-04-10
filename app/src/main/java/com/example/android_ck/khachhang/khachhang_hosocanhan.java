@@ -1,5 +1,6 @@
 package com.example.android_ck.khachhang;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -69,17 +71,32 @@ public class khachhang_hosocanhan extends AppCompatActivity {
             String ngaysinh = cursor.getString(3);
             String email = cursor.getString(4);
             String sdt = cursor.getString(5);
-            tv_hoten_ttct.setText(hoten);
-            tv_ngaysinh_ttct.setText(ngaysinh);
+
             tv_email_ttct.setText(email);
-            tv_sdt_ttct.setText(sdt);
             String gt = "Đang cập nhật...";
             if (gioitinh.equals("nam")) {
                 gt = "Nam";
             } else if (gioitinh.equals("nu")) {
                 gt = "Nữ";
+
             }
+
+            if (gt.equals("Đang cập nhật...")){
+                tv_hoten_ttct.setTextColor(ContextCompat.getColor(this, R.color.yellow));
+                tv_ngaysinh_ttct.setTextColor(ContextCompat.getColor(this, R.color.cyan));
+                tv_sdt_ttct.setTextColor(ContextCompat.getColor(this, R.color.cyan));
+                tv_gioitinh_ttct.setTextColor(ContextCompat.getColor(this, R.color.cyan));
+            } else {
+                tv_hoten_ttct.setTextColor(ContextCompat.getColor(this, R.color.white));
+                tv_ngaysinh_ttct.setTextColor(ContextCompat.getColor(this, R.color.white));
+                tv_sdt_ttct.setTextColor(ContextCompat.getColor(this, R.color.white));
+                tv_gioitinh_ttct.setTextColor(ContextCompat.getColor(this, R.color.white));
+            }
+            tv_hoten_ttct.setText(hoten);
+            tv_ngaysinh_ttct.setText(ngaysinh);
+            tv_sdt_ttct.setText(sdt);
             tv_gioitinh_ttct.setText(gt);
+
         }
         cursor.close();
 

@@ -5,4 +5,6 @@
     <color name="main_background">#19191b</color>
     <color name="pink">#e45eb0</color>
     <color name="green">#34e3c4</color>
+    <color name="cyan">#49BBEF</color>
+    <color name="yellow">#F1DF45</color>
 </resources>
