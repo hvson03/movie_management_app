@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class HistoryFragment extends Fragment {
     RecyclerView recyclerView;
     DBHelper myDB;
-    ArrayList<String> listtenphim, listtenkhachhang, listtheloai, listhoten, listemail, listsdt;
+    ArrayList<String> listtenphim, listtenkhachhang, listtheloai, listhoten, listemail, listsdt, listngaydat;
     ArrayList<Integer> listgiaphim, listsoluong;
     ArrayList<Bitmap> listanhphim;
     HistoryFragmentAdapter historyFragmentAdapter;
@@ -44,10 +44,11 @@ public class HistoryFragment extends Fragment {
         listtenkhachhang = new ArrayList<String>();
         listgiaphim = new ArrayList<Integer>();
         listsoluong = new ArrayList<Integer>();
+        listngaydat = new ArrayList<String>();
 
         storeDataInArrays();
         historyFragmentAdapter = new HistoryFragmentAdapter(getContext(), listtenkhachhang, listanhphim, listtenphim, listtheloai ,listgiaphim,
-                listsoluong, listhoten, listemail, listsdt);
+                listsoluong, listhoten, listemail, listsdt, listngaydat);
         recyclerView.setAdapter(historyFragmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
@@ -72,6 +73,7 @@ public class HistoryFragment extends Fragment {
                 listtenkhachhang.add(cursor.getString(1));
                 listgiaphim.add(cursor.getInt(12));
                 listsoluong.add(cursor.getInt(3));
+                listngaydat.add(cursor.getString(5));
             }
         }
     }
