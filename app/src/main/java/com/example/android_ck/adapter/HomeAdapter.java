@@ -1,4 +1,4 @@
-package com.example.android_ck.khachhang;
+package com.example.android_ck.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,8 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.R;
+import com.example.android_ck.khachhang.MovieDetail;
 import com.example.android_ck.model.PhimVaTheLoai;
-import com.example.android_ck.quanly.FilmDetail;
 
 import java.text.Normalizer;
 import java.util.ArrayList;

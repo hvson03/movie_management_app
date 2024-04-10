@@ -4,13 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.android_ck.R;
-import com.example.android_ck.quanly.ViewPagerAdapter2;
+import com.example.android_ck.adapter.ViewPagerAdapter2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity_quanly extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.android_ck.quanly;
+package com.example.android_ck.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -20,8 +20,8 @@ public class HistoryFragmentAdapter extends RecyclerView.Adapter<HistoryFragment
     ArrayList<Bitmap> listanhphim;
     ArrayList<String> listtenphim, listtaikhoan, listtheloai, listhoten, listemail, listsdt;
     ArrayList<Integer> listgiaphim, listsoluong;
-    HistoryFragmentAdapter(Context context,ArrayList<String> listtaikhoan, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai,
-                           ArrayList<Integer> listgiaphim, ArrayList<Integer> listsoluong, ArrayList<String> listhoten, ArrayList<String> listemail, ArrayList<String> listsdt){
+    public HistoryFragmentAdapter(Context context, ArrayList<String> listtaikhoan, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai,
+                                  ArrayList<Integer> listgiaphim, ArrayList<Integer> listsoluong, ArrayList<String> listhoten, ArrayList<String> listemail, ArrayList<String> listsdt){
         this.context = context;
         this.listtaikhoan = listtaikhoan;
         this.listanhphim = listanhphim;
