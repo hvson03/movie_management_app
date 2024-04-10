@@ -1,7 +1,6 @@
 package com.example.android_ck.khachhang;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.content.Intent;

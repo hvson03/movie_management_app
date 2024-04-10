@@ -30,7 +30,7 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
     ArrayList<Integer> soluong;
     DBHelper myDB;
     String tentaikhoan;
-    CartFragmentAdapter(Context context,String tentaikhoan, ArrayList<Bitmap> listanhphim, ArrayList<Integer> listmaphim, ArrayList<String> listtenphim, ArrayList<Integer> listgiaphim, ArrayList<Integer> listsoluong, ArrayList<Integer> listthanhtien){
+    public CartFragmentAdapter(Context context, String tentaikhoan, ArrayList<Bitmap> listanhphim, ArrayList<Integer> listmaphim, ArrayList<String> listtenphim, ArrayList<Integer> listgiaphim, ArrayList<Integer> listsoluong, ArrayList<Integer> listthanhtien){
         this.context = context;
         this.tentaikhoan = tentaikhoan;
         this.listanhphim = listanhphim;

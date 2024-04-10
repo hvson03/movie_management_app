@@ -5,6 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.android_ck.khachhang.AccountFragment;
+import com.example.android_ck.khachhang.CartFragment;
+import com.example.android_ck.khachhang.FavoriteFragment;
+import com.example.android_ck.khachhang.HomeFragment;
+
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);

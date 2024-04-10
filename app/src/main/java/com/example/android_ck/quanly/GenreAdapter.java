@@ -12,14 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
 import com.example.android_ck.model.TheLoai;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHolder>{

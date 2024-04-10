@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,11 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
-import com.example.android_ck.model.Phim;
 import com.example.android_ck.model.PhimVaTheLoai;
-import com.example.android_ck.model.TheLoai;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FilmFragment extends Fragment {
