@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
-import com.example.android_ck.adapter.ActionReportAdapter;
 
 import java.util.ArrayList;
 

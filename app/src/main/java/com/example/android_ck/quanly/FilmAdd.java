@@ -25,7 +25,6 @@ import android.widget.Toast;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
-import com.example.android_ck.adapter.FilmAdapter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

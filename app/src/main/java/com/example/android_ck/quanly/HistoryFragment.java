@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
-import com.example.android_ck.adapter.HistoryFragmentAdapter;
+import com.example.android_ck.khachhang.CartFragmentAdapter;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class HistoryFragment extends Fragment {
 
         storeDataInArrays();
         historyFragmentAdapter = new HistoryFragmentAdapter(getContext(), listtenkhachhang, listanhphim, listtenphim, listtheloai ,listgiaphim,
-                listsoluong, listhoten, listemail, listsdt, listngaydat);
+                listsoluong, listhoten, listemail, listsdt);
         recyclerView.setAdapter(historyFragmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;

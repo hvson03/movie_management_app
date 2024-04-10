@@ -18,9 +18,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
-import com.example.android_ck.adapter.HomeAdapter;
-import com.example.android_ck.adapter.HomeGenreAdapter;
-import com.example.android_ck.adapter.SlideAdapter;
 import com.example.android_ck.model.PhimVaTheLoai;
 
 import java.util.List;

@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
-import com.example.android_ck.adapter.FilmAdapter;
 import com.example.android_ck.model.PhimVaTheLoai;
 
 import java.util.List;

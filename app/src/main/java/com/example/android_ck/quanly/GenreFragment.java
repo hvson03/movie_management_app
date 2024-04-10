@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
-import com.example.android_ck.adapter.GenreAdapter;
 import com.example.android_ck.model.TheLoai;
 
 import java.util.List;

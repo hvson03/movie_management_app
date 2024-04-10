@@ -1,4 +1,4 @@
-package com.example.android_ck.adapter;
+package com.example.android_ck.quanly;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

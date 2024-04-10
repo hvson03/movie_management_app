@@ -1,4 +1,4 @@
-package com.example.android_ck.adapter;
+package com.example.android_ck.khachhang;
 
 import android.content.Context;
 import android.content.Intent;

@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
 import com.example.android_ck.model.item_user;
-import com.example.android_ck.adapter.userAdapter;
 
 import java.util.List;
 
