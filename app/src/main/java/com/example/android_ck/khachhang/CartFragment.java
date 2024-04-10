@@ -84,7 +84,20 @@ public class CartFragment extends Fragment {
                                 int soluong = quantities.get(i);
                                 myDB.themHoaDonMoi(tentaikhoan, maphim, soluong);
                             }
-                            Toast.makeText(getContext(), "Cảm ơn bạn đã đặt vé! Mời bạn đến rạp Cuồng Phong Cinema để thưởng thức!", Toast.LENGTH_SHORT).show();
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Đặt vé thành công!");
+                            builder.setMessage("Cảm ơn bạn đã đặt vé! Mời bạn đến rạp Cuồng Phong Cinema để thưởng thức!");
+                            builder.setIcon(R.drawable.logo_cinema);
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+
                             myDB.xoaGioHang(tentaikhoan);
                             listanhphim.clear();
                             listmaphim.clear();
