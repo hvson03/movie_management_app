@@ -61,6 +61,12 @@ public class CartFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerViewDatVe);
         btn_datmua = view.findViewById(R.id.btn_khachhang_datve_datmua);
+
+        if (myDB.getTongTienGioHang(tentaikhoan) == 0)
+            btn_datmua.setEnabled(false);
+         else
+             btn_datmua.setEnabled(true);
+
         btn_datmua.setText("Thanh toán: " + String.valueOf(myDB.getTongTienGioHang(tentaikhoan))  + " VNĐ");
         btn_datmua.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +116,11 @@ public class CartFragment extends Fragment {
     private BroadcastReceiver updateCheckoutButtonTextReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // Cập nhật văn bản của nút thanh toán ở đây
+            if (myDB.getTongTienGioHang(tentaikhoan) == 0) {
+                btn_datmua.setEnabled(false);
+            } else {
+                btn_datmua.setEnabled(true);
+            }
             btn_datmua.setText("Thanh toán: " + String.valueOf(myDB.getTongTienGioHang(tentaikhoan))  + " VNĐ");
         }
     };
