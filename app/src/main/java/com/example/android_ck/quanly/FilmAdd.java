@@ -33,6 +33,8 @@ import java.util.Calendar;
 import java.util.List;
 
 public class FilmAdd extends AppCompatActivity {
+    //hai hằng số được sử dụng để định danh yêu cầu khi người dùng chọn ảnh từ thư viện hoặc
+    // chụp ảnh từ camera.
     private static final int REQUEST_IMAGE_PICK = 2;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -177,17 +179,20 @@ public class FilmAdd extends AppCompatActivity {
     }
     // chuyển đổi ảnh
     private byte[] convertImageViewToByteArray(ImageView imageView) {
+        //lấy đối tượng Bitmap từ ImageView bằng cách truy cập vào drawable hiện tại của ImageView
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         Bitmap scaledBitmap = scaleBitmap(bitmap, 500); // Thay đổi 500 thành kích thước tối đa mong muốn
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        scaledBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream(); //Khởi tạo để để lưu trữ dữ liệu ảnh dưới dạng byte.
+        scaledBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);//nén Bitmap thành định dạng PNG và ghi dữ liệu nén vào stream.
         return stream.toByteArray();
     }
     //nén ảnh
     private Bitmap scaleBitmap(Bitmap bitmap, int maxSize) {
+        // lấy kích thước ban đầu của Bitmap.
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
 
+        //tính tỷ lệ giữa chiều rộng và chiều cao của Bitmap.
         float bitmapRatio = (float) width / (float) height;
         if (bitmapRatio > 1) {
             width = maxSize;
@@ -260,7 +265,7 @@ public class FilmAdd extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    //Chọn ảnh
+    //hiển thị hộp thoại cho người dùng chọn phương thức là chụp ảnh hoặc chọn từ thư viện ảnh.
     private void showImagePickerDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Chọn ảnh");
@@ -281,32 +286,38 @@ public class FilmAdd extends AppCompatActivity {
     }
 
     private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//tạo một intent để mở camera.
+
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+        //kiểm tra xem có ứng dụng camera nào có thể xử lý intent này hay không.
+        // Nếu có, dòng startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        // được gọi để mở camera và chờ kết quả trả về.
     }
 
     private void openGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(intent, REQUEST_IMAGE_PICK);
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI); //tạo một intent để mở thư viện ảnh.
+        intent.setType("image/*"); //xác định loại dữ liệu của intent là hình ảnh.
+        startActivityForResult(intent, REQUEST_IMAGE_PICK); //mở thư viện ảnh và chờ kết quả trả về.
     }
 
     @Override
+    // được gọi sau khi intent trả về kết quả.
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        //kiểm tra xem kết quả trả về có thành công hay không.
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_CAPTURE && data != null) {
-                Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                img_anh.setImageBitmap(imageBitmap);
+                Bundle extras = data.getExtras();//lấy dữ liệu kèm theo intent, trong trường hợp này là hình ảnh chụp từ camera.
+                Bitmap imageBitmap = (Bitmap) extras.get("data"); //ấy hình ảnh từ dữ liệu kèm theo intent.
+                img_anh.setImageBitmap(imageBitmap); //hiển thị hình ảnh trong ImageView
             } else if (requestCode == REQUEST_IMAGE_PICK && data != null) {
-                Uri selectedImageUri = data.getData();
+                Uri selectedImageUri = data.getData(); //lấy đường dẫn của ảnh được chọn từ thư viện.
                 try {
+                    //dùng để tạo đối tượng Bitmap từ đường dẫn ảnh.
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                    img_anh.setImageBitmap(bitmap);
+                    img_anh.setImageBitmap(bitmap); // hiển thị hình ảnh trong ImageView
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

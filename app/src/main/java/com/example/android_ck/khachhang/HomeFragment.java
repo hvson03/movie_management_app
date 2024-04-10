@@ -61,11 +61,12 @@ public class HomeFragment extends Fragment implements HomeGenreAdapter.GenreClic
         mListPhoto = getListPhoto();
         slideAdapter = new SlideAdapter(getActivity(), mListPhoto);
 
-        viewPager.setAdapter(slideAdapter);
-        circleIndicator.setViewPager(viewPager);
+        viewPager.setAdapter(slideAdapter); //Thiết lập SlideAdapter đã được khởi tạo vào ViewPager để hiển thị slide show.
+        circleIndicator.setViewPager(viewPager); //Thiết lập ViewPager cho CircleIndicator
+        // (một chỉ báo hình tròn thường được sử dụng để chỉ ra trạng thái của các trang trong ViewPager).
         slideAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
-
-        autoSlideImages();
+        //Đăng ký một DataSetObserver để theo dõi thay đổi dữ liệu trong Adapter và cập nhật CircleIndicator tương ứng.
+        autoSlideImages(); //bắt đầu tự động chuyển đổi các ảnh trong slide show.
 
         //RecyclerView phim
 
@@ -99,7 +100,7 @@ public class HomeFragment extends Fragment implements HomeGenreAdapter.GenreClic
                 // Filter dữ liệu trong adapter khi có sự thay đổi trong SearchView
                 homeAdapter.getFilter().filter(newText);
                 homeAdapter.updateData(movieList);
-                return false; // Trả về true để xác nhận rằng bạn đã xử lý sự kiện này
+                return false; // Trả về true để xác nhận rằng đã xử lý sự kiện này
             }
 
         });
@@ -153,12 +154,14 @@ public class HomeFragment extends Fragment implements HomeGenreAdapter.GenreClic
         }
         mTimer.schedule(new TimerTask() {
             @Override
-            public void run() {
+            public void run() { //Lập lịch cho công việc tự động chuyển đổi ảnh:
+                //thực hiện trong một Handler được tạo với Looper chính (MainLooper)
+                // để đảm bảo rằng nó được thực thi trên luồng giao diện người dùng.
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        int currentItem = viewPager.getCurrentItem();
-                        int totalItem = mListPhoto.size() - 1;
+                        int currentItem = viewPager.getCurrentItem(); //vị trí hiện tại của ảnh đang hiển thị trong ViewPager
+                        int totalItem = mListPhoto.size() - 1; //tổng số ảnh trong danh sách
                         if (currentItem < totalItem) {
                             currentItem++;
                             viewPager.setCurrentItem(currentItem);
@@ -171,6 +174,7 @@ public class HomeFragment extends Fragment implements HomeGenreAdapter.GenreClic
         }, 500, 5000);
     }
 
+    //Nếu activity ko tồn tại cần hủy timer
     @Override
     public void onDestroy() {
         super.onDestroy();
