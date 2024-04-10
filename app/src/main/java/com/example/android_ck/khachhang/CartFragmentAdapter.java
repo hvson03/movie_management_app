@@ -1,6 +1,8 @@
 package com.example.android_ck.khachhang;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.Editable;
@@ -60,28 +62,50 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
         holder.img_bochon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int maphim = listmaphim.get(position);
+                final int maphim = listmaphim.get(position);
 
-                boolean result = myDB.xoaKhoiGioHang(tentaikhoan, maphim);
-                if (result) {
-                    Toast.makeText(context, "Đã xóa khỏi giỏ hàng", Toast.LENGTH_SHORT).show();
-                    // Xóa item khỏi danh sách
-                    listanhphim.remove(position);
-                    listmaphim.remove(position);
-                    listtenphim.remove(position);
-                    listgiaphim.remove(position);
-                    listsoluong.remove(position);
-                    listthanhtien.remove(position);
-                    soluong.remove(position);
-                    Intent intent = new Intent("update_checkout_button_text");
-                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-                    notifyItemRemoved(position);
-                    notifyDataSetChanged();
-                } else {
-                    Toast.makeText(context, "Xóa khỏi giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
-                }
+                // Xác nhận trước khi xóa
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Bạn có chắc chắn muốn xóa khỏi giỏ hàng?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Xóa item khỏi giỏ hàng
+                        boolean result = myDB.xoaKhoiGioHang(tentaikhoan, maphim);
+                        if (result) {
+                            Toast.makeText(context, "Đã xóa khỏi giỏ hàng", Toast.LENGTH_SHORT).show();
+                            // Xóa item khỏi danh sách
+                            listanhphim.remove(position);
+                            listmaphim.remove(position);
+                            listtenphim.remove(position);
+                            listgiaphim.remove(position);
+                            listsoluong.remove(position);
+                            listthanhtien.remove(position);
+                            soluong.remove(position);
+                            // Gửi broadcast để cập nhật nút thanh toán
+                            Intent intent = new Intent("update_checkout_button_text");
+                            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+                            // Cập nhật giao diện
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(context, "Xóa khỏi giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng hộp thoại nếu người dùng không muốn xóa
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
+
+
 
         holder.txt_minus.setOnClickListener(new View.OnClickListener() {
             @Override
