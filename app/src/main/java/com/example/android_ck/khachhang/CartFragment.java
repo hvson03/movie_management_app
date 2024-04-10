@@ -84,7 +84,7 @@ public class CartFragment extends Fragment {
                                 int soluong = quantities.get(i);
                                 myDB.themHoaDonMoi(tentaikhoan, maphim, soluong);
                             }
-                            Toast.makeText(getContext(), "Mua hàng thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Cảm ơn bạn đã đặt vé! Mời bạn đến rạp Cuồng Phong Cinema để thưởng thức!", Toast.LENGTH_SHORT).show();
                             myDB.xoaGioHang(tentaikhoan);
                             listanhphim.clear();
                             listmaphim.clear();
