@@ -29,7 +29,7 @@ import java.util.Calendar;
 public class khachhang_thongtincanhan extends AppCompatActivity {
     EditText edit_hoten, edit_ngaysinh, edit_sdt;
     RadioGroup rb_gr;
-    ImageView btn_thongtincanhan, img_ql_dangky;
+    ImageView btn_thongtincanhan;
     TextView tv_boqua;
     RadioButton rb_nam, rb_nu;
     DBHelper dbHelper;
@@ -52,7 +52,6 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
 
         edit_hoten = findViewById(R.id.edit_hoten);
         edit_ngaysinh = findViewById(R.id.edit_ngaysinh);
-        img_ql_dangky = findViewById(R.id.img_ql_dangky);
         edit_sdt = findViewById(R.id.edit_sdt);
         rb_gr = findViewById(R.id.rb_gr);
         rb_nam = findViewById(R.id.rb_nam);
@@ -173,13 +172,6 @@ public class khachhang_thongtincanhan extends AppCompatActivity {
                     }
                 }).setNegativeButton("Hủy", null).show();
 
-            }
-        });
-
-        img_ql_dangky.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
 

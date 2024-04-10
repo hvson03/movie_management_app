@@ -9,6 +9,10 @@ import com.example.android_ck.khachhang.AccountFragment;
 import com.example.android_ck.khachhang.CartFragment;
 //import com.example.android_ck.khachhang.FavoriteFragment;
 import com.example.android_ck.khachhang.HomeFragment;
+import com.example.android_ck.quanly.ActionFragment;
+import com.example.android_ck.quanly.FilmFragment;
+import com.example.android_ck.quanly.GenreFragment;
+import com.example.android_ck.quanly.HistoryFragment;
 
 public class ViewPagerAdapter2 extends FragmentStatePagerAdapter {
     public ViewPagerAdapter2(@NonNull FragmentManager fm, int behavior) {

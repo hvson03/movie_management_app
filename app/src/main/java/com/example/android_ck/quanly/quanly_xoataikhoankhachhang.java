@@ -1,11 +1,7 @@
 package com.example.android_ck.quanly;
 
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import androidx.appcompat.widget.SearchView;
 
@@ -14,18 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
 import com.example.android_ck.model.item_user;
-import com.example.android_ck.userAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class quanly_xoataikhoankhachhang extends AppCompatActivity {
@@ -84,7 +75,6 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         List<item_user> itemUsers = dbHelper.layTatCaThongTinCaNhan();
         userAdapter.updateData(itemUsers);
     }

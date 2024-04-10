@@ -3,8 +3,8 @@ package com.example.android_ck.khachhang;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +26,7 @@ public class FavouriteFragmentAdapter extends RecyclerView.Adapter<FavouriteFrag
     ArrayList<String> listtenphim, listtheloai, listthoiluong;
     ArrayList<Integer> listmaphim;
     String tentaikhoan;
-    FavouriteFragmentAdapter(Context context,String tentaikhoan, ArrayList<Bitmap> listanhphim, ArrayList<Integer> listmaphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai, ArrayList<String> listthoiluong){
+    public FavouriteFragmentAdapter(Context context, String tentaikhoan, ArrayList<Bitmap> listanhphim, ArrayList<Integer> listmaphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai, ArrayList<String> listthoiluong){
         this.context = context;
         this.tentaikhoan = tentaikhoan;
         this.listanhphim = listanhphim;

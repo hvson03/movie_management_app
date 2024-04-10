@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ck.R;
 import com.example.android_ck.model.PhimVaTheLoai;
-import com.example.android_ck.quanly.FilmDetail;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
