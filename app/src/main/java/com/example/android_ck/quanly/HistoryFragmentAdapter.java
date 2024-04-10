@@ -48,10 +48,10 @@ public class HistoryFragmentAdapter extends RecyclerView.Adapter<HistoryFragment
         holder.txt_email.setText("Email: " + String.valueOf(listemail.get(position)));
         holder.txt_sdt.setText("Số điện thoại: " + String.valueOf(listsdt.get(position)));
         holder.txt_theloai.setText("Thể loại: " + String.valueOf(listtheloai.get(position)));
-        holder.txt_tenkhachhang.setText("Khách hàng: " + String.valueOf(listtaikhoan.get(position)));
+        holder.txt_tenkhachhang.setText("Tài khoản: " + String.valueOf(listtaikhoan.get(position)));
         holder.txt_gia.setText(String.valueOf("Giá: " + listgiaphim.get(position)) + " VNĐ");
         holder.txt_soluong.setText("Số lượng: " + String.valueOf(listsoluong.get(position)));
-        holder.txt_tongthu.setText("TỔNG THU: " + String.valueOf(listgiaphim.get(position)*listsoluong.get(position)) + " VNĐ");
+        holder.txt_tongthu.setText("Thành tiền: " + String.valueOf(listgiaphim.get(position)*listsoluong.get(position)) + " VNĐ");
         holder.img_anhphim.setImageBitmap(listanhphim.get(position));
     }
 

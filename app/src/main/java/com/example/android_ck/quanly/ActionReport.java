@@ -48,7 +48,7 @@ public class ActionReport extends AppCompatActivity {
         listsoluongmua = new ArrayList<Integer>();
         listthusp = new ArrayList<Integer>();
 
-        tv_tongtien.setText("Tổng tiền: " + myDB.getTongTienCacHoaDon() + " VNĐ");
+        tv_tongtien.setText("Tổng doanh thu: " + myDB.getTongTienCacHoaDon() + " VNĐ");
         storeDataInArrays();
         actionReportAdapter = new ActionReportAdapter(this, listanhphim, listtenphim, listsoluongmua, listgiaphim, listthusp);
         recyclerView.setAdapter(actionReportAdapter);

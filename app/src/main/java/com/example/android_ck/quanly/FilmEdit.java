@@ -215,7 +215,7 @@ public class FilmEdit extends AppCompatActivity {
     // chuyển đổi ảnh
     private byte[] convertImageViewToByteArray(ImageView imageView) {
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-        Bitmap scaledBitmap = scaleBitmap(bitmap, 800); // Thay đổi 800 thành kích thước tối đa mong muốn
+        Bitmap scaledBitmap = scaleBitmap(bitmap, 500); // Thay đổi 500 thành kích thước tối đa mong muốn
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         scaledBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
