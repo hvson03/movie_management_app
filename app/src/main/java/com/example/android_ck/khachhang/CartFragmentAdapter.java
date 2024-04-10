@@ -65,19 +65,24 @@ public class CartFragmentAdapter extends RecyclerView.Adapter<CartFragmentAdapte
                 boolean result = myDB.xoaKhoiGioHang(tentaikhoan, maphim);
                 if (result) {
                     Toast.makeText(context, "Đã xóa khỏi giỏ hàng", Toast.LENGTH_SHORT).show();
+                    // Xóa item khỏi danh sách
+                    listanhphim.remove(position);
                     listmaphim.remove(position);
                     listtenphim.remove(position);
                     listgiaphim.remove(position);
-                    listanhphim.remove(position);
+                    listsoluong.remove(position);
                     listthanhtien.remove(position);
+                    soluong.remove(position);
                     Intent intent = new Intent("update_checkout_button_text");
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                     notifyItemRemoved(position);
+                    notifyDataSetChanged();
                 } else {
                     Toast.makeText(context, "Xóa khỏi giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
         holder.txt_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
