@@ -134,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="Lịch sử mua hàng"
+                    android:text="Lịch sử đặt vé"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
