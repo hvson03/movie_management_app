@@ -758,4 +758,25 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public boolean kiemTraThongTinCaNhan(String tentaikhoan) {
+        String query = "SELECT hoten, sdt FROM thongtincanhan WHERE tentaikhoan = '" + tentaikhoan + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String hoten = cursor.getString(0);
+            String sodienthoai = cursor.getString(1);
+            cursor.close();
+
+            if (hoten.equals("Tài khoản chưa có thông tin") || sodienthoai.equals("Đang cập nhật..."))
+                return false;
+            else
+                return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
 }

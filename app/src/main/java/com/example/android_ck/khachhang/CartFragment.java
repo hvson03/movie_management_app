@@ -76,29 +76,33 @@ public class CartFragment extends Fragment {
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ArrayList<Integer> quantities = cartFragmentAdapter.getSoLuong();
+                        if(myDB.kiemTraThongTinCaNhan(tentaikhoan)){
+                            ArrayList<Integer> quantities = cartFragmentAdapter.getSoLuong();
 
-                        for (int i = 0; i < quantities.size(); i++) {
-                            int maphim = listmaphim.get(i);
-                            int soluong = quantities.get(i);
-                            myDB.themHoaDonMoi(tentaikhoan, maphim, soluong);
+                            for (int i = 0; i < quantities.size(); i++) {
+                                int maphim = listmaphim.get(i);
+                                int soluong = quantities.get(i);
+                                myDB.themHoaDonMoi(tentaikhoan, maphim, soluong);
+                            }
+                            Toast.makeText(getContext(), "Mua hàng thành công", Toast.LENGTH_SHORT).show();
+                            myDB.xoaGioHang(tentaikhoan);
+                            listanhphim.clear();
+                            listmaphim.clear();
+                            listtenphim.clear();
+                            listgiaphim.clear();
+                            listsoluong.clear();
+                            listthanhtien.clear();
+                            storeDataInArrays(tentaikhoan);
+                            cartFragmentAdapter.notifyDataSetChanged();
+                            if (myDB.getTongTienGioHang(tentaikhoan) == 0){
+                                btn_datmua.setEnabled(false);
+                                btn_datmua.setText("Thanh toán: 0 VNĐ");
+                            }
+                            else
+                                btn_datmua.setEnabled(true);
+                        }else{
+                            Toast.makeText(getContext(), "Vui lòng cập nhật thông tin trước khi đặt hàng!", Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(getContext(), "Mua hàng thành công", Toast.LENGTH_SHORT).show();
-                        myDB.xoaGioHang(tentaikhoan);
-                        listanhphim.clear();
-                        listmaphim.clear();
-                        listtenphim.clear();
-                        listgiaphim.clear();
-                        listsoluong.clear();
-                        listthanhtien.clear();
-                        storeDataInArrays(tentaikhoan);
-                        cartFragmentAdapter.notifyDataSetChanged();
-                        if (myDB.getTongTienGioHang(tentaikhoan) == 0){
-                            btn_datmua.setEnabled(false);
-                            btn_datmua.setText("Thanh toán: 0 VNĐ");
-                        }
-                        else
-                            btn_datmua.setEnabled(true);
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
