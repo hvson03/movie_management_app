@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/gradient_color_background"
     android:id="@+id/layout_khachhang_yeuthich">
 
@@ -21,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/textView"
+        tools:listitem="@layout/item_khachhang_yeuthich"
         android:layout_marginTop="30dp" />
 
 </RelativeLayout>

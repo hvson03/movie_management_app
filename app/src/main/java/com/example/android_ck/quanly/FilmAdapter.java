@@ -111,7 +111,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
                         intent.putExtra("thoiluong", film.getThoiluong());
                         intent.putExtra("ngaychieu", film.getNgaycongchieu());
                         intent.putExtra("giave", film.getGia());
-                        intent.putExtra("anhphim", film.getAnhphim());
+                        intent.putExtra("anhphim", film.getAnhphim());//lỗi ở đây hahaha
                         intent.putExtra("tentheloai", film.getTentheloai());
                         context.startActivity(intent);
                     }

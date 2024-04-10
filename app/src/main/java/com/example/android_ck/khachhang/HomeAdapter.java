@@ -68,7 +68,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                     PhimVaTheLoai film = filteredFilmList.get(position);
                     Intent intent = new Intent(context, MovieDetail.class);
                     intent.putExtra("tenphim", film.getTenphim());
-                    intent.putExtra("tenphim", film.getTenphim());
+                    //intent.putExtra("tenphim", film.getTenphim());
                     intent.putExtra("maphim", film.getMaphim());
                     intent.putExtra("mota", film.getMota());
                     intent.putExtra("thoiluong", film.getThoiluong());

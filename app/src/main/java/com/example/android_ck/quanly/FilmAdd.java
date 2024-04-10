@@ -183,10 +183,28 @@ public class FilmAdd extends AppCompatActivity {
     // chuyển đổi ảnh
     private byte[] convertImageViewToByteArray(ImageView imageView) {
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        Bitmap scaledBitmap = scaleBitmap(bitmap, 500); // Thay đổi 500 thành kích thước tối đa mong muốn
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        scaledBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
     }
+    //nén ảnh
+    private Bitmap scaleBitmap(Bitmap bitmap, int maxSize) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+
+        return Bitmap.createScaledBitmap(bitmap, width, height, true);
+    }
+
     private void showToast(String message) {
         Toast.makeText(FilmAdd.this, message, Toast.LENGTH_SHORT).show();
     }
