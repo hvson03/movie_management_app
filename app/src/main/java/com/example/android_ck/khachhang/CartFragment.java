@@ -64,7 +64,7 @@ public class CartFragment extends Fragment {
          else
              btn_datmua.setEnabled(true);
 
-        btn_datmua.setText("Thanh toán: " + String.valueOf(myDB.getTongTienGioHang(tentaikhoan))  + " VNĐ");
+        btn_datmua.setText("Tổng tiền: " + String.valueOf(myDB.getTongTienGioHang(tentaikhoan))  + " VNĐ");
         btn_datmua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +93,7 @@ public class CartFragment extends Fragment {
                             cartFragmentAdapter.notifyDataSetChanged();
                             if (myDB.getTongTienGioHang(tentaikhoan) == 0){
                                 btn_datmua.setEnabled(false);
-                                btn_datmua.setText("Thanh toán: 0 VNĐ");
+                                btn_datmua.setText("Tổng tiền: 0 VNĐ");
                             }
                             else
                                 btn_datmua.setEnabled(true);

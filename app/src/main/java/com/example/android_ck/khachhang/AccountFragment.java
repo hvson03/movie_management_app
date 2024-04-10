@@ -1,5 +1,6 @@
 package com.example.android_ck.khachhang;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.android_ck.DBHelper;
@@ -20,9 +22,6 @@ import com.example.android_ck.R;
 
 public class AccountFragment extends Fragment{
     TextView tv_hoten,tv_email;
-//    tv_gioitinh, tv_ngaysinh, tv_sdt, tv_phimyt, tv_tongtien
-//    Button btn_qltk, btn_doimk, btn_dangxuat;
-
     CardView btn_doimk, btn_qltk, btn_dangxuat, hosocanhan, btn_lsmh;
     DBHelper dbHelper;
     @Nullable
@@ -31,12 +30,7 @@ public class AccountFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_khachhang_taikhoan,container,false);
 
         tv_hoten = view.findViewById(R.id.tv_hoten);
-//        tv_gioitinh = view.findViewById(R.id.tv_gioitinh);
-//        tv_ngaysinh = view.findViewById(R.id.tv_ngaysinh);
         tv_email = view.findViewById(R.id.tv_email);
-//        tv_sdt = view.findViewById(R.id.tv_sdt);
-//        tv_phimyt = view.findViewById(R.id.tv_phimyt);
-//        tv_tongtien = view.findViewById(R.id.tv_tongtien);
         hosocanhan = view.findViewById(R.id.hosocanhan);
         btn_dangxuat = view.findViewById(R.id.btn_dangxuat);
         btn_doimk = view.findViewById(R.id.btn_doimk);
@@ -129,23 +123,24 @@ public class AccountFragment extends Fragment{
         Cursor cursor = dbHelper.layThongTinCaNhan(tk);
         if (cursor != null && cursor.moveToFirst()) {
             String hoten = cursor.getString(1);
-//            String gioitinh = cursor.getString(2);
-//            String ngaysinh = cursor.getString(3);
             String email = cursor.getString(4);
-//            String sdt = cursor.getString(5);
+            String sdt = cursor.getString(5);
+
+            if (sdt.equals("Đang cập nhật...")) {
+                tv_hoten.setTextColor(ContextCompat.getColor(getActivity(), R.color.yellow));
+            } else {
+                tv_hoten.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+            }
+
             tv_hoten.setText(hoten);
-//            tv_ngaysinh.setText(ngaysinh);
             tv_email.setText(email);
-//            tv_sdt.setText(sdt);
-//            tv_gioitinh.setText(gioitinh);
+
+
+
+
         }
         cursor.close();
 
-//        int tongSoLuongPhimYeuThich = dbHelper.layTongSoLuongPhimYeuThich(tk);
-//        int tongThanhTien = dbHelper.layTongThanhTien(tk);
-//
-//        tv_phimyt.setText(String.valueOf(tongSoLuongPhimYeuThich));
-//        tv_tongtien.setText(String.valueOf(tongThanhTien));
     }
 
 

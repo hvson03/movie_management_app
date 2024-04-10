@@ -32,7 +32,6 @@ public class khachhang_quanlytaikhoan extends AppCompatActivity {
     EditText edit_suatk_hoten, edit_suatk_ngaysinh, edit_suatk_email, edit_suatk_sdt;
     RadioGroup rb_suatk_gr;
     ImageView img_suatk_quaylai, btn_suatk_capnhat;
-//    Button btn_suatk_capnhat;
     RadioButton rb_suatk_nam, rb_suatk_nu;
     DBHelper dbHelper;
     String regex_hoten = "^[a-zA-Zà-Ỹ ]+$";

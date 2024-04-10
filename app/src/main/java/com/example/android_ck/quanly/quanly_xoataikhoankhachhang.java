@@ -75,7 +75,6 @@ public class quanly_xoataikhoankhachhang extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         List<item_user> itemUsers = dbHelper.layTatCaThongTinCaNhan();
         userAdapter.updateData(itemUsers);
     }

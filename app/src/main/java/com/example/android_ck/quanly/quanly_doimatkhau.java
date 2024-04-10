@@ -25,7 +25,6 @@ import com.example.android_ck.khachhang.khachhang_doimatkhau;
 
 public class quanly_doimatkhau extends AppCompatActivity {
     EditText edit_dmk_mk_admin, edit_dmk_mkmoi_admin;
-//    Button btn_luumk_admin;
     TextView tv_dmk_tk_admin;
     ImageView img_quaylaitacvu, btn_luumk_admin;
     String regex_matkhau = "^[a-zA-Z0-9]{4,}$";
