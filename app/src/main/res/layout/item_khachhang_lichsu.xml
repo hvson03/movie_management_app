@@ -19,7 +19,7 @@
         <ImageView
             android:id="@+id/img_khachhang_lichsu_anhphim"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="155dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"/>
 
