@@ -69,13 +69,7 @@ public class FavouriteFragmentAdapter extends RecyclerView.Adapter<FavouriteFrag
                         boolean result = myDB.xoaKhoiDanhSachYeuThich(tentaikhoan, maphim);
                         if (result) {
                             Toast.makeText(context, "Đã xóa khỏi danh sách yêu thích", Toast.LENGTH_SHORT).show();
-                            // Xóa mục khỏi danh sách hiển thị và cập nhật giao diện
-                            listmaphim.remove(position);
-                            listtenphim.remove(position);
-                            listtheloai.remove(position);
-                            listthoiluong.remove(position);
-                            listanhphim.remove(position);
-                            notifyItemRemoved(position);
+                            removeItem(position);
                         } else {
                             Toast.makeText(context, "Xóa khỏi danh sách yêu thích thất bại", Toast.LENGTH_SHORT).show();
                         }
@@ -111,5 +105,15 @@ public class FavouriteFragmentAdapter extends RecyclerView.Adapter<FavouriteFrag
             txt_thoiluong = itemView.findViewById(R.id.txt_khachhang_yeuthich_thoiluong);
             img_kh_yt_bothich = itemView.findViewById(R.id.img_khachhang_yeuthich_bothich);
         }
+    }
+
+    public void removeItem(int position) {
+        listmaphim.remove(position);
+        listtenphim.remove(position);
+        listtheloai.remove(position);
+        listthoiluong.remove(position);
+        listanhphim.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, getItemCount());
     }
 }
