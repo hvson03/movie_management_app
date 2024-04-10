@@ -48,7 +48,7 @@ public class HistoryFragment extends Fragment {
 
         storeDataInArrays();
         historyFragmentAdapter = new HistoryFragmentAdapter(getContext(), listtenkhachhang, listanhphim, listtenphim, listtheloai ,listgiaphim,
-                listsoluong, listhoten, listemail, listsdt);
+                listsoluong, listhoten, listemail, listsdt, listngaydat);
         recyclerView.setAdapter(historyFragmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
