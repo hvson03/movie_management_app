@@ -1,18 +1,11 @@
-package com.example.android_ck;
+package com.example.android_ck.adapter;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -22,12 +15,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
-import com.example.android_ck.khachhang.khachhang_dangnhap;
-import com.example.android_ck.khachhang.khachhang_quanlytaikhoan;
+import com.example.android_ck.DBHelper;
+import com.example.android_ck.R;
 import com.example.android_ck.model.item_user;
-import com.example.android_ck.quanly.quanly_xoataikhoankhachhang;
 
 import java.text.Normalizer;
 import java.util.ArrayList;

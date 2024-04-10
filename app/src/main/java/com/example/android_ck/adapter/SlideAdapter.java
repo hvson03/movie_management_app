@@ -1,5 +1,5 @@
 // SlideAdapter.java
-package com.example.android_ck.khachhang;
+package com.example.android_ck.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

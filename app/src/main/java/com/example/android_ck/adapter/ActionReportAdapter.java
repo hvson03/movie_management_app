@@ -1,9 +1,7 @@
-package com.example.android_ck.quanly;
+package com.example.android_ck.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +21,8 @@ public class ActionReportAdapter  extends RecyclerView.Adapter<ActionReportAdapt
     ArrayList<Bitmap> listanhphim;
     ArrayList<String> listtenphim;
     ArrayList<Integer> listgiaphim, listsoluongmua, listtongthu;
-    ActionReportAdapter(Context context, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<Integer> listsoluongmua,
-                        ArrayList<Integer> listgiaphim, ArrayList<Integer> listtongthu){
+    public ActionReportAdapter(Context context, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<Integer> listsoluongmua,
+                               ArrayList<Integer> listgiaphim, ArrayList<Integer> listtongthu){
         this.context = context;
         this.listanhphim = listanhphim;
         this.listtenphim = listtenphim;

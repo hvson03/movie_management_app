@@ -1,4 +1,4 @@
-package com.example.android_ck.khachhang;
+package com.example.android_ck.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,7 +19,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     ArrayList<Bitmap> listanhphim;
     ArrayList<String> listtenphim, listtheloai, listngaymua;
     ArrayList<Integer> listsoluong, listthanhtien;
-    HistoryAdapter(Context context, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai, ArrayList<String> listngaymua, ArrayList<Integer> listsoluong, ArrayList<Integer> listthanhtien){
+    public HistoryAdapter(Context context, ArrayList<Bitmap> listanhphim, ArrayList<String> listtenphim, ArrayList<String> listtheloai, ArrayList<String> listngaymua, ArrayList<Integer> listsoluong, ArrayList<Integer> listthanhtien){
         this.context = context;
         this.listanhphim = listanhphim;
         this.listtenphim = listtenphim;

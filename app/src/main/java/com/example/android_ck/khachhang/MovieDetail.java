@@ -1,7 +1,6 @@
 package com.example.android_ck.khachhang;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.content.Intent;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.android_ck.DBHelper;
 import com.example.android_ck.R;
+import com.example.android_ck.adapter.FavouriteFragmentAdapter;
 
 public class MovieDetail extends AppCompatActivity {
     FavouriteFragmentAdapter favouriteFragmentAdapter;
