@@ -1,6 +1,8 @@
 package com.example.android_ck.khachhang;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,19 +59,40 @@ public class FavouriteFragmentAdapter extends RecyclerView.Adapter<FavouriteFrag
                 DBHelper myDB = new DBHelper(context);
                 int maphim = listmaphim.get(position);
 
-                boolean result = myDB.xoaKhoiDanhSachYeuThich(tentaikhoan, maphim);
-                if (result) {
-                    Toast.makeText(context, "Đã xóa khỏi danh sách yêu thích", Toast.LENGTH_SHORT).show();
-                    listmaphim.remove(position);
-                    listtenphim.remove(position);
-                    listtheloai.remove(position);
-                    listanhphim.remove(position);
-                    notifyItemRemoved(position);
-                } else {
-                    Toast.makeText(context, "Xóa khỏi danh sách yêu thích thất bại", Toast.LENGTH_SHORT).show();
-                }
+                // Tạo hộp thoại xác nhận trước khi xóa
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Bạn có chắc chắn muốn xóa khỏi danh sách yêu thích?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Xóa mục khỏi danh sách yêu thích
+                        boolean result = myDB.xoaKhoiDanhSachYeuThich(tentaikhoan, maphim);
+                        if (result) {
+                            Toast.makeText(context, "Đã xóa khỏi danh sách yêu thích", Toast.LENGTH_SHORT).show();
+                            // Xóa mục khỏi danh sách hiển thị và cập nhật giao diện
+                            listmaphim.remove(position);
+                            listtenphim.remove(position);
+                            listtheloai.remove(position);
+                            listthoiluong.remove(position);
+                            listanhphim.remove(position);
+                            notifyItemRemoved(position);
+                        } else {
+                            Toast.makeText(context, "Xóa khỏi danh sách yêu thích thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng hộp thoại nếu người dùng không muốn xóa
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
+
     }
 
     @Override
