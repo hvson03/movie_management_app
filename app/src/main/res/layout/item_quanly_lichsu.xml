@@ -113,7 +113,7 @@
                     android:id="@+id/txt_quanly_lichsu_ngaydat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ngày đặt: 10/4/2024"
+                    android:text="Ngày đặt: "
                     android:textColor="#B9000000"
                     android:layout_marginBottom="10dp"
                     android:textSize="15dp" />
