@@ -22,7 +22,7 @@ public class khachhang_lichsumuahang extends AppCompatActivity {
     RecyclerView recyclerView;
     DBHelper myDB;
     ArrayList<String> listtenphim, listtheloai, listngaymua;
-    ArrayList<Integer> listsoluong, listthanhtien;
+    ArrayList<Integer> listsoluong, listthanhtien, listgia;
     ArrayList<Bitmap> listanhphim;
     HistoryAdapter historyAdapter;
     ImageView img_back;
@@ -49,12 +49,13 @@ public class khachhang_lichsumuahang extends AppCompatActivity {
         listngaymua = new ArrayList<String>();
         listsoluong = new ArrayList<Integer>();
         listthanhtien = new ArrayList<Integer>();
+        listgia = new ArrayList<Integer>();
 
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
         tentaikhoan = sharedPreferences.getString("tentaikhoan", "");
         txt_tongtien.setText("Tổng tiền: " + String.valueOf(myDB.getTongTienCacHoaDon(tentaikhoan))  + " VNĐ");
         storeDataInArrays(tentaikhoan);
-        historyAdapter = new HistoryAdapter(this, listanhphim, listtenphim, listtheloai, listngaymua, listsoluong, listthanhtien);
+        historyAdapter = new HistoryAdapter(this, listanhphim, listtenphim, listtheloai, listngaymua, listsoluong, listthanhtien, listgia);
         recyclerView.setAdapter(historyAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -77,6 +78,7 @@ public class khachhang_lichsumuahang extends AppCompatActivity {
                 listngaymua.add(cursor.getString(5));
                 listsoluong.add(cursor.getInt(3));
                 listthanhtien.add(cursor.getInt(4));
+                listgia.add(cursor.getInt(12));
             }
         }
     }
