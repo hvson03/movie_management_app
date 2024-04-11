@@ -27,7 +27,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
         this.listngaymua = listngaymua;
         this.listsoluong = listsoluong;
         this.listthanhtien = listthanhtien;
-        this.listgia = listthanhtien;
+        this.listgia = listgia;
     }
     @NonNull
     @Override
